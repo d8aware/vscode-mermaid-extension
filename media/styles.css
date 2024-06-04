@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 0;
+}
+#content {
+  border: 1px solid #ccc;
+}
+body.light {
+  background-color: white;
+  color: black;
+}
+body.dark {
+  background-color: black;
+  color: white;
+}
+.full-viewport {
+  height: 100vh;
+  width: 100vw;
+}
+.sun-icon,
+.moon-icon {
+  display: none;
+}
+.dark .sun-icon {
+  display: block;
+}
+.light .moon-icon {
+  display: block;
+}
+.on-top {
+  z-index: 1000;
+}
+.svg-pan-zoom_viewport {
+  cursor: grab;
+  width: 100%;
+}

@@ -1,0 +1,33 @@
+%%{init: { 'logLevel': 'debug', 'theme': 'neutral' } }%%
+
+gitGraph
+    commit
+    commit
+    branch stage
+    branch develop-a
+    branch develop-b
+    commit
+    commit
+    checkout develop-a
+    commit
+    commit
+    checkout stage
+    merge develop-a
+    checkout develop-b
+    commit
+    checkout stage
+    merge develop-b
+    checkout develop-a
+    commit
+    commit
+    checkout main
+    merge stage
+    checkout develop-a
+    merge main
+    checkout develop-b
+    merge main
+    commit
+    commit
+    checkout develop-a
+    commit
+    commit
