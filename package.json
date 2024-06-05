@@ -1,8 +1,14 @@
 {
   "name": "vscode-mermaid-extension",
-  "displayName": "MermaidDiagramView",
-  "description": "View Mermaid diagrams from .mmd files",
-  "version": "0.0.1",
+  "displayName": "Mermaid MMD Tools",
+  "description": "View Mermaid diagrams from .mmd files and generate class diagrams from TypeScript files.",
+  "icon": "media/infinity-color.png",
+  "version": "1.0.1",
+  "publisher": "d8aware",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d8aware/vscode-mermaid-extension.git"
+  },
   "engines": {
     "vscode": "^1.89.0"
   },
@@ -16,16 +22,27 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-mermaid-extension.showPreview",
+        "command": "vscode-mermaid-extension.showDiagramView",
         "title": "View Diagram"
+      },
+      {
+        "command": "vscode-mermaid-extension.generateClassDiagram",
+        "title": "Generate Class Diagram"
       }
     ],
     "menus": {
       "editor/title": [
         {
           "when": "editorLangId == mmd",
-          "command": "vscode-mermaid-extension.showPreview",
+          "command": "vscode-mermaid-extension.showDiagramView",
           "title": "View Diagram",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "vscode-mermaid-extension.generateClassDiagram",
+          "when": "explorerResourceIsFolder",
           "group": "navigation"
         }
       ]
@@ -53,7 +70,7 @@
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
     "serve": "npm run build && npm run open",
-    "open": "npx http-server dist -o /index.html?diagram=seq-5.mmd"
+    "open": "npx http-server dist -o /index.html?diagram=domain-driven-hexagon.mmd"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
@@ -73,6 +90,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
-    "mermaid": "^10.9.1"
+    "mermaid": "^10.9.1",
+    "ts-morph": "^22.0.0"
   }
 }

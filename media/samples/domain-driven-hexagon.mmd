@@ -1,0 +1,444 @@
+classDiagram
+  class AppModule {
+  }
+  class TestServer {
+    +new(testingModuleBuilder): Promise<TestServer>
+  }
+  class ApiClient {
+    url: string
+    +createUser(dto): Promise<IdResponse>
+    +deleteUser(id): Promise<void>
+    +findAllUsers(): Promise<UserPaginatedResponseDto>
+  }
+  class TestContext {
+    context: Context
+    latestResponse: unknown
+    latestRequestDto: unknown
+  }
+  class Guard {
+    +isEmpty(value): boolean
+    +lengthIsBetween(value, min, max): boolean
+  }
+  class ApiErrorResponse {
+    statusCode: number
+    message: string
+    error: string
+    correlationId: string
+    subErrors: string[]
+  }
+  class IdResponse {
+    id: string
+  }
+  class PaginatedQueryRequestDto {
+    limit: number
+    page: number
+  }
+  class PaginatedResponseDto {
+    count: number
+    limit: number
+    page: number
+    data: readonly T[]
+  }
+  class ResponseBase {
+    createdAt: string
+    updatedAt: string
+  }
+  class BaseResponseProps {
+  <<interface>>
+    id: string
+    createdAt: Date
+    updatedAt: Date
+  }
+  class SqlRepositoryBase {
+    tableName: string
+    schema: ZodObject<any>
+    +findOneById(id): Promise<Option<Aggregate>>
+    +findAll(): Promise<Aggregate[]>
+    +findAllPaginated(params): Promise<Paginated<Aggregate>>
+    +delete(entity): Promise<boolean>
+    +insert(entity): Promise<void>
+    +writeQuery(sql, entity): Promise<QueryResult<T extends MixedRow ? T extends ZodTypeAny ? TypeOf<any> : T : T>>
+    +generateInsertQuery(models): SqlSqlToken<QueryResultRow>
+    +transaction(handler): Promise<T>
+  }
+  class AggregateRoot {
+    _domainEvents: DomainEvent
+    +addEvent(domainEvent): void
+    +clearEvents(): void
+    +publishEvents(logger, eventEmitter): Promise<void>
+  }
+  class Command {
+    id: string
+    metadata: CommandMetadata
+  }
+  class DomainEvent {
+    id: string
+    aggregateId: string
+    metadata: DomainEventMetadata
+  }
+  class Entity {
+    props: EntityProps
+    _id: string
+    _createdAt: Date
+    _updatedAt: Date
+    +setId(id): void
+    +isEntity(entity): boolean
+    +equals(object): boolean
+    +getProps(): BaseEntityProps
+    +toObject(): unknown
+    +validate(): void
+    +validateProps(props): void
+  }
+  class BaseEntityProps {
+  <<interface>>
+    id: string
+    createdAt: Date
+    updatedAt: Date
+  }
+  class CreateEntityProps {
+  <<interface>>
+    id: string
+    props: T
+    createdAt: Date
+    updatedAt: Date
+  }
+  class Mapper {
+  <<interface>>
+    +toPersistence(entity): DbRecord
+    +toDomain(record): DomainEntity
+    +toResponse(entity): Response
+  }
+  class QueryBase {
+  }
+  class PaginatedQueryBase {
+    limit: number
+    offset: number
+    orderBy: OrderBy
+    page: number
+  }
+  class Paginated {
+    count: number
+    limit: number
+    page: number
+    data: readonly T[]
+  }
+  class RepositoryPort {
+  <<interface>>
+    +insert(entity): Promise<void>
+    +findOneById(id): Promise<Option<Entity>>
+    +findAll(): Promise<Entity[]>
+    +findAllPaginated(params): Paginated
+    +delete(entity): Promise<boolean>
+    +transaction(handler): Promise<T>
+  }
+  class ValueObject {
+    props: ValueObjectProps<T>
+    +validate(props): void
+    +isValueObject(obj): boolean
+    +equals(vo): boolean
+    +unpack(): T
+    +checkIfEmpty(props): void
+    +isDomainPrimitive(obj): boolean
+  }
+  class DomainPrimitive {
+  <<interface>>
+    value: T
+  }
+  class ExceptionBase {
+    code: string
+    correlationId: string
+    +toJSON(): SerializedException
+  }
+  class SerializedException {
+  <<interface>>
+    message: string
+    code: string
+    correlationId: string
+    stack: string
+    cause: string
+    metadata: unknown
+  }
+  class ArgumentInvalidException {
+    code: "GENERIC.ARGUMENT_INVALID"
+  }
+  class ArgumentNotProvidedException {
+    code: "GENERIC.ARGUMENT_NOT_PROVIDED"
+  }
+  class ArgumentOutOfRangeException {
+    code: "GENERIC.ARGUMENT_OUT_OF_RANGE"
+  }
+  class ConflictException {
+    code: "GENERIC.CONFLICT"
+  }
+  class NotFoundException {
+    message: "Not found"
+    code: "GENERIC.NOT_FOUND"
+  }
+  class InternalServerErrorException {
+    message: "Internal server error"
+    code: "GENERIC.INTERNAL_SERVER_ERROR"
+  }
+  class LoggerPort {
+  <<interface>>
+    +log(message, meta): void
+    +error(message, trace, meta): void
+    +warn(message, meta): void
+    +debug(message, meta): void
+  }
+  class ObjectLiteral {
+  <<interface>>
+  }
+  class UserMapper {
+    +toPersistence(entity): z.TypeOf<any>
+    +toDomain(record): UserEntity
+    +toResponse(entity): UserResponseDto
+  }
+  class UserModule {
+  }
+  class WalletMapper {
+    +toPersistence(entity): z.TypeOf<any>
+    +toDomain(record): WalletEntity
+    +toResponse(): any
+  }
+  class WalletModule {
+  }
+  class IPaginatedType {
+  <<interface>>
+    data: T[]
+    count: number
+    limit: number
+    page: number
+  }
+  class AppRequestContext {
+    requestId: string
+    transactionConnection: DatabaseTransactionConnection
+  }
+  class RequestContextService {
+    +getContext(): AppRequestContext
+    +setRequestId(id): void
+    +getRequestId(): string
+    +getTransactionConnection(): any
+    +setTransactionConnection(transactionConnection): void
+    +cleanTransactionConnection(): void
+  }
+  class ContextInterceptor {
+    +intercept(context, next): Observable<any>
+  }
+  class ExceptionInterceptor {
+    logger: Logger
+    +intercept(_context, next): Observable<ExceptionBase>
+  }
+  class FindUsersParams {
+  <<interface>>
+    country: string
+    postalCode: string
+    street: string
+  }
+  class UserRepositoryPort {
+  <<interface>>
+    +findOneByEmail(email): Promise<UserEntity>
+  }
+  class UserRepository {
+    tableName: string
+    schema: any
+    +updateAddress(user): Promise<void>
+    +findOneByEmail(email): Promise<UserEntity>
+  }
+  class UserEntity {
+    _id: AggregateID
+    +create(create): UserEntity
+    +changeRole(newRole): void
+    +makeAdmin(): void
+    +makeModerator(): void
+    +delete(): void
+    +updateAddress(props): void
+    +validate(): void
+  }
+  class UserAlreadyExistsError {
+    message: "User already exists"
+    code: "USER.ALREADY_EXISTS"
+  }
+  class UserRoles {
+  <<enumeration>>
+    admin
+    moderator
+    guest
+  }
+  class UserProps {
+  <<interface>>
+    role: UserRoles
+    email: string
+    address: Address
+  }
+  class CreateUserProps {
+  <<interface>>
+    email: string
+    address: Address
+  }
+  class UpdateUserAddressProps {
+  <<interface>>
+    country: string
+    postalCode: string
+    street: string
+  }
+  class UserPaginatedResponseDto {
+    data: UserResponseDto
+  }
+  class UserResponseDto {
+    email: string
+    country: string
+    postalCode: string
+    street: string
+  }
+  class WalletRepository {
+    tableName: string
+    schema: any
+  }
+  class WalletEntity {
+    _id: AggregateID
+    +create(create): WalletEntity
+    +deposit(amount): void
+    +withdraw(amount): WalletNotEnoughBalanceError
+    +validate(): void
+  }
+  class CreateWalletProps {
+  <<interface>>
+    userId: AggregateID
+  }
+  class WalletProps {
+  <<interface>>
+    balance: number
+  }
+  class WalletNotEnoughBalanceError {
+    message: "Wallet has not enough balance"
+    code: "WALLET.NOT_ENOUGH_BALANCE"
+  }
+  class CreateUserCliController {
+    +createUser(email, country, postalCode, street): Promise<void>
+  }
+  class CreateUserCommand {
+    email: string
+    country: string
+    postalCode: string
+    street: string
+  }
+  class CreateUserHttpController {
+    +create(body): Promise<IdResponse>
+  }
+  class CreateUserMessageController {
+    +create(message): Promise<IdResponse>
+  }
+  class CreateUserRequestDto {
+    email: string
+    country: string
+    postalCode: string
+    street: string
+  }
+  class CreateUserService {
+    +execute(command): Promise<Result<AggregateID, UserAlreadyExistsError>>
+  }
+  class DeleteUserHttpController {
+    +deleteUser(id): Promise<void>
+  }
+  class DeleteUserCommand {
+    userId: string
+  }
+  class DeleteUserService {
+    +execute(command): Promise<Result<boolean, NotFoundException>>
+  }
+  class UserAddressUpdatedDomainEvent {
+    country: string
+    street: string
+    postalCode: string
+  }
+  class UserCreatedDomainEvent {
+    email: string
+    country: string
+    postalCode: string
+    street: string
+  }
+  class UserDeletedDomainEvent {
+  }
+  class UserRoleChangedDomainEvent {
+    oldRole: UserRoles
+    newRole: UserRoles
+  }
+  class Address {
+    +validate(props): void
+  }
+  class AddressProps {
+  <<interface>>
+    country: string
+    postalCode: string
+    street: string
+  }
+  class UserGraphqlResponseDto {
+    id: string
+    email: string
+    country: string
+    postalCode: string
+    street: string
+  }
+  class UserPaginatedGraphqlResponseDto {
+    data: UserGraphqlResponseDto
+  }
+  class FindUsersGraphqlResolver {
+    +findUsers(options): Promise<UserPaginatedGraphqlResponseDto>
+  }
+  class FindUsersHttpController {
+    +findUsers(request, queryParams): Promise<UserPaginatedResponseDto>
+  }
+  class FindUsersQuery {
+    country: string
+    postalCode: string
+    street: string
+  }
+  class FindUsersQueryHandler {
+    +execute(query): Promise<Result<Paginated<z.TypeOf<any>>, Error>>
+  }
+  class FindUsersRequestDto {
+    country: string
+    postalCode: string
+    street: string
+  }
+  class CreateWalletWhenUserIsCreatedDomainEventHandler {
+    +handle(event): Promise<any>
+  }
+  class WalletCreatedDomainEvent {
+    userId: string
+  }
+  class CreateUserGraphqlResolver {
+    +create(input): Promise<IdGqlResponse>
+  }
+  class CreateUserGqlRequestDto {
+    email: string
+    country: string
+    postalCode: string
+    street: string
+  }
+  class IdGqlResponse {
+    id: string
+  }
+  Paginated <|-- PaginatedResponseDto
+  IdResponse <|-- ResponseBase
+  RepositoryPort <|.. SqlRepositoryBase
+  Entity <|-- AggregateRoot
+  QueryBase <|-- PaginatedQueryBase
+  ExceptionBase <|-- ArgumentInvalidException
+  ExceptionBase <|-- ArgumentNotProvidedException
+  ExceptionBase <|-- ArgumentOutOfRangeException
+  ExceptionBase <|-- ConflictException
+  ExceptionBase <|-- NotFoundException
+  ExceptionBase <|-- InternalServerErrorException
+  Mapper <|.. UserMapper
+  Mapper <|.. WalletMapper
+  NestInterceptor <|.. ContextInterceptor
+  NestInterceptor <|.. ExceptionInterceptor
+  UserRepositoryPort <|.. UserRepository
+  WalletRepositoryPort <|.. WalletRepository
+  ICommandHandler <|.. CreateUserService
+  IQueryHandler <|.. FindUsersQueryHandler
+  PaginatedQueryParams <|.. FindUsersParams
+  RepositoryPort <|.. UserRepositoryPort
+  CreateWalletProps <|.. WalletProps
+

@@ -1,71 +1,47 @@
-# vscode-mermaid-extension README
+# Mermaid.js Diagrams Extension for Visual Studio Code
 
-This is the README for your extension "vscode-mermaid-extension". After writing up a brief description, we recommend including the following sections.
+## Overview
+
+Welcome to the Mermaid.js Diagrams Extension for Visual Studio Code! This extension is designed to enhance developer productivity by integrating diagram visualization directly into your codebase. With this extension, you can easily render Mermaid.js diagrams and generate class diagrams from your TypeScript files, keeping your design in sync with your code.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 1. Diagram Viewer
+- **Render `.mmd` Files:** View Mermaid.js diagrams directly within Visual Studio Code by rendering `.mmd` (Mermaid markdown) files.
+- **Keep Design and Code in Sync:** By keeping diagram artifacts close to your code, you ensure that your design stays up-to-date with the actual implementation.
 
-For example if there is an image subfolder under your extension project workspace:
+### 2. Class Diagram Generator
+- **Generate Class Diagrams:** Right-click on any folder in the Visual Studio Code explorer and generate a class diagram describing all TypeScript classes found within the files in that folder.
+- **Focused Visualization:** Save the generated diagram as `.classes.mmd` in the selected folder, allowing you to visualize specific areas of your codebase or the entire system.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Motivation
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Diagram Viewer
+Software teams often design their software domain using diagrams before starting the actual development. Keeping these diagrams close to the code helps ensure that the implementation stays true to the original design. Mermaid.js provides an elegant way to render diagrams using markdown, making it a perfect choice for this purpose.
 
-## Requirements
+### Class Diagram Generator
+Understanding and visualizing a codebase can be challenging, especially when dealing with large projects or unfamiliar code. By generating class diagrams directly from your TypeScript files, this extension helps developers quickly grasp the domain model and relationships within the code, aiding in faster onboarding and more efficient development.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Installation
 
-## Extension Settings
+1. Install the extension from the Visual Studio Code marketplace.
+2. Reload Visual Studio Code to activate the extension.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Usage
 
-For example:
+### Viewing Mermaid.js Diagrams
+1. Open any `.mmd` file in Visual Studio Code.
+2. The diagram will be rendered automatically in a preview pane.
 
-This extension contributes the following settings:
+### Generating Class Diagrams
+1. Right-click on any folder in the Visual Studio Code explorer.
+2. Select "Generate Class Diagram."
+3. A file named `.classes.mmd` will be created in the selected folder with the class diagram.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Contributing
 
-## Known Issues
+This extension is open source, and contributions are welcome! If you have any ideas for new features or improvements, please feel free to submit an issue or a pull request on the [GitHub repository](https://github.com/d8aware/vscode-mermaid-extension).
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## License
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/d8aware/vscode-mermaid-extension/blob/main/LICENSE) file for details.

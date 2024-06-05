@@ -27,6 +27,7 @@ module.exports = {
         { from: 'media/svg-pan-zoom.min.js', to: 'media/svg-pan-zoom.min.js' },
         { from: 'media/tailwind.min.css', to: 'media/tailwind.min.css' },
         { from: 'media/styles.css', to: 'media/styles.css' },
+        { from: 'media/infinity-color.png', to: 'media/infinity-color.png' },
         { from: 'media/samples/**/*.mmd', to: '' },
       ],
     }),

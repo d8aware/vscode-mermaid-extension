@@ -1,72 +1,89 @@
 import mermaid from "mermaid";
 const svgPanZoom = require('./svg-pan-zoom.min.js');
+import { debounce } from "../shared/debounce";
+import { getQueryParams } from "../shared/querystring";
+import { renderGannt, renderMermaidChart, renderPieChart } from "../render/functions";
 
-// Function to get query parameters from the URL
-function getQueryParams() {
-  const params: { [key: string]: string } = {};
-  location.search
-    .substr(1)
-    .split("&")
-    .forEach(function (item) {
-      const [key, value] = item.split("=");
-      params[key] = decodeURIComponent(value);
-    });
-  return params;
-}
+const MERMAID_DIV_ID = `mermaidDiv_${new Date().getTime()}`;
 
-// Render the diagram
-async function renderDiagram(graphDivId: string, md: string) {
-  const isPie: boolean = md.startsWith("pie");
-  const isGitGraph: boolean = md.startsWith("gitgraph") || md.startsWith("gitGraph");
-  const isErDiagram: boolean = md.startsWith("erdiagram") || md.startsWith("erDiagram");
-  const isGantt: boolean = md.startsWith("gantt");
-  const isJourney: boolean = md.startsWith("journey");
-  const isSequence: boolean = md.startsWith("sequenceDiagram");
-  const isGraph: boolean = md.startsWith("graph");
-  const isClass: boolean = md.startsWith("classDiagram");
-  const element = document.getElementById("content");
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: "default",
-    securityLevel: "loose",
-    class: {
-      defaultRenderer: "dagre-wrapper",
-      nodeSpacing: 50,
-      rankSpacing: 50,
-    },
-  });
+async function renderDiagram(hostDivId: string, md: string) {
   try {
-    const { svg: svgCode, bindFunctions } = await mermaid.render(graphDivId, md, element);
+
+    const element = document.getElementById("content");
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "default",
+      securityLevel: "loose",
+      maxTextSize: 10000000000,
+      class: {
+        defaultRenderer: "dagre-wrapper",
+        nodeSpacing: 50,
+        rankSpacing: 50,
+      },
+    });
+
+    const { svg: svgCode, bindFunctions } = await mermaid.render(hostDivId, md, element);
     if (svgCode) {
       element.innerHTML = svgCode;
       const svg: any = element.firstElementChild;
-      if (isPie) {
-        renderPieChart(svg);
-      } else if (isGitGraph || isSequence || isGraph || isClass) {
+      hideErrorMessage();
+
+      /**
+       * The Mermaid library provides a way to determine the type of diagram
+       * through the `aria-role-description` attribute. This can one of the
+       * following values listed here:
+       * https://github.com/mermaid-js/mermaid/blob/d6ccd93cf207a30bbd45edf39fd29afdbb87b05e/packages/mermaid/src/mermaidAPI.spec.ts#L721
+       */
+      const ariaRoleDescriptionDiagramTypes = {
+        'c4': renderMermaidChart,
+        'classDiagram': renderMermaidChart,
+        'er': renderMermaidChart,
+        'flowchart-v2': renderMermaidChart,
+        'gitGraph': renderMermaidChart,
+        'gantt': renderGannt,
+        'journey': renderMermaidChart,
+        'pie': renderPieChart,
+        'packet': renderMermaidChart,
+        'xychart': renderMermaidChart,
+        'requirement': renderMermaidChart,
+        'sequence': renderMermaidChart,
+        'stateDiagram': renderMermaidChart,
+      };
+      const diagramType = svg.getAttribute('aria-roledescription');
+      if (diagramType) {
+        console.log('Diagram type:', diagramType);
+        const renderFunction = ariaRoleDescriptionDiagramTypes[diagramType];
+        if (renderFunction) {
+          renderFunction(svg);
+        }
+      } else {
         renderMermaidChart(svg);
-      } else if (isGantt) {
-        renderGannt(svg);
       }
+
     }
     if (bindFunctions) {
       bindFunctions(element);
     }
     if (typeof svgPanZoom !== 'undefined') {
-      const panZoomInstance = svgPanZoom(`#${graphDivId}`, {
+      const panZoomInstance = svgPanZoom(`#${hostDivId}`, {
         zoomEnabled: true,
         controlIconsEnabled: true,
         fit: true,
-        center: true
+        center: true,
       });
-      panZoomInstance.zoom(0.8);
-      // Redraw function
-      function redraw() {
+
+      // Resize function
+      function resize() {
+        console.log('Resize diagram');
         panZoomInstance.resize();
+        hijackResetButtonClick(panZoomInstance);
       }
+
       // Add event listener for window resize
-      window.addEventListener('resize', function() {
-        redraw();
-      });
+      window.addEventListener('resize', debounce(resize, 500));
+      hijackResetButtonClick(panZoomInstance);
+      panZoomInstance.zoom(0.8);
+
     } else {
       console.error('svgPanZoom is not defined');
     }
@@ -76,38 +93,49 @@ async function renderDiagram(graphDivId: string, md: string) {
   }
 }
 
-function renderErrorMessage(e) {
-  /**
-   * Step 1. Add the error message to the #errorMessage innerText
-   * Step 2. Remove the hidden class from the #errorBox element
-   */
-  const element = document.getElementById("content");
-  element.innerText = e.message;
+function hijackResetButtonClick(panZoomInstance) {
+  const resetButton = document.getElementById("svg-pan-zoom-reset-pan-zoom");
+  resetButton?.addEventListener("click", function () {
+    console.log("Resetting pan and zoom");
+    panZoomInstance.zoom(0.8);
+  });
 }
 
-// Fetch the content and then render the diagram
-async function renderFetchedDiagram(graphDivId: string, diagramFile: string) {
+function hideErrorMessage() {
+  const element = document.getElementById("error");
+  element.classList.add("hidden");
+}
+
+function showErrorMessage() {
+  const element = document.getElementById("error");
+  element.classList.remove("hidden");
+}
+
+function renderErrorMessage(e) {
+  const element = document.getElementById("error-message");
+  element.innerText = e.message;
+  showErrorMessage();
+}
+
+async function renderFetchedDiagram(hostDivId: string, diagramFile: string) {
   try {
     const response = await fetch(`media/samples/${diagramFile}`);
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
     const diagram = await response.text();
-    await renderDiagram(graphDivId, diagram);
+    await renderDiagram(hostDivId, diagram);
   } catch (error) {
     console.error("Error fetching diagram:", error);
     renderErrorMessage(error);
   }
 }
 
-const graphDivId = `graphDiv_${new Date().getTime()}`;
-
 window.addEventListener("message", async (event) => {
   const message = event.data;
   switch (message.command) {
     case "renderContent":
-      // const vscode = acquireVsCodeApi();
-      await renderDiagram(graphDivId, message.content);
+      await renderDiagram(MERMAID_DIV_ID, message.content);
       break;
   }
 });
@@ -122,109 +150,6 @@ window.addEventListener("DOMContentLoaded", async () => {
    */
   const params = getQueryParams();
   if (params.diagram) {
-    await renderFetchedDiagram(graphDivId, params.diagram);
+    await renderFetchedDiagram(MERMAID_DIV_ID, params.diagram);
   }
 });
-
-function renderPieChart(svg: any) {
-  svg?.removeAttribute("width");
-  svg?.setAttribute("style", `width: 100%; height: 100%;`);
-
-  const bBox = svg.getBBox();
-
-  const g: any = svg.children[svg.children.length - 1];
-  const groupbBox = g.getBBox();
-
-  const zoomLevel = 100 * 0.98; //percent
-  const size = {
-    width: Math.round(bBox.width / (zoomLevel / 100)),
-    height: Math.round(bBox.height / (zoomLevel / 100)),
-  };
-  const zoom100 = `0 0 ${size.width} ${size.height}`;
-
-  svg?.setAttribute("viewBox", zoom100);
-  svg?.setAttribute("preserveAspectRatio", `xMidYMid meet`);
-
-  // compute a translation to position the group in the top left corner
-  const xns: any = {};
-  xns.x = groupbBox.x < 0 ? groupbBox.x * -1 : groupbBox.x;
-  xns.y = groupbBox.y < 0 ? groupbBox.y * -1 : groupbBox.y;
-
-  // center the group
-  const centerScreen = { x: size.width / 2, y: size.height / 2 };
-  const halfWidth = groupbBox.width / 2;
-  const halfHeight = groupbBox.height / 2;
-  xns.x += centerScreen.x - halfWidth;
-  xns.y += centerScreen.y - halfHeight;
-
-  g.setAttribute("transform", `translate(${xns.x}, ${xns.y})`);
-}
-
-// function renderErDiagram(svg: any) {
-//   svg?.removeAttribute("width");
-//   svg?.setAttribute("style", `width: 100%; height: auto !important;`);
-//   svg?.setAttribute("preserveAspectRatio", `xMidYMid meet`);
-// }
-
-function renderGannt(svg: any) {
-  svg?.setAttribute("style", `max-width: 100%;`);
-  svg?.setAttribute("width", `100%`);
-  svg?.setAttribute("height", `100%`);
-  svg?.setAttribute("viewBox", `0 0 1458 196`);
-}
-
-function renderMermaidChart(svg: any) {
-  svg?.removeAttribute("width");
-  svg?.setAttribute("style", `width: 100%; height: 100%;`);
-
-  const bBox = svg.getBBox();
-
-  svg?.setAttribute("preserveAspectRatio", `xMidYMid meet`);
-
-  const gels = Array.from(svg.children).filter(
-    (child: any) => child.tagName === "g"
-  );
-
-  let mostLeft = Number.MAX_VALUE;
-  let mostTop = Number.MAX_VALUE;
-  gels.forEach((gel: any) => {
-    const bb = gel.getBBox();
-    if (bb.x < mostLeft) {
-      mostLeft = bb.x;
-    }
-    if (bb.y < mostTop) {
-      mostTop = bb.y;
-    }
-  });
-
-  let maxWidth = 0;
-  let maxHeight = 0;
-  gels.forEach((gel: any) => {
-    const bb = gel.getBBox();
-
-    if (bb.width !== 0 || bb.height !== 0) {
-      gel.setAttribute("transform", `translate(${-mostLeft}, ${-mostTop})`);
-    }
-
-    const h = -mostTop + bb.y + bb.height;
-    if (h > maxHeight) {
-      maxHeight = h;
-    }
-
-    const w = -mostLeft + bb.x + bb.width;
-    if (w > maxWidth) {
-      maxWidth = w;
-    }
-  });
-
-  const viewWidth = maxWidth * 1.01;
-  const viewHeight = maxHeight * 1.01;
-
-  const size = {
-    width: Math.round(viewWidth),
-    height: Math.round(viewHeight),
-  };
-  const zoom100 = `0 0 ${size.width} ${size.height}`;
-
-  svg?.setAttribute("viewBox", zoom100);
-}

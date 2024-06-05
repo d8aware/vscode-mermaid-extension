@@ -34,3 +34,18 @@ body.dark {
   cursor: grab;
   width: 100%;
 }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  border-top-color: #0f172a;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #0f172a;
+  animation: spin 1s linear infinite;
+}
