@@ -1,0 +1,35 @@
+classDiagram
+  class ImportProcessor {
+    byFile: Record<string, Record<string, boolean>>
+    byType: Record<string, Record<string, boolean>>
+    output: string[]
+    +processImportStrings(lines): Result
+    +hasImport(line): boolean
+    +processImportString(line): Result
+    +mergeResult(result): void
+  }
+  class GenerateClassDiagramCommand {
+    progress: Progress
+    token: CancellationToken
+    importProcessor: ImportProcessor
+    +fromTypeScriptAtPath(folderPath): Promise<any>
+    +processReturnTypeText(returnTypeText): string
+    +computeMethodReturnType(method): string
+    +computePropertyReturnType(prop): string
+    +reportProgress(progress, message): void
+    +generateClassDiagram(sourceGlobs): string
+    +saveTextFile(text, filePath): Promise<any>
+  }
+  class Result {
+  <<interface>>
+    byFile: Record<string, Record<string, boolean>>
+    byType: Record<string, Record<string, boolean>>
+    output: string[]
+  }
+  class ViewDiagramCommand {
+    currentPanel: WebviewPanel
+    +fromActiveTextEditor(context): void
+    +getWebViewContent(extensionPath): any
+  }
+  GenerateClassDiagramCommand --> ImportProcessor : uses
+

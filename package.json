@@ -3,7 +3,7 @@
   "displayName": "Mermaid MMD Tools",
   "description": "View Mermaid diagrams from .mmd files and generate class diagrams from TypeScript files.",
   "icon": "media/infinity-color.png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "d8aware",
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
     "commands": [
       {
         "command": "vscode-mermaid-extension.showDiagramView",
+        "icon": "$(circuit-board)",
+        "shortTitle": "View Diagram",
         "title": "View Diagram"
       },
       {
@@ -33,17 +35,17 @@
     "menus": {
       "editor/title": [
         {
-          "when": "editorLangId == mmd",
+          "when": "resourceExtname == .mmd || editorLangId == mmd",
           "command": "vscode-mermaid-extension.showDiagramView",
           "title": "View Diagram",
-          "group": "navigation"
+          "group": "navigation@1"
         }
       ],
       "explorer/context": [
         {
           "command": "vscode-mermaid-extension.generateClassDiagram",
           "when": "explorerResourceIsFolder",
-          "group": "navigation"
+          "group": "1_open@9"
         }
       ]
     },
