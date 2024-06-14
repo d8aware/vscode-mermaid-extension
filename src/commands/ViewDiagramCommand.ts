@@ -48,7 +48,7 @@ export class ViewDiagramCommand {
           setTitle();
           const newText = document.getText();
           this.currentPanel.webview.postMessage({
-            command: "renderContent",
+            command: "refreshContent",
             content: newText,
           });
         }

@@ -13,7 +13,7 @@ interface Result {
 }
 
 type SourceRoot = {
-  glob: string;
+  glob: string[];
   output: string;
 };
 
@@ -131,9 +131,16 @@ export class GenerateClassDiagramCommand {
       /**
        * Folder path might look like this:
        * /Users/username/Documents/Projects/MyProject
+       * 
+       * NOTE: This extension will skip over any files 
+       * in `node_modules` folders, relative to the selected
+       * folder path.
        */
       const sourceRoot = {
-        glob: `${folderPath}/**/*.ts`,
+        glob: [
+          `${folderPath}/**/*.ts`,
+          `!${folderPath}/**/node_modules/**`
+        ],
         output: path.join(folderPath, ".classes.mmd" )
       };
   

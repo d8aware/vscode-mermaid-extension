@@ -6,12 +6,28 @@ import { renderGannt, renderMermaidChart, renderPieChart } from "../render/funct
 
 const MERMAID_DIV_ID = `mermaidDiv_${new Date().getTime()}`;
 
-async function renderDiagram(hostDivId: string, md: string) {
+let panZoomInstance: any;
+let diagramSvg: any;
+
+async function renderDiagram(hostDivId: string, md: string, resetZoom?: boolean) {
   try {
+
+    /**
+     * If resetZoom is falsy, then we will capture the current pan and zoom,
+     * render the updated diagram, and then reapply the pan and zoom. This
+     * will prevent the diagram from resetting to the default zoom level each
+     * time the diagram is updated with new content.
+     */
+    const panZoom: Record<string, any> = {};
+    if (!resetZoom && diagramSvg && panZoomInstance) {
+      panZoom.pan = panZoomInstance.getPan();
+      panZoom.zoom = panZoomInstance.getZoom();
+      console.log("Pan and zoom:", panZoom.pan, panZoom.zoomLevel);
+    }
 
     const element = document.getElementById("content");
     mermaid.initialize({
-      startOnLoad: true,
+      startOnLoad: false,
       theme: "default",
       securityLevel: "loose",
       maxTextSize: 10000000000,
@@ -26,8 +42,8 @@ async function renderDiagram(hostDivId: string, md: string) {
     if (svgCode) {
       element.innerHTML = svgCode;
       const svg: any = element.firstElementChild;
+      diagramSvg = svg;
       hideErrorMessage();
-
       /**
        * The Mermaid library provides a way to determine the type of diagram
        * through the `aria-role-description` attribute. This can one of the
@@ -51,7 +67,6 @@ async function renderDiagram(hostDivId: string, md: string) {
       };
       const diagramType = svg.getAttribute('aria-roledescription');
       if (diagramType) {
-        console.log('Diagram type:', diagramType);
         const renderFunction = ariaRoleDescriptionDiagramTypes[diagramType];
         if (renderFunction) {
           renderFunction(svg);
@@ -59,13 +74,12 @@ async function renderDiagram(hostDivId: string, md: string) {
       } else {
         renderMermaidChart(svg);
       }
-
     }
     if (bindFunctions) {
       bindFunctions(element);
     }
     if (typeof svgPanZoom !== 'undefined') {
-      const panZoomInstance = svgPanZoom(`#${hostDivId}`, {
+      panZoomInstance = svgPanZoom(`#${hostDivId}`, {
         zoomEnabled: true,
         controlIconsEnabled: true,
         fit: true,
@@ -74,7 +88,6 @@ async function renderDiagram(hostDivId: string, md: string) {
 
       // Resize function
       function resize() {
-        console.log('Resize diagram');
         panZoomInstance.resize();
         hijackResetButtonClick(panZoomInstance);
       }
@@ -82,8 +95,12 @@ async function renderDiagram(hostDivId: string, md: string) {
       // Add event listener for window resize
       window.addEventListener('resize', debounce(resize, 500));
       hijackResetButtonClick(panZoomInstance);
-      panZoomInstance.zoom(0.8);
-
+      if (resetZoom) {
+        panZoomInstance.zoom(0.8);
+      } else {
+        panZoomInstance.zoom(panZoom.zoom);
+        panZoomInstance.pan(panZoom.pan);
+      }
     } else {
       console.error('svgPanZoom is not defined');
     }
@@ -135,9 +152,12 @@ window.addEventListener("message", async (event) => {
   const message = event.data;
   switch (message.command) {
     case "renderContent":
+      await renderDiagram(MERMAID_DIV_ID, message.content, true);
+      break;
+    case "refreshContent":
       await renderDiagram(MERMAID_DIV_ID, message.content);
       break;
-  }
+    }
 });
 
 window.addEventListener("DOMContentLoaded", async () => {
