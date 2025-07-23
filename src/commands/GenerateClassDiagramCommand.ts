@@ -240,17 +240,17 @@ export class GenerateClassDiagramCommand {
                 // Extract just the parameter names from destructured syntax
                 // Need to handle nested braces in default values like: { content = {}, other }
                 
-                // Find the matching closing brace by counting brace depth
-                let braceDepth = 0;
+                // Find the matching closing brace using a stack-based approach
                 let startIndex = paramText.indexOf('{');
                 let endIndex = -1;
+                const stack: number[] = [];
                 
                 for (let i = startIndex; i < paramText.length; i++) {
                   if (paramText[i] === '{') {
-                    braceDepth++;
+                    stack.push(i);
                   } else if (paramText[i] === '}') {
-                    braceDepth--;
-                    if (braceDepth === 0) {
+                    stack.pop();
+                    if (stack.length === 0) {
                       endIndex = i;
                       break;
                     }
