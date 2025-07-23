@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
 import { GenerateClassDiagramCommand } from '../commands/GenerateClassDiagramCommand';
+import { generateClassDiagramForTest } from './testUtils';
 
 suite('GenerateClassDiagramCommand Tests', () => {
   test('fromTypeScriptAtPath should return the output file path', async () => {
@@ -54,33 +55,7 @@ suite('GenerateClassDiagramCommand Tests', () => {
       }
     `;
     project.createSourceFile('Example.ts', code);
-    // Create test helper function
-    const generateClassDiagramForTest = function() {
-      let diagram = "classDiagram\n";
-      const sourceFiles = project.getSourceFiles();
-      sourceFiles.forEach(sourceFile => {
-        sourceFile.getClasses().forEach(classDeclaration => {
-          const className = classDeclaration.getName();
-          diagram += `  class ${className} {\n`;
-          classDeclaration.getMethods().forEach(method => {
-            const methodName = method.getName();
-            const methodParams = method.getParameters();
-            const params = methodParams.map(p => {
-              let paramText = p.getText();
-              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
-              if (paramText.indexOf("{") > -1 && paramText.indexOf("}") > -1) {
-                paramText = paramText.replace(/[{}]/g, '').trim();
-              }
-              return paramText.trim();
-            }).join(", ");
-            diagram += `    +${methodName}(${params}): void\n`;
-          });
-          diagram += "  }\n";
-        });
-      });
-      return diagram;
-    };
-    const diagram = generateClassDiagramForTest();
+    const diagram = generateClassDiagramForTest(project);
     assert.ok(diagram.includes('+foo(a, b: string, c): void'));
     assert.ok(diagram.includes('+bar(x: number, y): void'));
     // Ensure no default values in output
@@ -100,32 +75,7 @@ suite('GenerateClassDiagramCommand Tests', () => {
       }
     `;
     project.createSourceFile('Destructured.ts', code);
-    const generateClassDiagramForTest = function() {
-      let diagram = "classDiagram\n";
-      const sourceFiles = project.getSourceFiles();
-      sourceFiles.forEach(sourceFile => {
-        sourceFile.getClasses().forEach(classDeclaration => {
-          const className = classDeclaration.getName();
-          diagram += `  class ${className} {\n`;
-          classDeclaration.getMethods().forEach(method => {
-            const methodName = method.getName();
-            const methodParams = method.getParameters();
-            const params = methodParams.map(p => {
-              let paramText = p.getText();
-              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
-              if (paramText.indexOf("{") > -1 && paramText.indexOf("}") > -1) {
-                paramText = paramText.replace(/[{}]/g, '').trim();
-              }
-              return paramText.trim();
-            }).join(", ");
-            diagram += `    +${methodName}(${params}): void\n`;
-          });
-          diagram += "  }\n";
-        });
-      });
-      return diagram;
-    };
-    const diagram = generateClassDiagramForTest();
+    const diagram = generateClassDiagramForTest(project);
     // Should flatten destructured params
     assert.ok(diagram.includes('+setInfo(name, age, birthdate): void'));
     // The diagram may still contain curly braces from the class declaration syntax
@@ -209,79 +159,7 @@ suite('GenerateClassDiagramCommand Tests', () => {
     
     project.createSourceFile('StagehandExtractHandler.ts', code);
     
-    const generateClassDiagramForTest = function() {
-      let diagram = "classDiagram\n";
-      const sourceFiles = project.getSourceFiles();
-      sourceFiles.forEach(sourceFile => {
-        sourceFile.getClasses().forEach(classDeclaration => {
-          const className = classDeclaration.getName();
-          diagram += `  class ${className} {\n`;
-          
-          // Add properties
-          classDeclaration.getProperties().forEach(prop => {
-            diagram += `    ${prop.getName()}: any\n`;
-          });
-          
-          // Add methods
-          classDeclaration.getMethods().forEach(method => {
-            const methodName = method.getName();
-            const methodParams = method.getParameters();
-            const params = methodParams.map(p => {
-              // Use getName() which gives us just the parameter name part without type annotations
-              let paramText = p.getName();
-              
-              // Handle destructured parameters specially
-              if (paramText.includes('{') && paramText.includes('}')) {
-                // Extract just the parameter names from destructured syntax
-                // Need to handle nested braces in default values like: { content = {}, other }
-                
-                // Find the matching closing brace by counting brace depth
-                let braceDepth = 0;
-                let startIndex = paramText.indexOf('{');
-                let endIndex = -1;
-                
-                for (let i = startIndex; i < paramText.length; i++) {
-                  if (paramText[i] === '{') {
-                    braceDepth++;
-                  } else if (paramText[i] === '}') {
-                    braceDepth--;
-                    if (braceDepth === 0) {
-                      endIndex = i;
-                      break;
-                    }
-                  }
-                }
-                
-                if (endIndex > startIndex) {
-                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
-                  
-                  // Simple approach: split by comma first, then clean each parameter
-                  const rawParams = destructuredContent.split(',');
-                  const individualParams = rawParams.map(param => {
-                    // Remove everything after the first = (default value)
-                    const nameOnly = param.split('=')[0].trim();
-                    return nameOnly;
-                  }).filter(param => param.length > 0);
-                  
-                  return individualParams.join(', ');
-                }
-              }
-              
-              // For regular parameters, remove default value assignments
-              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
-              
-              // Clean up whitespace and return
-              return paramText.trim();
-            }).join(", ");
-            diagram += `    +${methodName}(${params}): any\n`;
-          });
-          diagram += "  }\n";
-        });
-      });
-      return diagram;
-    };
-    
-    const diagram = generateClassDiagramForTest();
+    const diagram = generateClassDiagramForTest(project);
     
     // Debug: Let's see what we actually get
     console.log("Generated diagram:", diagram);
@@ -363,73 +241,7 @@ suite('GenerateClassDiagramCommand Tests', () => {
     project.createSourceFile('Test.ts', code);
     
     // Test with the FIXED logic (same as the real implementation)
-    const generateClassDiagramFixed = function() {
-      let diagram = "classDiagram\n";
-      const sourceFiles = project.getSourceFiles();
-      sourceFiles.forEach(sourceFile => {
-        sourceFile.getClasses().forEach(classDeclaration => {
-          const className = classDeclaration.getName();
-          diagram += `  class ${className} {\n`;
-          
-          classDeclaration.getMethods().forEach(method => {
-            const methodName = method.getName();
-            const methodParams = method.getParameters();
-            const params = methodParams.map(p => {
-              // Use getName() which gives us just the parameter name part without type annotations
-              let paramText = p.getName();
-              
-              // Handle destructured parameters specially
-              if (paramText.includes('{') && paramText.includes('}')) {
-                // Extract just the parameter names from destructured syntax
-                // Need to handle nested braces in default values like: { content = {}, other }
-                
-                // Find the matching closing brace by counting brace depth
-                let braceDepth = 0;
-                let startIndex = paramText.indexOf('{');
-                let endIndex = -1;
-                
-                for (let i = startIndex; i < paramText.length; i++) {
-                  if (paramText[i] === '{') {
-                    braceDepth++;
-                  } else if (paramText[i] === '}') {
-                    braceDepth--;
-                    if (braceDepth === 0) {
-                      endIndex = i;
-                      break;
-                    }
-                  }
-                }
-                
-                if (endIndex > startIndex) {
-                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
-                  
-                  // Simple approach: split by comma first, then clean each parameter
-                  const rawParams = destructuredContent.split(',');
-                  const individualParams = rawParams.map(param => {
-                    // Remove everything after the first = (default value)
-                    const nameOnly = param.split('=')[0].trim();
-                    return nameOnly;
-                  }).filter(param => param.length > 0);
-                  
-                  return individualParams.join(', ');
-                }
-              }
-              
-              // For regular parameters, remove default value assignments
-              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
-              
-              // Clean up whitespace and return
-              return paramText.trim();
-            }).join(", ");
-            diagram += `    +${methodName}(${params}): any\n`;
-          });
-          diagram += "  }\n";
-        });
-      });
-      return diagram;
-    };
-    
-    const diagram = generateClassDiagramFixed();
+    const diagram = generateClassDiagramForTest(project);
     console.log("FIXED implementation produces:", diagram);
     
     // Verify the fix works
