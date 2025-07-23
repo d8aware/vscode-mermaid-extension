@@ -260,15 +260,39 @@ export class GenerateClassDiagramCommand {
                 if (endIndex > startIndex) {
                   const destructuredContent = paramText.substring(startIndex + 1, endIndex);
                   
-                  // Simple approach: split by comma first, then clean each parameter
-                  const rawParams = destructuredContent.split(',');
-                  const individualParams = rawParams.map(param => {
-                    // Remove everything after the first = (default value)
+                  // Robust approach: parse destructured content to handle nested structures and strings
+                  const individualParams = [];
+                  let currentParam = '';
+                  let braceDepth = 0;
+                  let inQuotes = false;
+                  for (let i = 0; i < destructuredContent.length; i++) {
+                    const char = destructuredContent[i];
+                    if (char === '"' || char === "'") {
+                      inQuotes = !inQuotes;
+                    } else if (!inQuotes) {
+                      if (char === '{') {
+                        braceDepth++;
+                      } else if (char === '}') {
+                        braceDepth--;
+                      } else if (char === ',' && braceDepth === 0) {
+                        individualParams.push(currentParam.trim());
+                        currentParam = '';
+                        continue;
+                      }
+                    }
+                    currentParam += char;
+                  }
+                  if (currentParam.trim().length > 0) {
+                    individualParams.push(currentParam.trim());
+                  }
+                  
+                  // Clean each parameter by removing default values
+                  const cleanedParams = individualParams.map(param => {
                     const nameOnly = param.split('=')[0].trim();
                     return nameOnly;
                   }).filter(param => param.length > 0);
                   
-                  return individualParams.join(', ');
+                  return cleanedParams.join(', ');
                 }
               }
               
