@@ -161,9 +161,6 @@ suite('GenerateClassDiagramCommand Tests', () => {
     
     const diagram = generateClassDiagramForTest(project);
     
-    // Debug: Let's see what we actually get
-    console.log("Generated diagram:", diagram);
-    
     // Verify the problematic extract method is correctly processed
     assert.ok(diagram.includes('+extract('));
     
@@ -242,11 +239,9 @@ suite('GenerateClassDiagramCommand Tests', () => {
     
     // Test with the FIXED logic (same as the real implementation)
     const diagram = generateClassDiagramForTest(project);
-    console.log("FIXED implementation produces:", diagram);
     
     // Verify the fix works
     const extractLine = diagram.split('\n').find(line => line.includes('+extract('));
-    console.log("Extract line:", extractLine);
     
     // Should find the extract method
     assert.ok(extractLine, 'Should find extract method');
