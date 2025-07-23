@@ -3,7 +3,7 @@
   "displayName": "Mermaid MMD Tools",
   "description": "View Mermaid diagrams from .mmd files and generate class diagrams from TypeScript files.",
   "icon": "media/infinity-color.png",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "d8aware",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:mmd"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -35,7 +35,7 @@
     "menus": {
       "editor/title": [
         {
-          "when": "resourceExtname == .mmd || editorLangId == mmd",
+          "when": "resourceExtname == .mmd",
           "command": "vscode-mermaid-extension.showDiagramView",
           "title": "View Diagram",
           "group": "navigation@1"
@@ -48,19 +48,7 @@
           "group": "1_open@9"
         }
       ]
-    },
-    "languages": [
-      {
-        "id": "mmd",
-        "extensions": [
-          ".mmd"
-        ],
-        "aliases": [
-          "MMD",
-          "mmd"
-        ]
-      }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
@@ -75,25 +63,25 @@
     "open": "npx http-server dist -o /index.html?diagram=domain-driven-hexagon.mmd"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "22.x",
-    "@types/vscode": "^1.96.0",
-    "@typescript-eslint/eslint-plugin": "^7.11.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.1",
-    "copy-webpack-plugin": "^12.0.2",
-    "eslint": "^8.57.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "@types/vscode": "^1.89.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "copy-webpack-plugin": "^13.0.0",
+    "eslint": "^9.31.0",
     "http-server": "^14.1.1",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.8.2",
-    "webpack": "^5.97.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.100.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
-    "glob": "^11.0.0",
-    "mermaid": "^11.5.0",
-    "ts-morph": "^22.0.0"
+    "glob": "11.0.3",
+    "mermaid": "11.9.0",
+    "ts-morph": "26.0.0"
   }
 }

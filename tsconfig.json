@@ -5,8 +5,9 @@
 	  "outDir": "out",
 	  "lib": ["es6", "dom"],
 	  "sourceMap": true,
-	  "rootDir": "src"
+	  "rootDir": "src",
+	  "skipLibCheck": true
 	},
-	"exclude": ["node_modules", ".vscode-test"]
-  }
+	"exclude": ["node_modules", ".vscode-test", "docs/**/*", "**/*.example.ts", "test-files/**/*"]
+}
   
