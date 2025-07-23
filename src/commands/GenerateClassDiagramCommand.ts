@@ -232,25 +232,51 @@ export class GenerateClassDiagramCommand {
             const methodParams = method.getParameters();
             const returnTypeText = this.computeMethodReturnType(method);
             const params = methodParams.map(p => {
-              /**
-               * NOTE: It is possible that the params to a function are being destructured
-               * in the function signature. For example, the function signature could look like this:
-               * 
-               * +setInfo({ name, age, birthdate }): void
-               * 
-               * Mermaid.js cannot interpret this, so we will, instead, return the destructured parameters
-               * as normal parameters. 
-               * 
-               * For example, The above function signature will be returned as:
-               * 
-               * +setInfo(name, age, birthdate): void
-               * 
-               */
-              const paramName = p.getName();
-              if (paramName.indexOf("{") > -1) {
-                return paramName.replace("{", "").replace("}", "");
+              // Use getName() which gives us just the parameter name part without type annotations
+              let paramText = p.getName();
+              
+              // Handle destructured parameters specially
+              if (paramText.includes('{') && paramText.includes('}')) {
+                // Extract just the parameter names from destructured syntax
+                // Need to handle nested braces in default values like: { content = {}, other }
+                
+                // Find the matching closing brace by counting brace depth
+                let braceDepth = 0;
+                let startIndex = paramText.indexOf('{');
+                let endIndex = -1;
+                
+                for (let i = startIndex; i < paramText.length; i++) {
+                  if (paramText[i] === '{') {
+                    braceDepth++;
+                  } else if (paramText[i] === '}') {
+                    braceDepth--;
+                    if (braceDepth === 0) {
+                      endIndex = i;
+                      break;
+                    }
+                  }
+                }
+                
+                if (endIndex > startIndex) {
+                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
+                  
+                  // Simple approach: split by comma first, then clean each parameter
+                  const rawParams = destructuredContent.split(',');
+                  const individualParams = rawParams.map(param => {
+                    // Remove everything after the first = (default value)
+                    const nameOnly = param.split('=')[0].trim();
+                    return nameOnly;
+                  }).filter(param => param.length > 0);
+                  
+                  return individualParams.join(', ');
+                }
               }
-              return paramName;
+              
+              // For regular parameters, remove default value assignments
+              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
+              
+              // Clean up whitespace and return
+              return paramText.trim();
             }).join(", ");
             diagram += `    +${methodName}(${params}): ${returnTypeText}\n`;
           });

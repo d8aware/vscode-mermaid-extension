@@ -4,6 +4,9 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.4 (Unreleased)
+- Fixed default parameter bug in class diagram generation (Issue #24): TypeScript methods with default parameters like `content = {}` and `useTextExtract = false` now generate valid Mermaid syntax without parse errors.
+
 ## 1.0.3
 - Stops reset of Pan/Zoom/Position when source document is edited.
 - When generating class diagrams, any relative file path containing `node_modules` will be ignored.

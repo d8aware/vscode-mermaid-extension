@@ -1,0 +1,96 @@
+classDiagram
+    class VSCodeExtension {
+        +activate()
+        +registerCommands()
+    }
+
+    class GenerateClassDiagramCommand {
+        -progress: Progress
+        -token: CancellationToken
+        -importProcessor: ImportProcessor
+        +fromTypeScriptAtPath(folderPath: string): Promise<string>
+        +generateClassDiagram(sourceGlobs: SourceRoot[]): string
+        +processReturnTypeText(returnTypeText: string): string
+        +computeMethodReturnType(method: MethodDeclaration): string
+        +computePropertyReturnType(prop: PropertyDeclaration): string
+    }
+
+    class ViewDiagramCommand {
+        +execute()
+        +createWebviewPanel()
+        +renderMermaidDiagram()
+    }
+
+    class ImportProcessor {
+        +hasImport(text: string): boolean
+        +processImportString(text: string): ProcessedImport
+    }
+
+    class SourceRoot {
+        +glob: string[]
+        +output: string
+    }
+
+    class ParameterProcessor {
+        <<utility>>
+        +stripDefaultValues(paramText: string): string
+        +flattenDestructuredParams(paramText: string): string
+        +normalizeWhitespace(paramText: string): string
+    }
+
+    class TSMorphProject {
+        <<external>>
+        +addSourceFilesAtPaths(globs: string[]): void
+        +getSourceFiles(): SourceFile[]
+    }
+
+    class SourceFile {
+        <<external>>
+        +getClasses(): ClassDeclaration[]
+        +getInterfaces(): InterfaceDeclaration[]
+        +getEnums(): EnumDeclaration[]
+    }
+
+    class ClassDeclaration {
+        <<external>>
+        +getName(): string
+        +getProperties(): PropertyDeclaration[]
+        +getMethods(): MethodDeclaration[]
+    }
+
+    class MethodDeclaration {
+        <<external>>
+        +getName(): string
+        +getParameters(): ParameterDeclaration[]
+        +getReturnType(): Type
+    }
+
+    class ParameterDeclaration {
+        <<external>>
+        +getName(): string
+        +getText(): string
+        +getType(): Type
+    }
+
+    %% Relationships
+    VSCodeExtension --> GenerateClassDiagramCommand : creates
+    VSCodeExtension --> ViewDiagramCommand : creates
+    GenerateClassDiagramCommand --> ImportProcessor : uses
+    GenerateClassDiagramCommand --> SourceRoot : processes
+    GenerateClassDiagramCommand --> TSMorphProject : creates
+    GenerateClassDiagramCommand --> ParameterProcessor : uses for bug fix
+    
+    TSMorphProject --> SourceFile : contains
+    SourceFile --> ClassDeclaration : contains
+    ClassDeclaration --> MethodDeclaration : contains
+    MethodDeclaration --> ParameterDeclaration : contains
+    
+    %% Bug Fix Flow
+    ParameterDeclaration --> ParameterProcessor : raw parameter text
+    ParameterProcessor --> GenerateClassDiagramCommand : cleaned parameter text
+
+    %% Notes about the bug fix
+    note for ParameterProcessor "Critical bug fix component:
+    - Strips default values (= {})
+    - Flattens destructuring
+    - Ensures valid Mermaid output" 
