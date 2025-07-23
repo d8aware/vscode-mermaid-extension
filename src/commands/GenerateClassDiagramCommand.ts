@@ -232,15 +232,50 @@ export class GenerateClassDiagramCommand {
             const methodParams = method.getParameters();
             const returnTypeText = this.computeMethodReturnType(method);
             const params = methodParams.map(p => {
-              // Get the parameter text (which may include default values)
-              let paramText = p.getText();
-              // Remove default value assignments (e.g., content = {})
-              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
-              // If destructured, flatten
-              if (paramText.indexOf("{") > -1 && paramText.indexOf("}") > -1) {
-                paramText = paramText.replace(/[{}]/g, '').trim();
+              // Use getName() which gives us just the parameter name part without type annotations
+              let paramText = p.getName();
+              
+              // Handle destructured parameters specially
+              if (paramText.includes('{') && paramText.includes('}')) {
+                // Extract just the parameter names from destructured syntax
+                // Need to handle nested braces in default values like: { content = {}, other }
+                
+                // Find the matching closing brace by counting brace depth
+                let braceDepth = 0;
+                let startIndex = paramText.indexOf('{');
+                let endIndex = -1;
+                
+                for (let i = startIndex; i < paramText.length; i++) {
+                  if (paramText[i] === '{') {
+                    braceDepth++;
+                  } else if (paramText[i] === '}') {
+                    braceDepth--;
+                    if (braceDepth === 0) {
+                      endIndex = i;
+                      break;
+                    }
+                  }
+                }
+                
+                if (endIndex > startIndex) {
+                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
+                  
+                  // Simple approach: split by comma first, then clean each parameter
+                  const rawParams = destructuredContent.split(',');
+                  const individualParams = rawParams.map(param => {
+                    // Remove everything after the first = (default value)
+                    const nameOnly = param.split('=')[0].trim();
+                    return nameOnly;
+                  }).filter(param => param.length > 0);
+                  
+                  return individualParams.join(', ');
+                }
               }
-              // Only return the name part (and type if desired)
+              
+              // For regular parameters, remove default value assignments
+              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
+              
+              // Clean up whitespace and return
               return paramText.trim();
             }).join(", ");
             diagram += `    +${methodName}(${params}): ${returnTypeText}\n`;

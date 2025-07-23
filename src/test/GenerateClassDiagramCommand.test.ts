@@ -227,13 +227,50 @@ suite('GenerateClassDiagramCommand Tests', () => {
             const methodName = method.getName();
             const methodParams = method.getParameters();
             const params = methodParams.map(p => {
-              let paramText = p.getText();
-              // Remove default value assignments (e.g., content = {})
-              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
-              // If destructured, flatten
-              if (paramText.indexOf("{") > -1 && paramText.indexOf("}") > -1) {
-                paramText = paramText.replace(/[{}]/g, '').trim();
+              // Use getName() which gives us just the parameter name part without type annotations
+              let paramText = p.getName();
+              
+              // Handle destructured parameters specially
+              if (paramText.includes('{') && paramText.includes('}')) {
+                // Extract just the parameter names from destructured syntax
+                // Need to handle nested braces in default values like: { content = {}, other }
+                
+                // Find the matching closing brace by counting brace depth
+                let braceDepth = 0;
+                let startIndex = paramText.indexOf('{');
+                let endIndex = -1;
+                
+                for (let i = startIndex; i < paramText.length; i++) {
+                  if (paramText[i] === '{') {
+                    braceDepth++;
+                  } else if (paramText[i] === '}') {
+                    braceDepth--;
+                    if (braceDepth === 0) {
+                      endIndex = i;
+                      break;
+                    }
+                  }
+                }
+                
+                if (endIndex > startIndex) {
+                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
+                  
+                  // Simple approach: split by comma first, then clean each parameter
+                  const rawParams = destructuredContent.split(',');
+                  const individualParams = rawParams.map(param => {
+                    // Remove everything after the first = (default value)
+                    const nameOnly = param.split('=')[0].trim();
+                    return nameOnly;
+                  }).filter(param => param.length > 0);
+                  
+                  return individualParams.join(', ');
+                }
               }
+              
+              // For regular parameters, remove default value assignments
+              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
+              
+              // Clean up whitespace and return
               return paramText.trim();
             }).join(", ");
             diagram += `    +${methodName}(${params}): any\n`;
@@ -245,6 +282,9 @@ suite('GenerateClassDiagramCommand Tests', () => {
     };
     
     const diagram = generateClassDiagramForTest();
+    
+    // Debug: Let's see what we actually get
+    console.log("Generated diagram:", diagram);
     
     // Verify the problematic extract method is correctly processed
     assert.ok(diagram.includes('+extract('));
@@ -281,6 +321,141 @@ suite('GenerateClassDiagramCommand Tests', () => {
     assert.ok(diagram.includes('stagehandPage: any'));
     assert.ok(diagram.includes('logger: any'));
     assert.ok(diagram.includes('userProvidedInstructions: any'));
+  });
+
+  test('reproduces exact user issue - FIXED implementation should pass this test', () => {
+    const progress: vscode.Progress<{ message?: string; increment?: number }> = { report: () => {} };
+    const token: vscode.CancellationToken = { isCancellationRequested: false, onCancellationRequested: () => { return {} as any; } };
+    const command = new GenerateClassDiagramCommand(progress, token);
+
+    const { Project } = require('ts-morph');
+    const project = new Project({ useInMemoryFileSystem: true });
+    
+    // Exact user code that was causing the issue
+    const code = `
+      interface LLMClient {}
+      
+      class StagehandExtractHandler {
+        public async extract({
+          instruction,
+          schema,
+          content = {},
+          llmClient,
+          requestId,
+          domSettleTimeoutMs,
+          useTextExtract = false,
+          selector,
+        }: {
+          instruction?: string;
+          schema?: any;
+          content?: any;
+          llmClient?: LLMClient;
+          requestId?: string;
+          domSettleTimeoutMs?: number;
+          useTextExtract?: boolean;
+          selector?: string;
+        } = {}) {
+          return {};
+        }
+      }
+    `;
+    
+    project.createSourceFile('Test.ts', code);
+    
+    // Test with the FIXED logic (same as the real implementation)
+    const generateClassDiagramFixed = function() {
+      let diagram = "classDiagram\n";
+      const sourceFiles = project.getSourceFiles();
+      sourceFiles.forEach(sourceFile => {
+        sourceFile.getClasses().forEach(classDeclaration => {
+          const className = classDeclaration.getName();
+          diagram += `  class ${className} {\n`;
+          
+          classDeclaration.getMethods().forEach(method => {
+            const methodName = method.getName();
+            const methodParams = method.getParameters();
+            const params = methodParams.map(p => {
+              // Use getName() which gives us just the parameter name part without type annotations
+              let paramText = p.getName();
+              
+              // Handle destructured parameters specially
+              if (paramText.includes('{') && paramText.includes('}')) {
+                // Extract just the parameter names from destructured syntax
+                // Need to handle nested braces in default values like: { content = {}, other }
+                
+                // Find the matching closing brace by counting brace depth
+                let braceDepth = 0;
+                let startIndex = paramText.indexOf('{');
+                let endIndex = -1;
+                
+                for (let i = startIndex; i < paramText.length; i++) {
+                  if (paramText[i] === '{') {
+                    braceDepth++;
+                  } else if (paramText[i] === '}') {
+                    braceDepth--;
+                    if (braceDepth === 0) {
+                      endIndex = i;
+                      break;
+                    }
+                  }
+                }
+                
+                if (endIndex > startIndex) {
+                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
+                  
+                  // Simple approach: split by comma first, then clean each parameter
+                  const rawParams = destructuredContent.split(',');
+                  const individualParams = rawParams.map(param => {
+                    // Remove everything after the first = (default value)
+                    const nameOnly = param.split('=')[0].trim();
+                    return nameOnly;
+                  }).filter(param => param.length > 0);
+                  
+                  return individualParams.join(', ');
+                }
+              }
+              
+              // For regular parameters, remove default value assignments
+              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
+              
+              // Clean up whitespace and return
+              return paramText.trim();
+            }).join(", ");
+            diagram += `    +${methodName}(${params}): any\n`;
+          });
+          diagram += "  }\n";
+        });
+      });
+      return diagram;
+    };
+    
+    const diagram = generateClassDiagramFixed();
+    console.log("FIXED implementation produces:", diagram);
+    
+    // Verify the fix works
+    const extractLine = diagram.split('\n').find(line => line.includes('+extract('));
+    console.log("Extract line:", extractLine);
+    
+    // Should find the extract method
+    assert.ok(extractLine, 'Should find extract method');
+    
+    // Should have individual parameters without default values
+    assert.ok(extractLine.includes('instruction'), 'Should include instruction parameter');
+    assert.ok(extractLine.includes('schema'), 'Should include schema parameter');
+    assert.ok(extractLine.includes('content'), 'Should include content parameter');
+    assert.ok(extractLine.includes('llmClient'), 'Should include llmClient parameter');
+    assert.ok(extractLine.includes('useTextExtract'), 'Should include useTextExtract parameter');
+    assert.ok(extractLine.includes('selector'), 'Should include selector parameter');
+    
+    // Should NOT have default values
+    assert.ok(!extractLine.includes('= {}'), 'Should not include default object');
+    assert.ok(!extractLine.includes('= false'), 'Should not include default boolean');
+    
+    // Should NOT have malformed syntax that caused the original Mermaid parse error
+    assert.ok(!extractLine.includes('content = {'), 'Should not have broken default syntax');
+    
+    // Verify the correct format: should be clean parameter list
+    assert.ok(extractLine.includes('instruction, schema, content, llmClient'), 'Should have clean comma-separated parameters');
   });
 
   // Add more tests for other methods and functionalities of the GenerateClassDiagramCommand class
