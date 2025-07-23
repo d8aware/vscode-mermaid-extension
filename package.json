@@ -16,7 +16,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:mmd"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -35,7 +35,7 @@
     "menus": {
       "editor/title": [
         {
-          "when": "resourceExtname == .mmd || editorLangId == mmd",
+          "when": "resourceExtname == .mmd",
           "command": "vscode-mermaid-extension.showDiagramView",
           "title": "View Diagram",
           "group": "navigation@1"
@@ -48,19 +48,7 @@
           "group": "1_open@9"
         }
       ]
-    },
-    "languages": [
-      {
-        "id": "mmd",
-        "extensions": [
-          ".mmd"
-        ],
-        "aliases": [
-          "MMD",
-          "mmd"
-        ]
-      }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
