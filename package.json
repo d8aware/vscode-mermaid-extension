@@ -3,7 +3,7 @@
   "displayName": "Mermaid MMD Tools",
   "description": "View Mermaid diagrams from .mmd files and generate class diagrams from TypeScript files.",
   "icon": "media/infinity-color.png",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "d8aware",
   "repository": {
     "type": "git",
@@ -65,7 +65,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
-    "@types/vscode": "^1.102.0",
+    "@types/vscode": "^1.89.0",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
     "@vscode/test-cli": "^0.0.11",
