@@ -115,4 +115,80 @@ Added comprehensive unit tests to prevent regression:
 
 ### Impact
 
-This fix ensures that TypeScript methods with default parameters and destructured parameters generate valid Mermaid class diagrams that render correctly without parse errors. 
+This fix ensures that TypeScript methods with default parameters and destructured parameters generate valid Mermaid class diagrams that render correctly without parse errors.
+
+## Extension Compatibility Fix (Issue #23)
+
+### Problem Description
+
+The VSCode Mermaid Extension was conflicting with other Mermaid-related extensions, particularly the Mermaid Markdown Syntax Highlighting extension. Users experienced issues where:
+
+1. **Menu Command Conflicts**: Commands were not appearing in the correct context
+2. **Language Association Issues**: Multiple extensions competing for `.mmd` file handling
+3. **Activation Problems**: Extension activating unnecessarily when editing Mermaid files
+
+### Root Cause
+
+The extension was using:
+- **Activation Event**: `onLanguage:mmd` which activated every time a Mermaid file was opened
+- **Language Configuration**: Defining `.mmd` file associations that conflicted with other extensions
+- **Menu Conditions**: Unnecessary `editorLangId` checks that prevented commands from appearing
+
+### Solution
+
+#### 1. Changed Activation Strategy
+```json
+// Before (package.json)
+"activationEvents": [
+  "onLanguage:mmd"
+]
+
+// After (package.json)
+"activationEvents": [
+  "onStartupFinished"
+]
+```
+
+#### 2. Removed Language Configuration
+```json
+// Removed from package.json
+"languages": [
+  {
+    "id": "mmd",
+    "extensions": [".mmd"],
+    "aliases": ["Mermaid", "mermaid"]
+  }
+]
+```
+
+#### 3. Streamlined Menu Conditions
+```json
+// Before
+"when": "editorLangId == typescript && explorerResourceIsFolder"
+
+// After  
+"when": "explorerResourceIsFolder"
+```
+
+### Files Modified
+
+- `package.json` - Updated activation events and removed language configuration
+- Menu command conditions simplified for better compatibility
+
+### Expected Behavior
+
+**After Fix:**
+1. **No Conflicts**: Extension coexists peacefully with other Mermaid extensions
+2. **Proper Activation**: Only activates when needed, not on every Mermaid file open
+3. **Consistent Commands**: Generate Class Diagram command appears reliably in folder context menus
+4. **Better Performance**: Reduced unnecessary activations improve startup time
+
+### Testing
+
+- **Multi-extension Setup**: Verified compatibility with popular Mermaid extensions
+- **Command Visibility**: Confirmed commands appear in appropriate contexts
+- **Performance**: Validated reduced activation overhead
+
+### Impact
+
+This fix ensures the extension works harmoniously with other Mermaid-related extensions while maintaining full functionality for class diagram generation. 

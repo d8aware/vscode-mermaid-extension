@@ -11,6 +11,7 @@ The VSCode Mermaid Extension provides functionality to generate and view Mermaid
 ### Extension Entry Point
 - **File**: `src/extension.ts`
 - **Purpose**: Registers commands and activates the extension
+- **Activation**: Uses `onStartupFinished` event for better compatibility with other extensions (changed from `onLanguage:mmd` in v1.0.4)
 - **Key Commands**:
   - `vscode-mermaid-extension.generateClassDiagram`
   - `vscode-mermaid-extension.viewDiagram`
@@ -133,6 +134,24 @@ The core bug fix centers around this transformation:
 - **File system**: Test with actual project structures
 - **Error scenarios**: Verify graceful error handling
 
+## Version 1.0.4 Improvements
+
+### Extension Activation Enhancements
+- **Improved Compatibility**: Changed activation from `onLanguage:mmd` to `onStartupFinished` to resolve conflicts with other Mermaid extensions
+- **Streamlined Menu Logic**: Removed unnecessary `editorLangId` checks for better command visibility
+- **Language Configuration Cleanup**: Removed conflicting `.mmd` file language definitions
+
+### Enhanced Parameter Processing
+The parameter extraction logic was significantly improved to handle complex TypeScript patterns:
+- **Robust Brace Counting**: Proper handling of nested destructuring patterns
+- **Default Value Stripping**: Comprehensive removal of complex default assignments
+- **Edge Case Coverage**: Support for real-world TypeScript code patterns
+
+### Testing Infrastructure
+- **Test Utilities**: Introduced `testUtils.ts` for reusable testing components
+- **Comprehensive Coverage**: Added tests for all parameter processing edge cases
+- **Real-world Scenarios**: Tests based on actual user-reported issues
+
 ## Dependencies
 
 ### Core Dependencies
@@ -141,8 +160,8 @@ The core bug fix centers around this transformation:
 - **path**: File system path handling
 
 ### Development Dependencies
-- **TypeScript**: Language compilation
-- **ESLint**: Code quality
+- **TypeScript**: Language compilation (updated to latest in v1.0.4)
+- **ESLint**: Code quality (migrated to flat config format in v1.0.4)
 - **Jest**: Unit testing framework
 
 ## Performance Considerations

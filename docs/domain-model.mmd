@@ -38,6 +38,13 @@ classDiagram
         +normalizeWhitespace(paramText: string): string
     }
 
+    class TestUtils {
+        <<utility>>
+        +generateClassDiagramForTest(code: string): string
+        +createTestProject(): TSMorphProject
+        +setupTestEnvironment(): void
+    }
+
     class TSMorphProject {
         <<external>>
         +addSourceFilesAtPaths(globs: string[]): void
@@ -89,8 +96,17 @@ classDiagram
     ParameterDeclaration --> ParameterProcessor : raw parameter text
     ParameterProcessor --> GenerateClassDiagramCommand : cleaned parameter text
 
+    %% Testing Infrastructure (v1.0.4)
+    TestUtils --> GenerateClassDiagramCommand : test execution
+    TestUtils --> TSMorphProject : test project creation
+
     %% Notes about the bug fix
     note for ParameterProcessor "Critical bug fix component:
     - Strips default values (= {})
     - Flattens destructuring
-    - Ensures valid Mermaid output" 
+    - Ensures valid Mermaid output"
+    
+    note for TestUtils "v1.0.4 Testing Enhancement:
+    - Reusable test utilities
+    - Comprehensive edge case coverage
+    - Real-world scenario testing" 
