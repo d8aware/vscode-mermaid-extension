@@ -232,25 +232,16 @@ export class GenerateClassDiagramCommand {
             const methodParams = method.getParameters();
             const returnTypeText = this.computeMethodReturnType(method);
             const params = methodParams.map(p => {
-              /**
-               * NOTE: It is possible that the params to a function are being destructured
-               * in the function signature. For example, the function signature could look like this:
-               * 
-               * +setInfo({ name, age, birthdate }): void
-               * 
-               * Mermaid.js cannot interpret this, so we will, instead, return the destructured parameters
-               * as normal parameters. 
-               * 
-               * For example, The above function signature will be returned as:
-               * 
-               * +setInfo(name, age, birthdate): void
-               * 
-               */
-              const paramName = p.getName();
-              if (paramName.indexOf("{") > -1) {
-                return paramName.replace("{", "").replace("}", "");
+              // Get the parameter text (which may include default values)
+              let paramText = p.getText();
+              // Remove default value assignments (e.g., content = {})
+              paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
+              // If destructured, flatten
+              if (paramText.indexOf("{") > -1 && paramText.indexOf("}") > -1) {
+                paramText = paramText.replace(/[{}]/g, '').trim();
               }
-              return paramName;
+              // Only return the name part (and type if desired)
+              return paramText.trim();
             }).join(", ");
             diagram += `    +${methodName}(${params}): ${returnTypeText}\n`;
           });
