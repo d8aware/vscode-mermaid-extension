@@ -41,30 +41,51 @@ Expecting 'STRUCT_STOP', 'MEMBER', got 'OPEN_IN_STRUCT'
 
 ### Root Cause
 
-The class diagram generator was using `p.getName()` to extract parameter names, but this method returned the full parameter text including default value assignments (e.g., `content = {}`, `useTextExtract = false`). Mermaid.js cannot parse these default value assignments in class diagram method signatures.
+The class diagram generator was extracting parameter names from destructured parameters, but the regex pattern `\{\s*([^}]+)\s*\}` could not handle nested braces in default values like `content = {}`. This caused the extraction to stop at the first `}` found, resulting in incomplete parameter lists and malformed Mermaid syntax.
 
 ### Solution
 
 Updated the parameter extraction logic in `GenerateClassDiagramCommand.generateClassDiagram()` to:
 
-1. **Strip default values**: Use regex to remove default value assignments (`= value`)
-2. **Flatten destructured parameters**: Convert `{ name, age }` to `name, age`
-3. **Preserve parameter names and types**: Keep essential information while removing problematic syntax
+1. **Handle nested braces**: Use proper brace counting to find the complete destructured parameter list
+2. **Strip default values**: Remove default value assignments (`= value`) from each parameter
+3. **Preserve all parameter names**: Extract all parameters regardless of complex default values
 
 **Implementation:**
 ```typescript
-const params = methodParams.map(p => {
-  // Get the parameter text (which may include default values)
-  let paramText = p.getText();
-  // Remove default value assignments (e.g., content = {})
-  paramText = paramText.replace(/\s*=\s*[^,\)\]]+/g, '');
-  // If destructured, flatten
-  if (paramText.indexOf("{") > -1 && paramText.indexOf("}") > -1) {
-    paramText = paramText.replace(/[{}]/g, '').trim();
+// Handle destructured parameters specially
+if (paramText.includes('{') && paramText.includes('}')) {
+  // Find the matching closing brace by counting brace depth
+  let braceDepth = 0;
+  let startIndex = paramText.indexOf('{');
+  let endIndex = -1;
+  
+  for (let i = startIndex; i < paramText.length; i++) {
+    if (paramText[i] === '{') {
+      braceDepth++;
+    } else if (paramText[i] === '}') {
+      braceDepth--;
+      if (braceDepth === 0) {
+        endIndex = i;
+        break;
+      }
+    }
   }
-  // Only return the name part (and type if desired)
-  return paramText.trim();
-}).join(", ");
+  
+  if (endIndex > startIndex) {
+    const destructuredContent = paramText.substring(startIndex + 1, endIndex);
+    
+    // Split by comma and clean each parameter
+    const rawParams = destructuredContent.split(',');
+    const individualParams = rawParams.map(param => {
+      // Remove everything after the first = (default value)
+      const nameOnly = param.split('=')[0].trim();
+      return nameOnly;
+    }).filter(param => param.length > 0);
+    
+    return individualParams.join(', ');
+  }
+}
 ```
 
 ### Expected Output

@@ -56,22 +56,31 @@ The parameter processing in step L above includes the critical bug fix for defau
 
 ```mermaid
 flowchart TD
-    A[Method Parameters] --> B[Get parameter text via p.getText]
-    B --> C[Strip default values with regex]
-    C --> D{Contains destructuring?}
-    D -->|Yes| E[Flatten destructured parameters]
-    D -->|No| F[Clean up whitespace]
-    E --> F
-    F --> G[Join parameters with commas]
-    G --> H[Return processed parameter string]
+    A[Method Parameters] --> B[Get parameter name via p.getName]
+    B --> C{Contains destructuring braces?}
+    C -->|Yes| D[Count brace depth to find complete parameter list]
+    D --> E[Extract content between matching braces]
+    E --> F[Split by comma and remove default values]
+    F --> G[Join cleaned parameters]
+    C -->|No| H[Remove default values with regex]
+    H --> I[Clean up whitespace]
+    G --> J[Return processed parameter string]
+    I --> J
 ```
 
 ### Parameter Processing Rules
 
-1. **Default Value Removal**: Strip assignments like `= {}`, `= false`, `= "default"`
-2. **Destructuring Flattening**: Convert `{name, age}` to `name, age`
-3. **Type Preservation**: Maintain type annotations when present
+1. **Nested Brace Handling**: Use brace counting to properly extract complete destructured parameter lists
+2. **Default Value Removal**: Strip assignments like `= {}`, `= false`, `= "default"` from each parameter
+3. **Parameter Name Extraction**: Extract only parameter names, removing complex default value expressions
 4. **Whitespace Normalization**: Clean up extra spaces and formatting
+
+### Key Implementation Details
+
+The bug fix specifically addresses the challenge of destructured parameters with complex default values:
+- **Problem**: `{ content = {}, useTextExtract = false }` was incorrectly parsed due to nested braces
+- **Solution**: Proper brace counting ensures complete parameter extraction
+- **Result**: All parameters are correctly identified and default values are stripped
 
 ## Data Flow
 
