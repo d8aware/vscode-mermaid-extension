@@ -4,6 +4,80 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.1.0
+
+### Added
+
+- **Single Preview Mode**: New configuration setting `useSinglePreview` enables a unified preview experience similar to Markdown preview
+  - Preview automatically updates when switching between `.mmd` or `.mermaid` file tabs (when single preview mode is enabled)
+  - Support for both single preview mode (unified) and multi-panel mode (default)
+  - Intelligent document change tracking that follows the active .mmd/.mermaid file
+  - Proper cleanup of event listeners when switching documents or closing preview
+
+- **`.mermaid` File Extension Support**: Extension now supports both `.mmd` and `.mermaid` file extensions
+  - View diagram button appears for both file types
+  - Single preview mode works with both file types
+  - All features work identically for both extensions
+
+### Fixed
+
+- **Pan/Zoom Controls Rendering**: Fixed issue where pan and zoom controls would not render correctly when the preview panel is docked, moved, or resized
+  - Added `onDidChangeViewState` listener to detect panel layout changes
+  - Webview now automatically resizes and recenters pan/zoom controls when panel state changes
+  - No longer requires reactivating the .mmd editor to restore proper zoom controls
+
+- **Single Preview Mode - Preview Tab Switching**: Fixed issue where preview wouldn't update in certain editor state scenarios
+  - Added `onDidChangeVisibleTextEditors` listener to catch preview mode editor replacements
+  - Added `onDidOpenTextDocument` listener to catch all document opens from file tree
+  - Preview now updates correctly when clicking .mmd/.mermaid files from file tree (even in preview mode)
+  - Preview now updates correctly when double-clicking to promote preview tab to permanent tab
+  - Preview updates even when hidden in the same tab group as the editor
+
+### Configuration
+
+- Added `vscode-mermaid-extension.useSinglePreview` setting (default: false)
+  - When enabled: Single preview panel updates automatically as you switch between .mmd/.mermaid files
+  - When disabled: Each preview command creates a new panel (original behavior)
+
+### Documentation
+
+- Added comprehensive preview modes documentation in `docs/preview-modes.md`
+- Updated README.md with prominent Single Preview Mode feature section
+- Added Configuration section to README with detailed setup instructions
+
+### Testing
+
+- Added test coverage for configuration settings
+- Added tests for ViewDiagramCommand static methods
+- Added document tracking tests
+
+## 1.0.5
+
+### Dependencies
+- Updated glob from 11.1.0 to 13.0.0 for improved file matching performance and latest features.
+- Updated ts-morph from 26.0.0 to 27.0.2 for latest TypeScript support and bug fixes.
+- Updated @types/vscode from 1.106.1 to 1.107.0 for latest VS Code API types.
+- Updated @types/node from 24.10.2 to 25.0.1 for latest Node.js type definitions.
+- Updated @vscode/test-cli from 0.0.11 to 0.0.12 for improved testing capabilities.
+- Updated eslint from 9.39.1 to 9.39.2 for latest linting rules and bug fixes.
+
+### Configuration
+- Fixed ESLint module type warning by renaming `eslint.config.js` to `eslint.config.mjs`.
+- Enhanced package.json metadata for better marketplace discoverability:
+  - Added keywords: mermaid, diagram, visualization, uml, class diagram, typescript, markdown
+  - Updated categories to include "Visualization" and "Programming Languages"
+  - Added bugs URL, homepage URL, license field, and Q&A routing
+  - Added gallery banner configuration for dark theme
+- Updated VS Code engine compatibility from ^1.89.0 to ^1.95.0 for better alignment with recent stable releases.
+
+### Documentation
+- Added marketplace badges to README.md (version, installs, rating).
+- Improved .vscodeignore to exclude documentation and test files from package, reducing extension size.
+
+### Maintenance
+- Comprehensive testing performed to ensure compatibility with updated dependencies.
+- All tests passing with latest VS Code version 1.107.0.
+
 ## 1.0.4
 ### Bug Fixes
 - Fixed default parameter bug in class diagram generation (Issue #24): TypeScript methods with default parameters like `content = {}` and `useTextExtract = false` now generate valid Mermaid syntax without parse errors.
