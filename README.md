@@ -1,5 +1,9 @@
 # Mermaid.js Diagrams Extension for Visual Studio Code
 
+[![Version](https://img.shields.io/visual-studio-marketplace/v/d8aware.vscode-mermaid-extension?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/d8aware.vscode-mermaid-extension?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/d8aware.vscode-mermaid-extension?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
+
 ## Overview
 
 Welcome to the Mermaid.js Diagrams Extension for Visual Studio Code! This extension is designed to enhance developer productivity by integrating diagram visualization directly into your codebase. With this extension, you can easily render Mermaid.js diagrams and generate class diagrams from your TypeScript files, keeping your design in sync with your code.

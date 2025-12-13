@@ -4,6 +4,33 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.5
+
+### Dependencies
+- Updated glob from 11.1.0 to 13.0.0 for improved file matching performance and latest features.
+- Updated ts-morph from 26.0.0 to 27.0.2 for latest TypeScript support and bug fixes.
+- Updated @types/vscode from 1.106.1 to 1.107.0 for latest VS Code API types.
+- Updated @types/node from 24.10.2 to 25.0.1 for latest Node.js type definitions.
+- Updated @vscode/test-cli from 0.0.11 to 0.0.12 for improved testing capabilities.
+- Updated eslint from 9.39.1 to 9.39.2 for latest linting rules and bug fixes.
+
+### Configuration
+- Fixed ESLint module type warning by renaming `eslint.config.js` to `eslint.config.mjs`.
+- Enhanced package.json metadata for better marketplace discoverability:
+  - Added keywords: mermaid, diagram, visualization, uml, class diagram, typescript, markdown
+  - Updated categories to include "Visualization" and "Programming Languages"
+  - Added bugs URL, homepage URL, license field, and Q&A routing
+  - Added gallery banner configuration for dark theme
+- Updated VS Code engine compatibility from ^1.89.0 to ^1.95.0 for better alignment with recent stable releases.
+
+### Documentation
+- Added marketplace badges to README.md (version, installs, rating).
+- Improved .vscodeignore to exclude documentation and test files from package, reducing extension size.
+
+### Maintenance
+- Comprehensive testing performed to ensure compatibility with updated dependencies.
+- All tests passing with latest VS Code version 1.107.0.
+
 ## 1.0.4
 ### Bug Fixes
 - Fixed default parameter bug in class diagram generation (Issue #24): TypeScript methods with default parameters like `content = {}` and `useTextExtract = false` now generate valid Mermaid syntax without parse errors.
