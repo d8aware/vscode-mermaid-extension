@@ -2,8 +2,8 @@
   "name": "vscode-mermaid-extension",
   "displayName": "Mermaid MMD Tools",
   "description": "View Mermaid diagrams from .mmd files and generate class diagrams from TypeScript files.",
-  "icon": "media/infinity-color.png",
-  "version": "1.0.5",
+  "icon": "media/infinity-hatch-128.png",
+  "version": "1.1.0",
   "publisher": "d8aware",
   "repository": {
     "type": "git",

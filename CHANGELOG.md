@@ -4,7 +4,7 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 1.0.6
+## 1.1.0
 
 ### Added
 
