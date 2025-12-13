@@ -41,6 +41,16 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Mermaid MMD Tools",
+      "properties": {
+        "vscode-mermaid-extension.useSinglePreview": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use a single, shared preview panel that updates when switching between .mmd files (similar to Markdown preview behavior)"
+        }
+      }
+    },
     "commands": [
       {
         "command": "vscode-mermaid-extension.showDiagramView",

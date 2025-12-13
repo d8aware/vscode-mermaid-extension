@@ -5,13 +5,45 @@ import { GenerateClassDiagramCommand } from "./commands/GenerateClassDiagramComm
 export function activate(context: vscode.ExtensionContext) {
   console.log('"vscode-mermaid-extension" extension is now active!');
 
+  // Store the view command instance for reuse in single preview mode
+  const viewCommandInstance = new ViewDiagramCommand();
+
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "vscode-mermaid-extension.showDiagramView",
       () => {
-        new ViewDiagramCommand().fromActiveTextEditor(context);
+        viewCommandInstance.fromActiveTextEditor(context);
       }
     )
+  );
+
+  // Listen for active editor changes to support single preview mode
+  context.subscriptions.push(
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+      const config = vscode.workspace.getConfiguration('vscode-mermaid-extension');
+      const useSinglePreview = config.get<boolean>('useSinglePreview', false);
+
+      if (!useSinglePreview) {
+        // Single preview mode is disabled, don't auto-update
+        return;
+      }
+
+      if (!editor) {
+        return;
+      }
+
+      const document = editor.document;
+      
+      // Check if the active document is a .mmd file
+      if (document.fileName.endsWith('.mmd')) {
+        const sharedPanel = ViewDiagramCommand.getSharedPanel();
+        
+        // Only update if the shared panel exists and is visible
+        if (sharedPanel && sharedPanel.visible) {
+          viewCommandInstance.updatePanelForDocument(document, context);
+        }
+      }
+    })
   );
 
   context.subscriptions.push(

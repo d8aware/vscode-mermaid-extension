@@ -4,6 +4,34 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.0.6
+
+### Added
+
+- **Single Preview Mode**: New configuration setting `useSinglePreview` enables a unified preview experience similar to Markdown preview
+  - Preview automatically updates when switching between `.mmd` file tabs (when single preview mode is enabled)
+  - Support for both single preview mode (unified) and multi-panel mode (default)
+  - Intelligent document change tracking that follows the active .mmd file
+  - Proper cleanup of event listeners when switching documents or closing preview
+
+### Configuration
+
+- Added `vscode-mermaid-extension.useSinglePreview` setting (default: false)
+  - When enabled: Single preview panel updates automatically as you switch between .mmd files
+  - When disabled: Each preview command creates a new panel (original behavior)
+
+### Documentation
+
+- Added comprehensive preview modes documentation in `docs/preview-modes.md`
+- Updated README.md with prominent Single Preview Mode feature section
+- Added Configuration section to README with detailed setup instructions
+
+### Testing
+
+- Added test coverage for configuration settings
+- Added tests for ViewDiagramCommand static methods
+- Added document tracking tests
+
 ## 1.0.5
 
 ### Dependencies
