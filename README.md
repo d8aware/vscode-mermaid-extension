@@ -11,7 +11,7 @@ Welcome to the Mermaid.js Diagrams Extension for Visual Studio Code! This extens
 ## Features
 
 ### 1. Diagram Viewer
-- **Render `.mmd` Files:** View Mermaid.js diagrams directly within Visual Studio Code by rendering `.mmd` (Mermaid markdown) files.
+- **Render `.mmd` and `.mermaid` Files:** View Mermaid.js diagrams directly within Visual Studio Code by rendering `.mmd` or `.mermaid` files.
 - **Keep Design and Code in Sync:** By keeping diagram artifacts close to your code, you ensure that your design stays up-to-date with the actual implementation.
 
 ### 2. Class Diagram Generator
@@ -20,7 +20,7 @@ Welcome to the Mermaid.js Diagrams Extension for Visual Studio Code! This extens
 
 ### 3. Single Preview Mode (NEW)
 - **Unified Preview Experience:** Enable single preview mode to work with Mermaid diagrams like Markdown preview - one preview panel that updates as you switch between files.
-- **Automatic Switching:** Preview automatically updates when you switch between `.mmd` file tabs, making it easy to review multiple diagrams without cluttering your workspace.
+- **Automatic Switching:** Preview automatically updates when you switch between `.mmd` or `.mermaid` file tabs, making it easy to review multiple diagrams without cluttering your workspace.
 - **Flexible Configuration:** Toggle between single preview mode (unified) and multi-panel mode (side-by-side) via extension settings to match your workflow.
 
 [Learn more about preview modes](docs/preview-modes.md)
@@ -41,7 +41,7 @@ Understanding and visualizing a codebase can be challenging, especially when dea
 ## Usage
 
 ### Viewing Mermaid.js Diagrams
-1. Open any `.mmd` file in Visual Studio Code.
+1. Open any `.mmd` or `.mermaid` file in Visual Studio Code.
 2. Click the diagram icon in the editor title bar to open the preview.
 3. The diagram will be rendered in a preview panel with pan and zoom capabilities.
 
@@ -70,7 +70,7 @@ By default, clicking the view diagram button creates a new preview panel each ti
 
 **When enabled:**
 - Opening a preview creates a single, reusable preview panel
-- Switching between `.mmd` file tabs automatically updates the preview
+- Switching between `.mmd` or `.mermaid` file tabs automatically updates the preview
 - Closing and reopening the preview works as expected
 
 **When disabled (default):**

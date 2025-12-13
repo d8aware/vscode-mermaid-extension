@@ -9,10 +9,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 
 - **Single Preview Mode**: New configuration setting `useSinglePreview` enables a unified preview experience similar to Markdown preview
-  - Preview automatically updates when switching between `.mmd` file tabs (when single preview mode is enabled)
+  - Preview automatically updates when switching between `.mmd` or `.mermaid` file tabs (when single preview mode is enabled)
   - Support for both single preview mode (unified) and multi-panel mode (default)
-  - Intelligent document change tracking that follows the active .mmd file
+  - Intelligent document change tracking that follows the active .mmd/.mermaid file
   - Proper cleanup of event listeners when switching documents or closing preview
+
+- **`.mermaid` File Extension Support**: Extension now supports both `.mmd` and `.mermaid` file extensions
+  - View diagram button appears for both file types
+  - Single preview mode works with both file types
+  - All features work identically for both extensions
 
 ### Fixed
 
@@ -21,10 +26,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   - Webview now automatically resizes and recenters pan/zoom controls when panel state changes
   - No longer requires reactivating the .mmd editor to restore proper zoom controls
 
+- **Single Preview Mode - Preview Tab Switching**: Fixed issue where preview wouldn't update in certain editor state scenarios
+  - Added `onDidChangeVisibleTextEditors` listener to catch preview mode editor replacements
+  - Added `onDidOpenTextDocument` listener to catch all document opens from file tree
+  - Preview now updates correctly when clicking .mmd/.mermaid files from file tree (even in preview mode)
+  - Preview now updates correctly when double-clicking to promote preview tab to permanent tab
+  - Preview updates even when hidden in the same tab group as the editor
+
 ### Configuration
 
 - Added `vscode-mermaid-extension.useSinglePreview` setting (default: false)
-  - When enabled: Single preview panel updates automatically as you switch between .mmd files
+  - When enabled: Single preview panel updates automatically as you switch between .mmd/.mermaid files
   - When disabled: Each preview command creates a new panel (original behavior)
 
 ### Documentation

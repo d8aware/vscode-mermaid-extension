@@ -17,32 +17,55 @@ export function activate(context: vscode.ExtensionContext) {
     )
   );
 
+  // Helper function to update preview for active .mmd document
+  const updatePreviewIfNeeded = () => {
+    const config = vscode.workspace.getConfiguration('vscode-mermaid-extension');
+    const useSinglePreview = config.get<boolean>('useSinglePreview', false);
+
+    if (!useSinglePreview) {
+      return;
+    }
+
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+
+    const document = editor.document;
+    
+    // Check if the active document is a .mmd or .mermaid file
+    if (document.fileName.endsWith('.mmd') || document.fileName.endsWith('.mermaid')) {
+      const sharedPanel = ViewDiagramCommand.getSharedPanel();
+      
+      // If the shared panel exists, update it regardless of visibility
+      // This ensures it updates even when hidden in the same tab group
+      if (sharedPanel) {
+        viewCommandInstance.updatePanelForDocument(document, context);
+      }
+    }
+  };
+
   // Listen for active editor changes to support single preview mode
   context.subscriptions.push(
     vscode.window.onDidChangeActiveTextEditor((editor) => {
-      const config = vscode.workspace.getConfiguration('vscode-mermaid-extension');
-      const useSinglePreview = config.get<boolean>('useSinglePreview', false);
+      updatePreviewIfNeeded();
+    })
+  );
 
-      if (!useSinglePreview) {
-        // Single preview mode is disabled, don't auto-update
-        return;
-      }
+  // Listen for visible editors changes (catches preview mode editor replacements)
+  context.subscriptions.push(
+    vscode.window.onDidChangeVisibleTextEditors((editors) => {
+      updatePreviewIfNeeded();
+    })
+  );
 
-      if (!editor) {
-        return;
-      }
-
-      const document = editor.document;
-      
-      // Check if the active document is a .mmd file
-      if (document.fileName.endsWith('.mmd')) {
-        const sharedPanel = ViewDiagramCommand.getSharedPanel();
-        
-        // Only update if the shared panel exists and is visible
-        if (sharedPanel && sharedPanel.visible) {
-          viewCommandInstance.updatePanelForDocument(document, context);
-        }
-      }
+  // Listen for when text documents are opened (catches all document opens)
+  context.subscriptions.push(
+    vscode.workspace.onDidOpenTextDocument((document) => {
+      // Small delay to ensure the editor is fully activated
+      setTimeout(() => {
+        updatePreviewIfNeeded();
+      }, 50);
     })
   );
 

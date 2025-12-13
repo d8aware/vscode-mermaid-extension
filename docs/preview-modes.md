@@ -2,6 +2,8 @@
 
 The Mermaid MMD Tools extension supports two different preview modes to accommodate different workflows and preferences. This document explains both modes, when to use each, and how to configure them.
 
+**Note:** Both `.mmd` and `.mermaid` file extensions are fully supported throughout this extension.
+
 ## Overview
 
 The extension provides two ways to preview your Mermaid diagrams:

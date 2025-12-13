@@ -1,7 +1,7 @@
 {
   "name": "vscode-mermaid-extension",
   "displayName": "Mermaid MMD Tools",
-  "description": "View Mermaid diagrams from .mmd files and generate class diagrams from TypeScript files.",
+  "description": "View Mermaid diagrams from .mmd and .mermaid files and generate class diagrams from TypeScript files.",
   "icon": "media/infinity-hatch-128.png",
   "version": "1.1.0",
   "publisher": "d8aware",
@@ -66,7 +66,7 @@
     "menus": {
       "editor/title": [
         {
-          "when": "resourceExtname == .mmd",
+          "when": "resourceExtname == .mmd || resourceExtname == .mermaid",
           "command": "vscode-mermaid-extension.showDiagramView",
           "title": "View Diagram",
           "group": "navigation@1"
