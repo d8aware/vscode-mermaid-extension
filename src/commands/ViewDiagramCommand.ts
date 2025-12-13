@@ -62,6 +62,16 @@ export class ViewDiagramCommand {
       ViewDiagramCommand.currentDocument = undefined;
     });
 
+    // Handle panel view state changes (docking, moving, resizing)
+    ViewDiagramCommand.sharedPanel.onDidChangeViewState(() => {
+      if (ViewDiagramCommand.sharedPanel && ViewDiagramCommand.sharedPanel.visible) {
+        // Notify webview to resize pan/zoom controls
+        ViewDiagramCommand.sharedPanel.webview.postMessage({
+          command: "resize"
+        });
+      }
+    });
+
     this.currentPanel = ViewDiagramCommand.sharedPanel;
     this.updatePanelForDocument(document, context);
   }
@@ -81,6 +91,16 @@ export class ViewDiagramCommand {
     );
     this.currentPanel.webview.html =
       this.getWebViewContent(context.extensionPath, this.currentPanel);
+
+    // Handle panel view state changes (docking, moving, resizing)
+    this.currentPanel.onDidChangeViewState(() => {
+      if (this.currentPanel && this.currentPanel.visible) {
+        // Notify webview to resize pan/zoom controls
+        this.currentPanel.webview.postMessage({
+          command: "resize"
+        });
+      }
+    });
 
     this.setupDocumentTracking(document);
   }

@@ -157,6 +157,15 @@ window.addEventListener("message", async (event) => {
     case "refreshContent":
       await renderDiagram(MERMAID_DIV_ID, message.content);
       break;
+    case "resize":
+      // Handle panel resize/dock/move events
+      if (panZoomInstance) {
+        panZoomInstance.resize();
+        panZoomInstance.updateBBox();
+        panZoomInstance.fit();
+        panZoomInstance.center();
+      }
+      break;
     }
 });
 

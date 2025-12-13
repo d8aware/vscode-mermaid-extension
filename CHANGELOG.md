@@ -14,6 +14,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   - Intelligent document change tracking that follows the active .mmd file
   - Proper cleanup of event listeners when switching documents or closing preview
 
+### Fixed
+
+- **Pan/Zoom Controls Rendering**: Fixed issue where pan and zoom controls would not render correctly when the preview panel is docked, moved, or resized
+  - Added `onDidChangeViewState` listener to detect panel layout changes
+  - Webview now automatically resizes and recenters pan/zoom controls when panel state changes
+  - No longer requires reactivating the .mmd editor to restore proper zoom controls
+
 ### Configuration
 
 - Added `vscode-mermaid-extension.useSinglePreview` setting (default: false)

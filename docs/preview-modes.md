@@ -217,6 +217,7 @@ Both preview modes support pan and zoom:
 - Click and drag to pan
 - Zoom and pan state is preserved during live updates
 - State resets when switching diagrams (single preview mode)
+- Pan/zoom controls automatically adjust when panel is docked, moved, or resized
 
 ### Live Updates
 
