@@ -80,6 +80,19 @@ By default, clicking the view diagram button creates a new preview panel each ti
 
 For more details, see the [Preview Modes Documentation](docs/preview-modes.md).
 
+### Diagram Style
+
+Diagrams are rendered with Mermaid 12, which uses the ELK layout engine and Mermaid's modern look by default. To render a diagram in the classic Mermaid 11 style instead, add this frontmatter at the top of the `.mmd` / `.mermaid` file:
+
+```
+---
+config:
+  layout: dagre
+  look: classic
+  theme: default
+---
+```
+
 ## Contributing
 
 This extension is open source, and contributions are welcome! If you have any ideas for new features or improvements, please feel free to submit an issue or a pull request on the [GitHub repository](https://github.com/d8aware/vscode-mermaid-extension).

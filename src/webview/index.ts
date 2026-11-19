@@ -28,11 +28,15 @@ async function renderDiagram(hostDivId: string, md: string, resetZoom?: boolean)
     const element = document.getElementById("content");
     mermaid.initialize({
       startOnLoad: false,
-      theme: "default",
       securityLevel: "loose",
       maxTextSize: 10000000000,
+      gantt: {
+        // Mermaid sizes gantt charts from the width of the element it renders
+        // into, which here is an off-screen scratch element; without this the
+        // chart is drawn narrow and its date axis labels overlap.
+        useWidth: Math.max(element.clientWidth, 1000),
+      },
       class: {
-        defaultRenderer: "dagre-wrapper",
         nodeSpacing: 50,
         rankSpacing: 50,
       },
@@ -171,16 +175,29 @@ window.addEventListener("message", async (event) => {
     }
 });
 
-window.addEventListener("DOMContentLoaded", async () => {
+async function start() {
   /**
-   * This app can be run locally with a query 
-   * parameter to load a specific diagram. If 
-   * there is no query parameter, the app will 
-   * send a message to the extension to render 
+   * This app can be run locally with a query
+   * parameter to load a specific diagram. If
+   * there is no query parameter, the app will
+   * send a message to the extension to render
    * the content.
    */
   const params = getQueryParams();
   if (params.diagram) {
     await renderFetchedDiagram(MERMAID_DIV_ID, params.diagram);
+  } else if (typeof acquireVsCodeApi === "function") {
+    // The "message" listener above is registered by now. Tell the extension,
+    // which waits for this before sending the diagram; a message sent while
+    // bundle.js was still loading would be lost and leave the spinner up.
+    acquireVsCodeApi().postMessage({ command: "ready" });
   }
-});
+}
+
+// The page may already be parsed by the time this bundle runs (DOMContentLoaded
+// would then never fire for us), so start immediately in that case.
+if (document.readyState === "loading") {
+  window.addEventListener("DOMContentLoaded", start);
+} else {
+  start();
+}
