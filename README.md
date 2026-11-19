@@ -1,8 +1,8 @@
 # Mermaid.js Diagrams Extension for Visual Studio Code
 
-[![Version](https://img.shields.io/visual-studio-marketplace/v/d8aware.vscode-mermaid-extension?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/d8aware.vscode-mermaid-extension?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
-[![Rating](https://img.shields.io/visual-studio-marketplace/r/d8aware.vscode-mermaid-extension?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
+[![Version](https://vsmarketplacebadges.dev/version-short/d8aware.vscode-mermaid-extension.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
+[![Installs](https://vsmarketplacebadges.dev/installs-short/d8aware.vscode-mermaid-extension.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
+[![Rating](https://vsmarketplacebadges.dev/rating-short/d8aware.vscode-mermaid-extension.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
 
 ## Overview
 
