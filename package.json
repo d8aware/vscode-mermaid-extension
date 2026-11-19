@@ -110,7 +110,7 @@
     "webpack-cli": "^7.3.1"
   },
   "dependencies": {
-    "mermaid": "11.17.2",
+    "mermaid": "12.3.0",
     "ts-morph": "^27.0.2"
   }
 }
