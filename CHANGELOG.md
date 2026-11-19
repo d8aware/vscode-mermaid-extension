@@ -4,6 +4,23 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.1.1
+
+### Security
+
+- Updated `mermaid` from 11.12.2 to 11.17.2, fixing published advisories for CSS injection via `classDef`/`classDefs` and configuration, prototype pollution in configuration APIs and architecture diagrams, and denial-of-service in Gantt, XY chart and radar diagrams
+- Updated transitive runtime dependencies (`dompurify`, `lodash-es`, `picomatch`, `uuid`) to patched versions
+- Updated development tooling (webpack, webpack-dev-server, typescript-eslint, eslint and others) and resolved transitive advisories via `npm audit fix`
+
+### Removed
+
+- Unused `glob` runtime dependency
+
+### Maintenance
+
+- Added a GitHub Actions CI workflow (lint, build, integration tests, runtime dependency audit)
+- Dependabot now groups minor/patch dev-dependency updates, covers GitHub Actions, and ignores `@types/vscode` (which must track `engines.vscode`)
+
 ## 1.1.0
 
 ### Added
