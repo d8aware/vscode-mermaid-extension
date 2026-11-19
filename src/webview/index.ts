@@ -22,7 +22,7 @@ async function renderDiagram(hostDivId: string, md: string, resetZoom?: boolean)
     if (!resetZoom && diagramSvg && panZoomInstance) {
       panZoom.pan = panZoomInstance.getPan();
       panZoom.zoom = panZoomInstance.getZoom();
-      console.log("Pan and zoom:", panZoom.pan, panZoom.zoomLevel);
+      console.log("Pan and zoom:", panZoom.pan, panZoom.zoom);
     }
 
     const element = document.getElementById("content");
@@ -95,7 +95,9 @@ async function renderDiagram(hostDivId: string, md: string, resetZoom?: boolean)
       // Add event listener for window resize
       window.addEventListener('resize', debounce(resize, 500));
       hijackResetButtonClick(panZoomInstance);
-      if (resetZoom) {
+      // With no previous pan/zoom to restore (first render, or the browser
+      // harness), fall back to the default zoom instead of zoom(undefined).
+      if (resetZoom || panZoom.zoom === undefined) {
         panZoomInstance.zoom(0.8);
       } else {
         panZoomInstance.zoom(panZoom.zoom);

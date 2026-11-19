@@ -12,6 +12,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Updated transitive runtime dependencies (`dompurify`, `lodash-es`, `picomatch`, `uuid`) to patched versions
 - Updated development tooling (webpack, webpack-dev-server, typescript-eslint, eslint and others) and resolved transitive advisories via `npm audit fix`
 
+### Fixed
+
+- Spurious "Rendering Problem" overlay (`Failed to execute 'scale' on 'SVGMatrix'`) when a diagram is rendered without previous pan/zoom state to restore, e.g. in the browser preview harness (`npm run serve`)
+
 ### Removed
 
 - Unused `glob` runtime dependency
