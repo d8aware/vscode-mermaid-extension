@@ -11,6 +11,30 @@ export class ViewDiagramCommand {
   private static currentDocument: vscode.TextDocument | undefined;
   private static documentChangeListener: vscode.Disposable | undefined;
 
+  // A webview can only receive messages once its script has loaded and
+  // registered its "message" listener; anything posted earlier is dropped
+  // (which left the first preview stuck on its loading spinner). Each panel's
+  // webview posts "ready" when it is listening; until then we only remember
+  // which document the panel should show.
+  private static readyPanels = new WeakSet<vscode.WebviewPanel>();
+  private static panelDocuments = new WeakMap<vscode.WebviewPanel, vscode.TextDocument>();
+
+  private static listenForReady(panel: vscode.WebviewPanel) {
+    panel.webview.onDidReceiveMessage((message) => {
+      if (message?.command !== "ready") {
+        return;
+      }
+      ViewDiagramCommand.readyPanels.add(panel);
+      const document = ViewDiagramCommand.panelDocuments.get(panel);
+      if (document) {
+        panel.webview.postMessage({
+          command: "renderContent",
+          content: document.getText(),
+        });
+      }
+    });
+  }
+
   fromActiveTextEditor(context: vscode.ExtensionContext) {
     const config = vscode.workspace.getConfiguration('vscode-mermaid-extension');
     const useSinglePreview = config.get<boolean>('useSinglePreview', false);
@@ -52,6 +76,7 @@ export class ViewDiagramCommand {
       } as vscode.WebviewPanelOptions & vscode.WebviewOptions
     );
     
+    ViewDiagramCommand.listenForReady(ViewDiagramCommand.sharedPanel);
     ViewDiagramCommand.sharedPanel.webview.html =
       this.getWebViewContent(context.extensionPath, ViewDiagramCommand.sharedPanel);
 
@@ -89,6 +114,7 @@ export class ViewDiagramCommand {
         retainContextWhenHidden: true,
       } as vscode.WebviewPanelOptions & vscode.WebviewOptions
     );
+    ViewDiagramCommand.listenForReady(this.currentPanel);
     this.currentPanel.webview.html =
       this.getWebViewContent(context.extensionPath, this.currentPanel);
 
@@ -160,13 +186,16 @@ export class ViewDiagramCommand {
     // Store the listener for cleanup
     ViewDiagramCommand.documentChangeListener = listener;
 
-    // Initial content
+    // Initial content: send now if the webview is already listening,
+    // otherwise its "ready" message triggers the render (see listenForReady).
     setTitle();
-    const initialText = document.getText();
-    this.currentPanel.webview.postMessage({
-      command: "renderContent",
-      content: initialText,
-    });
+    ViewDiagramCommand.panelDocuments.set(this.currentPanel, document);
+    if (ViewDiagramCommand.readyPanels.has(this.currentPanel)) {
+      this.currentPanel.webview.postMessage({
+        command: "renderContent",
+        content: document.getText(),
+      });
+    }
   }
 
   private cleanupDocumentListener() {

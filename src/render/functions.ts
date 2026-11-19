@@ -40,10 +40,25 @@ export function renderPieChart(svg: SVGGraphicsElement) {
   // }
   
   export function renderGannt(svg: SVGGraphicsElement) {
-    svg?.setAttribute("style", `max-width: 100%;`);
-    svg?.setAttribute("width", `100%`);
-    svg?.setAttribute("height", `100%`);
-    svg?.setAttribute("viewBox", `0 0 1458 196`);
+    svg?.removeAttribute("width");
+    svg?.setAttribute("style", `width: 100%; height: 100%;`);
+    svg?.setAttribute("preserveAspectRatio", `xMidYMid meet`);
+
+    // Mermaid draws a "today" marker even when today falls far outside the
+    // chart's date range (e.g. a 2014 plan viewed in 2026 puts it ~14,000px
+    // to the right). Measure the chart without it so the view fits the
+    // tasks; when today is inside the range the marker is within these
+    // bounds anyway and stays visible.
+    const todayMarkers = Array.from(svg.querySelectorAll<SVGElement>(".today"));
+    todayMarkers.forEach((el) => el.style.setProperty("display", "none"));
+    const bBox = svg.getBBox();
+    todayMarkers.forEach((el) => el.style.removeProperty("display"));
+
+    const pad = 10;
+    svg?.setAttribute(
+      "viewBox",
+      `${Math.floor(bBox.x - pad)} ${Math.floor(bBox.y - pad)} ${Math.ceil(bBox.width + 2 * pad)} ${Math.ceil(bBox.height + 2 * pad)}`
+    );
   }
   
   export function renderMermaidChart(svg: SVGGraphicsElement) {

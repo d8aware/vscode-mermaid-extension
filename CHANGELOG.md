@@ -4,6 +4,30 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 2.0.0
+
+### Changed
+
+- **Mermaid 12**: Updated `mermaid` from 11.17.2 to 12.3.0. Diagrams now use Mermaid's new defaults: the ELK layout engine and the modern look and theme, so existing flowchart, class, state and ER diagrams will be laid out and coloured differently. To keep the classic Mermaid 11 style for a diagram, add frontmatter (see README, "Diagram Style"):
+  ```
+  ---
+  config:
+    layout: dagre
+    look: classic
+    theme: default
+  ---
+  ```
+
+### Fixed
+
+- **Preview stuck on the loading spinner**: The first preview opened could stay on the spinner until refreshed. The extension sent the diagram before the preview had finished loading, so the message was lost. The preview now signals when it is ready and the diagram is sent then.
+- **Live updates and resizing errors**: The debounce helper used by live preview updates (re-rendering as you edit) and by window resizing referenced an undefined variable and threw `ReferenceError: context is not defined` when it fired.
+- **Gantt charts**: Charts now fit the preview instead of rendering in a fixed `1458×196` box. A "today" marker far outside the chart's date range (e.g. an old plan) no longer distorts the view, and date axis labels no longer overlap.
+
+### Security
+
+- Resolves the remaining `katex` advisory (fixed in mermaid ≥ 12.1).
+
 ## 1.1.1
 
 ### Security

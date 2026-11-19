@@ -3,7 +3,7 @@
   "displayName": "Mermaid MMD Tools",
   "description": "View Mermaid diagrams from .mmd and .mermaid files and generate class diagrams from TypeScript files.",
   "icon": "media/infinity-hatch-128.png",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "publisher": "d8aware",
   "repository": {
     "type": "git",
@@ -110,7 +110,7 @@
     "webpack-cli": "^7.3.1"
   },
   "dependencies": {
-    "mermaid": "11.17.2",
+    "mermaid": "12.3.0",
     "ts-morph": "^27.0.2"
   }
 }
