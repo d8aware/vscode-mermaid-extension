@@ -95,20 +95,19 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^25.9.9",
+    "@types/node": "^22.20.5",
     "@types/vscode": "~1.107.0",
     "@typescript-eslint/eslint-plugin": "^8.73.0",
     "@typescript-eslint/parser": "^8.73.0",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.1.0",
     "copy-webpack-plugin": "^13.0.1",
-    "eslint": "^9.39.5",
+    "eslint": "^10.15.0",
     "http-server": "^14.1.1",
     "ts-loader": "^9.6.2",
     "typescript": "^5.9.3",
     "webpack": "^5.112.2",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.7"
+    "webpack-cli": "^7.3.1"
   },
   "dependencies": {
     "mermaid": "11.17.2",

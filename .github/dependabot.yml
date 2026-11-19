@@ -9,6 +9,10 @@ updates:
       # Must not exceed engines.vscode in package.json, or `vsce package` fails.
       # Bump it by hand together with engines.vscode.
       - dependency-name: "@types/vscode"
+      # Tracks the Node major of VS Code's runtime (VS Code 1.107 = Electron 39 / Node 22).
+      # Bump the major by hand together with engines.vscode.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       # One weekly PR for routine dev-tooling bumps.
       dev-dependencies:
