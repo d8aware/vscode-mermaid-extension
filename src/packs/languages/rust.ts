@@ -1,7 +1,54 @@
 /** Rust: `impl [Trait for] Type` blocks declare methods and traits apart from the type; supertraits in `trait A: B {`. */
 import { escapeText } from "../../classDiagram/ClassDiagramGenerator";
 import type { LanguagePack } from "../types";
-import { flattenNested, genericMember, genericMemberName } from "./members";
+import { blankComments, flattenNested, genericMember, genericMemberName, positionAt } from "./members";
+
+/**
+ * Re-exports: `pub use path::{A, b::C as D, e::*};` (each leaf name; `*` is the
+ * module before it) and `pub mod name;` (the module).
+ */
+function rustReexports(text: string) {
+  const code = blankComments(text, "c");
+  const out: { line: number; character: number; all?: boolean }[] = [];
+  for (const m of code.matchAll(/\bpub(?:\([^)]*\))?\s+mod\s+([A-Za-z_]\w*)\s*;/g)) {
+    out.push({ ...positionAt(text, m.index! + m[0].lastIndexOf(m[1])), all: true });
+  }
+  for (const m of code.matchAll(/\bpub(?:\([^)]*\))?\s+use\s+([^;]+);/g)) {
+    const base = m.index! + m[0].length - 1 - m[1].length;
+    let last: { name: string; at: number } | undefined;
+    let leaf: { name: string; at: number } | undefined;
+    let alias = false;
+    const close = () => {
+      if (leaf && !["self", "super", "crate"].includes(leaf.name)) {
+        out.push(positionAt(text, base + leaf.at));
+      }
+      leaf = undefined;
+    };
+    for (const t of m[1].matchAll(/[A-Za-z_]\w*|::|[{},*]/g)) {
+      const token = t[0];
+      if (token === "as") {
+        alias = true;
+      } else if (/^\w/.test(token)) {
+        if (alias) {
+          alias = false; // the new name; the definition is asked at the original
+        } else {
+          last = leaf = { name: token, at: t.index! };
+        }
+      } else if (token === "*") {
+        if (last) {
+          out.push({ ...positionAt(text, base + last.at), all: true });
+        }
+        leaf = undefined;
+      } else if (token === "::" || token === "{") {
+        leaf = undefined;
+      } else {
+        close();
+      }
+    }
+    close();
+  }
+  return out;
+}
 
 /** Splits at commas outside (), [], {} and <> (an arrow's `>` does not close). */
 function splitParams(text: string): string[] {
@@ -60,4 +107,5 @@ export const rust: LanguagePack = {
   header: { opens: "{", baseDepth: 0, cut: /\bwhere\b[\s\S]*$/ },
   member: (sym, method, params, name) => (method ? rustMethod(name ?? sym.name, sym.detail) : undefined) ?? genericMember(sym, method, params),
   memberName: genericMemberName,
+  reexports: rustReexports,
 };

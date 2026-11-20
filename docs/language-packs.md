@@ -125,6 +125,7 @@ classDiagram
     +testFile: RegExp
     +receiver(symbolName) type, method
     +apart(symbolName) type, supertypes
+    +reexports(text, file) places
     +header: opens, baseDepth, cut
     +classKind: string
     +member(sym, method, params) string
@@ -234,6 +235,26 @@ attaches them to the type, looking across the file's folder:
 
 Swift `extension Type: Protocol` and similar constructs fit the same field.
 
+## Barrels
+
+A file that declares no types of its own but re-exports them (a
+`public-api.ts` or `index.ts`, a Python package's `__init__.py`, a Rust
+`mod.rs` or `lib.rs` of `pub mod` and `pub use` lines) starts the view from
+what it re-exports, and the panel says so. For TypeScript our analysis follows
+`export … from`. For other languages the pack's `reexports` names the places in
+the file; the engine asks the language extension for the definition at each:
+a type is taken, and a module (`from .x import *`, `pub use x::*`,
+`pub mod x;`, or any definition that lands on the start of a file) gives every
+type declared in it.
+
+| Language | Re-exports | Pack field |
+|---|---|---|
+| TypeScript, JavaScript | `export * from`, `export { A } from` | our analysis |
+| Python | `from .order import Order`, `from .store import *` in `__init__.py` | `reexports` |
+| Rust | `pub use shop::{Order, store::*}`, `pub mod shop;` | `reexports` |
+
+Go, C#, Java and PHP have no barrels: the package or namespace is the unit.
+
 ## What each pack says today
 
 | Language pack | Source | Pack-specific rules | Checked with |
@@ -242,9 +263,9 @@ Swift `extension Type: Protocol` and similar constructs fit the same field.
 | `go` | language extension | receivers `(*T).M` attach to `T` in the folder; exported = capitalised; `func(…)` signatures; no headers; `_test.go`; other named types are "type" | `golang.go` + gopls (`go-orders`) |
 | `csharp` | language extension | header `{`, a `where` clause is not a base | `ms-dotnettools.csharp` (`csharp-orders`) |
 | `php` | language extension | header `{` | Intelephense (`php-orders`) |
-| `python` | language extension | header `:`, bases inside `( )`; `test_*.py`, `*_test.py`; `__x` private, `_x` internal | Pylance (`python-orders`) |
+| `python` | language extension | header `:`, bases inside `( )`; `test_*.py`, `*_test.py`; `__x` private, `_x` internal; `__init__.py` imports are re-exports | Pylance (`python-orders`) |
 | `java` | language extension | Java and Kotlin; header `{`; test classes `Test*`, `*Test`, `*Tests`, `*TestCase` (Maven Surefire's defaults) | `redhat.java` (`java-orders`) |
-| `rust` | language extension | `impl [Trait for] Type` blocks declared apart; supertraits in `trait A: B {`; a `where` clause is not a base; `fn(…)` signatures without the receiver | rust-analyzer (`rust-orders`) |
+| `rust` | language extension | `impl [Trait for] Type` blocks declared apart; supertraits in `trait A: B {`; a `where` clause is not a base; `fn(…)` signatures without the receiver; `pub use` and `pub mod` are re-exports | rust-analyzer (`rust-orders`) |
 | `ruby` | language extension | header ends at the line's end (`class A < B`) | not yet recorded |
 | `generic` | language extension | header `{`; Swift, Scala, Dart, C/C++, and the fallback for any other file | not yet recorded |
 

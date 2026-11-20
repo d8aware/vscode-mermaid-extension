@@ -95,6 +95,56 @@ suite('CodeExplorerCommand Tests', () => {
     ]);
   });
 
+  test('a barrel file starts from the classes it re-exports', async function () {
+    this.timeout(60000);
+    fs.cpSync(CLASSES, dir, { recursive: true });
+    await vscode.commands.executeCommand('vscode-mermaid-extension.exploreClasses', vscode.Uri.file(path.join(dir, 'public-api.ts')));
+    assert.deepStrictEqual(step().origin, ['Order', 'Currency', 'Money'], 'in diagram order');
+    assert.deepStrictEqual(step().notes, ['public-api.ts declares no types: showing the 3 it re-exports']);
+  });
+
+  test('a file with nothing to show stands the panel down instead of leaving it loading', async function () {
+    this.timeout(60000);
+    fs.cpSync(CLASSES, dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'shared', 'constants.ts'), 'export const RATE = 1;\n');
+    await vscode.commands.executeCommand('vscode-mermaid-extension.exploreClasses', vscode.Uri.file(path.join(dir, 'shared', 'Money.ts')));
+    const steps = explorer.session.steps.length;
+    const sent: string[] = [];
+    const post = explorer.panel.webview.postMessage.bind(explorer.panel.webview);
+    explorer.panel.webview.postMessage = (m: any) => {
+      sent.push(m.command);
+      return post(m);
+    };
+    await vscode.commands.executeCommand('vscode-mermaid-extension.exploreClasses', vscode.Uri.file(path.join(dir, 'shared', 'constants.ts')));
+    assert.ok(sent.includes('explorerSettle'), sent.join(','));
+    assert.ok(!sent.includes('renderContent'), sent.join(','));
+    assert.strictEqual(explorer.session.steps.length, steps, 'the view stays as it was');
+  });
+
+  test('the diagramColors setting reaches the panel, and a change is sent to it live', async function () {
+    this.timeout(60000);
+    fs.cpSync(CLASSES, dir, { recursive: true });
+    const config = () => vscode.workspace.getConfiguration('vscode-mermaid-extension');
+    await config().update('diagramColors', 'editor', vscode.ConfigurationTarget.Global);
+    try {
+      await vscode.commands.executeCommand('vscode-mermaid-extension.exploreClasses', vscode.Uri.file(path.join(dir, 'shared', 'Money.ts')));
+      assert.ok(explorer.panel.webview.html.includes('data-colors="editor"'), 'written into the page');
+      const sent: any[] = [];
+      const post = explorer.panel.webview.postMessage.bind(explorer.panel.webview);
+      explorer.panel.webview.postMessage = (m: any) => {
+        sent.push(m);
+        return post(m);
+      };
+      await config().update('diagramColors', 'light', vscode.ConfigurationTarget.Global);
+      for (let i = 0; i < 40 && !sent.some((m) => m.command === 'colors'); i++) {
+        await new Promise((resolve) => setTimeout(resolve, 50));
+      }
+      assert.deepStrictEqual(sent.filter((m) => m.command === 'colors'), [{ command: 'colors', mode: 'light' }]);
+    } finally {
+      await config().update('diagramColors', undefined, vscode.ConfigurationTarget.Global);
+    }
+  });
+
   test('clicking a lit class opens its source', async function () {
     this.timeout(60000);
     fs.cpSync(CLASSES, dir, { recursive: true });

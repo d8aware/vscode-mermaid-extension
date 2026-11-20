@@ -4,6 +4,7 @@ import { debounce } from "../shared/debounce";
 import { getQueryParams } from "../shared/querystring";
 import { renderGannt, renderMermaidChart, renderPieChart } from "../render/functions";
 import { captureScene, enableExplorer, isExplorer, onRendered, playTransition, settle, showAnalysis } from "./explorer";
+import { applyPanelVariables, colorMode, EDITOR_PAGE_STYLE, editorPalette, mermaidTheme, recolor, setColorMode, setsOwnTheme } from "./colors";
 
 // acquireVsCodeApi() may only be called once per webview; undefined in the browser harness.
 const vscodeApi = typeof acquireVsCodeApi === "function" ? acquireVsCodeApi() : undefined;
@@ -30,7 +31,22 @@ async function renderDiagram(hostDivId: string, md: string, resetZoom?: boolean)
     }
 
     const element = document.getElementById("content");
+    // Colours: the diagram's own, or (diagramColors: "editor") the VS Code theme's.
+    let theme: Record<string, unknown> = { theme: "default" };
+    if (colorMode() === "editor") {
+      const palette = editorPalette();
+      applyPanelVariables(palette);
+      if (isExplorer()) {
+        md = recolor(md, palette);
+      }
+      if (!setsOwnTheme(md)) {
+        theme = mermaidTheme(palette);
+      }
+    } else {
+      applyPanelVariables(undefined);
+    }
     mermaid.initialize({
+      ...theme,
       startOnLoad: false,
       securityLevel: "loose",
       maxTextSize: 10000000000,
@@ -158,16 +174,61 @@ async function renderFetchedDiagram(hostDivId: string, diagramFile: string) {
   }
 }
 
+/** Counts finished renders (motion included) on <body data-shown>: a fixed point for tests and tools to wait on. */
+let shownCount = 0;
+const markShown = () => {
+  document.body.dataset.shown = String(++shownCount);
+};
+
+/** The last diagram shown, to draw again when the colours change. */
+let lastShown: { command: string; content: string; [key: string]: unknown } | undefined;
+
+async function redraw() {
+  const last = lastShown;
+  if (!last) {
+    return;
+  }
+  await renderDiagram(MERMAID_DIV_ID, last.content, false);
+  if (isExplorer() && last.command === "renderContent") {
+    onRendered({ canGoBack: !!last.canGoBack, crumbs: last.crumbs as string[], tooltips: last.tooltips as Record<string, string>, notes: last.notes as string[] });
+    const transition = last.transition as { kind: string; level: string } | undefined;
+    await playTransition(undefined, transition ? ({ ...transition, kind: "start" } as any) : undefined, panZoomInstance);
+  }
+  markShown();
+}
+
+// The VS Code theme changed: in "editor" mode the diagram is drawn again in its colours.
+let themeSeen = "";
+new MutationObserver(() => {
+  const now = `${document.body.dataset.vscodeThemeId ?? ""}|${document.body.dataset.vscodeThemeKind ?? ""}`;
+  if (now !== themeSeen) {
+    const first = !themeSeen;
+    themeSeen = now;
+    if (!first && colorMode() === "editor") {
+      void redraw();
+    }
+  }
+}).observe(document.body, { attributes: true, attributeFilter: ["data-vscode-theme-id", "data-vscode-theme-kind", "class"] });
+
 window.addEventListener("message", async (event) => {
   const message = event.data;
+  if (message.command === "renderContent" || message.command === "refreshContent") {
+    lastShown = message;
+  }
   switch (message.command) {
+    case "colors":
+      if (setColorMode(message.mode)) {
+        await redraw();
+      }
+      break;
     case "renderContent": {
       const scene = isExplorer() ? captureScene(panZoomInstance) : undefined;
       await renderDiagram(MERMAID_DIV_ID, message.content, true);
       if (isExplorer()) {
         onRendered({ canGoBack: !!message.canGoBack, crumbs: message.crumbs, tooltips: message.tooltips, notes: message.notes });
-        playTransition(scene, message.transition, panZoomInstance);
+        await playTransition(scene, message.transition, panZoomInstance);
       }
+      markShown();
       break;
     }
     case "explorerMode":
@@ -181,6 +242,7 @@ window.addEventListener("message", async (event) => {
       break;
     case "refreshContent":
       await renderDiagram(MERMAID_DIV_ID, message.content);
+      markShown();
       break;
     case "resize":
       // Handle panel resize/dock/move events
@@ -195,6 +257,12 @@ window.addEventListener("message", async (event) => {
 });
 
 async function start() {
+  // The colour setting is written into the page by the extension (data-colors).
+  const style = document.createElement("style");
+  style.textContent = EDITOR_PAGE_STYLE;
+  document.head.appendChild(style);
+  setColorMode(document.body.dataset.colors ?? getQueryParams().colors);
+  themeSeen = `${document.body.dataset.vscodeThemeId ?? ""}|${document.body.dataset.vscodeThemeKind ?? ""}`;
   /**
    * This app can be run locally with a query
    * parameter to load a specific diagram. If

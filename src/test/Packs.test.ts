@@ -172,6 +172,30 @@ suite("Pack readers", () => {
     ]);
   });
 
+  test("barrels: where Python __init__.py and Rust pub use / pub mod name what they re-export", () => {
+    const py = rulesFor("x.py").reexports!;
+    const init = "# api\nfrom .order import Order, Line as L  # names\nfrom .store import *\nfrom . import util\nfrom shop.models import (\n    Customer,\n)\nimport os\n";
+    assert.deepStrictEqual(py(init, "shop/__init__.py"), [
+      { line: 1, character: 19 },
+      { line: 1, character: 26 },
+      { line: 2, character: 6, all: true },
+      { line: 3, character: 14 },
+      { line: 5, character: 4 },
+    ]);
+    assert.deepStrictEqual(py(init, "shop/views.py"), [], "only a package's __init__.py is a barrel");
+
+    const rs = rulesFor("x.rs").reexports!;
+    const lib = "pub mod shop;\nmod private;\n// pub use gone::X;\npub use shop::{Order, store::Store as S, self};\npub(crate) use storage::*;\nuse std::fmt;\npub use money::Money;\n";
+    assert.deepStrictEqual(rs(lib, "src/lib.rs"), [
+      { line: 0, character: 8, all: true },
+      { line: 3, character: 15 },
+      { line: 3, character: 29 },
+      { line: 4, character: 15, all: true },
+      { line: 6, character: 15 },
+    ]);
+    assert.strictEqual(rulesFor("x.go").reexports, undefined, "Go has no barrels: a package is the unit");
+  });
+
   test("Java and Kotlin: imports, packages, main", () => {
     const rule = jvm.code![0];
     assert.deepStrictEqual(rule.read("package a.b;\nimport c.D;\nimport static e.F.g;\nimport h.*;\nimport k.L as M"), ["c.D", "e.F.g", "h", "k.L"]);

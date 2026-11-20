@@ -50,6 +50,21 @@ webview signals when it is ready before the diagram is sent. In single
 preview mode one panel follows the active editor
 ([preview modes](preview-modes.md)).
 
+### Colours
+
+The views are written with fixed light colours, so a saved `.mmd` looks the
+same in any Mermaid viewer. With `diagramColors: "editor"` the webview
+(`src/webview/colors.ts`) draws them in the VS Code theme's colours instead:
+each light colour in a `classDef` or `style` line is a role (box, entry point,
+neighbour, outside, focus) mapped to the theme's colour for it, Mermaid's own
+colours come from its `base` theme with variables from the theme, and the
+panel's chrome uses the same palette. Colours are read from the `--vscode-*`
+variables every webview gets; a colour a theme leaves out, or one that would
+be hard to read (contrast below 4.5 for text, 3 for marks), falls back to a
+mix of the theme's text and background. A diagram that sets its own Mermaid
+theme keeps it. The setting is written into the page and sent again when it
+changes; a theme switch redraws the open diagram.
+
 ## Class diagrams
 
 ```mermaid

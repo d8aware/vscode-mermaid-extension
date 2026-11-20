@@ -24,7 +24,7 @@ draws the same picture, and hovering a box tells you which rule drew it.
 |---|---|---|
 | **Explore a repository** | a folder → **Explore From Here** | The projects in it, labelled by kind and name, with arrows for the dependencies they declare. Click to go deeper. |
 | **Explore a project** | click a project | Its code a folder at a time: subfolders, files, entry points, imports between them, and the other projects they use. |
-| **Explore classes** | a source file → **Explore Classes From Here**, or click a file | The file's classes in full. The classes around them (supertypes, subtypes, what they use, what uses them) are dashed boxes you click to bring in. |
+| **Explore classes** | a source file → **Explore Classes From Here**, or click a file | The file's classes in full. The classes around them (supertypes, subtypes, what they use, what uses them) are dashed boxes you click to bring in. A barrel file (`public-api.ts`, `__init__.py`, `mod.rs`) shows the classes it re-exports. |
 | **Draw a folder's classes** | a folder → **Generate Class Diagram** (TypeScript) | A `.classes.mmd` class diagram of everything in the folder. |
 | **Draw one file's neighbourhood** | a file → **Generate Focused Class Diagram** (TypeScript) | The file's classes with every class connected to them, anywhere in the project. |
 | **Preview Mermaid** | a `.mmd` or `.mermaid` file → **View Diagram** | A pan-and-zoom preview that updates as you type. |
@@ -127,6 +127,7 @@ just that file's neighbourhood. See the
 | Setting | Default | Effect |
 |---|---|---|
 | `vscode-mermaid-extension.useSinglePreview` | `false` | One preview panel that follows the active `.mmd` file. |
+| `vscode-mermaid-extension.diagramColors` | `light` | `editor` draws previews and the Code Explorer in your VS Code theme's colours (light, dark or high contrast); a diagram that sets its own Mermaid theme keeps it, and saved views keep their light colours. |
 | `vscode-mermaid-extension.classDiagram.includeTestFiles` | `false` | Include test files (`*.spec.ts`, `_test.go`, `test_*.py`, `*Test.java`, …) in class diagrams and the explorers. |
 | `vscode-mermaid-extension.classDiagram.explorerConsumers` | `declared` | TypeScript class explorer: `declared` counts fields and constructor injection as uses; `references` counts every reference (asks the TypeScript extension). |
 | `vscode-mermaid-extension.classDiagram.detail` | `ask` | Generated class diagrams: `full`, `public` or `names`; `ask` picks for large folders. |

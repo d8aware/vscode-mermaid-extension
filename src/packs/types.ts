@@ -147,6 +147,14 @@ export interface LanguagePack {
     /** Text from a match on is not part of the base list (C# `where` constraints). */
     cut?: RegExp;
   };
+  /**
+   * Where a file names what it re-exports, for a barrel that declares no types
+   * itself (Python `from .order import Order` in `__init__.py`, Rust `pub use`
+   * and `pub mod`). The language extension is asked for the definition at each
+   * place: a type is shown; a module (`all`, or a definition at the start of a
+   * file) shows every type declared in it.
+   */
+  reexports?: (text: string, filePath: string) => { line: number; character: number; all?: boolean }[];
   /** Kind for a symbol reported as Class that is not a class (Go named types). */
   classKind?: string;
   /** One member line of a lit box (Mermaid class member syntax). */

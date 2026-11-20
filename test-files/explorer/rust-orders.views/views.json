@@ -2,9 +2,30 @@
   "example": "../rust-orders",
   "answers": "answers.json",
   "views": {
-    "expected-1-order.mmd": { "start": "src/shop/order.rs", "light": [] },
-    "expected-2-order-Store.mmd": { "start": "src/shop/order.rs", "light": ["Service", "Store"] },
-    "expected-3-store.mmd": { "start": "src/shop/store.rs", "light": ["MemStore"] },
-    "expected-4-entity.mmd": { "start": "src/shop/entity.rs", "light": [] }
+    "expected-1-order.mmd": {
+      "start": "src/shop/order.rs",
+      "light": []
+    },
+    "expected-2-order-Store.mmd": {
+      "start": "src/shop/order.rs",
+      "light": [
+        "Service",
+        "Store"
+      ]
+    },
+    "expected-3-store.mmd": {
+      "start": "src/shop/store.rs",
+      "light": [
+        "MemStore"
+      ]
+    },
+    "expected-4-entity.mmd": {
+      "start": "src/shop/entity.rs",
+      "light": []
+    },
+    "expected-5-shop-mod.mmd": {
+      "start": "src/shop/mod.rs",
+      "light": []
+    }
   }
 }

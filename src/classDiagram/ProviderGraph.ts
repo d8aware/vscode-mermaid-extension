@@ -154,7 +154,41 @@ export class ProviderGraph implements ExplorerGraph {
   async start(file: string): Promise<string[]> {
     const nodes = await this.nodesIn(file);
     const types = nodes.filter((n) => n.kind !== "function");
-    return (types.length ? types : nodes).map((n) => n.id);
+    if (types.length) {
+      return types.map((n) => n.id);
+    }
+    const reexported = await this.reexportedBy(file);
+    return reexported.length ? reexported : nodes.map((n) => n.id);
+  }
+
+  /**
+   * A barrel that declares no types stands for what it re-exports: the pack
+   * says where the file names them, the extension's definition says what each
+   * is. A type is taken; a module (the pack says so, or the definition lands on
+   * the start of a file) gives every type declared in it.
+   */
+  private async reexportedBy(file: string): Promise<string[]> {
+    const places = rulesFor(file).reexports?.(await ask(() => this.providers.text(file), ""), file) ?? [];
+    const out = new Set<string>();
+    for (const place of places) {
+      const at = { line: place.line, character: place.character };
+      for (const loc of await ask(() => this.providers.definition(file, at), [] as Loc[])) {
+        const declared = place.all ? undefined : await this.declaredAt(loc);
+        if (declared) {
+          if (declared.kind !== "function") {
+            out.add(declared.id);
+          }
+        } else if ((place.all || (loc.range.start.line === 0 && loc.range.start.character === 0)) && this.counts(loc.file)) {
+          (await this.nodesIn(loc.file)).filter((n) => n.kind !== "function").forEach((n) => out.add(n.id));
+        }
+      }
+    }
+    return this.order(out);
+  }
+
+  /** The places a file re-exports from (pack rule), for readiness checks. */
+  reexportPlaces(file: string, text: string): { line: number; character: number }[] {
+    return rulesFor(file).reexports?.(text, file) ?? [];
   }
 
   // ---------------------------------------------------------------------------
