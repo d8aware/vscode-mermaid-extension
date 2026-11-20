@@ -1,0 +1,22 @@
+{
+  "example": "../acme",
+  "views": {
+    "expected.mmd": ".",
+    "expected-platform.mmd": "platform",
+    "expected-services-billing.mmd": "services/billing",
+    "expected-legacy.mmd": "legacy",
+    "expected-gateway.mmd": "gateway"
+  },
+  "projects": {
+    "expected-project-web.mmd": "web",
+    "expected-project-web-app.mmd": "web:src/app",
+    "expected-project-api.mmd": "platform/apps/api",
+    "expected-project-server.mmd": "gateway/server",
+    "expected-project-billing-api.mmd": "services/billing/src/Billing.Api",
+    "expected-project-legacy.mmd": "legacy",
+    "expected-project-legacy-http.mmd": "legacy:src/Http",
+    "expected-project-analytics.mmd": "analytics",
+    "expected-project-ledger.mmd": "ledger",
+    "expected-project-engine.mmd": "engine"
+  }
+}

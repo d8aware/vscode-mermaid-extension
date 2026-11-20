@@ -1,0 +1,25 @@
+classDiagram
+  class OrderLine {
+    <<type · domain>>
+  }
+  class User {
+    <<domain>>
+  }
+  class Currency {
+    <<enumeration>>
+    USD
+    EUR
+  }
+  class Money {
+    +amount: number
+    +currency: Currency
+    +zero(currency) Money$
+    +add(other) Money
+  }
+  Money --> Currency : currency
+  OrderLine --> Money : price
+  User --> Money : balance
+  style Currency stroke:#e11d48,stroke-width:3px
+  style Money stroke:#e11d48,stroke-width:3px
+  style OrderLine fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style User fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

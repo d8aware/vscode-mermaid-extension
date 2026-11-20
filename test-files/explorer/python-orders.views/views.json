@@ -1,0 +1,10 @@
+{
+  "example": "../python-orders",
+  "answers": "answers.json",
+  "views": {
+    "expected-1-order.mmd": { "start": "orders/shop/order.py", "light": [] },
+    "expected-2-order-Store.mmd": { "start": "orders/shop/order.py", "light": ["Service", "Store"] },
+    "expected-3-store.mmd": { "start": "orders/shop/store.py", "light": ["MemStore"] },
+    "expected-4-entity.mmd": { "start": "orders/shop/entity.py", "light": [] }
+  }
+}

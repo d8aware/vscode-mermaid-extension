@@ -1,0 +1,33 @@
+classDiagram
+  class OrderLine {
+    <<type>>
+    +product: string
+    +quantity: number
+    +price: Money
+  }
+  class User {
+    +count: number$
+    +createdAt: Date
+    +balance: Money
+    +orders: Order[]
+    +email: string
+    +validate() void
+    +updateAddress(street, city, ...tags) void
+    +deposit(amount, note) Promise&lt;Money&gt;
+  }
+  class Currency {
+    <<enumeration>>
+    USD
+    EUR
+  }
+  class Money {
+    +amount: number
+    +currency: Currency
+    +zero(currency) Money$
+    +add(other) Money
+  }
+  Money --> Currency : currency
+  OrderLine --> Money : price
+  User --> Money : balance
+  style Currency stroke:#e11d48,stroke-width:3px
+  style Money stroke:#e11d48,stroke-width:3px

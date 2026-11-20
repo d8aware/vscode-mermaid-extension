@@ -1,0 +1,28 @@
+classDiagram
+  class Store {
+    <<interface>>
+    find()
+    save()
+  }
+  class MemStore {
+    orders
+    find()
+    save()
+  }
+  class newStore {
+    <<function · storage>>
+  }
+  class Service {
+    <<shop>>
+  }
+  class Order {
+    <<shop>>
+  }
+  MemStore --> Order : orders
+  Service ..> Store
+  Store <|.. MemStore
+  newStore ..> MemStore
+  style Store stroke:#e11d48,stroke-width:3px
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style newStore fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

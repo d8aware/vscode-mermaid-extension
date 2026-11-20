@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph frame["acme"]
+  p_analytics["<small>PYTHON PROJECT</small><br/><b>analytics</b><br/><small>acme-analytics</small><br/><small>5 .py · 1 .toml</small>"]
+  p_db["<small>JENKINS PIPELINE</small><br/><b>db</b><br/><small>1 (none) · 1 .xml</small>"]
+  p_engine["<small>RUST CRATE</small><br/><b>engine</b><br/><small>acme_engine</small><br/><small>3 .rs · 1 .toml</small>"]
+  p_gateway["<small>GO WORKSPACE</small><br/><b>gateway</b><br/><small>4 .go · 2 .mod · 1 .work</small><br/><small>▸ 2 projects inside</small>"]
+  p_ledger["<small>MAVEN PROJECT</small><br/><b>ledger</b><br/><small>com.acme:ledger</small><br/><small>3 .java · 1 .xml</small>"]
+  p_legacy["<small>COMPOSER PACKAGE</small><br/><b>legacy</b><br/><small>acme/legacy</small><br/><small>4 .php · 2 .json · 1 (none)</small><br/><small>▸ 1 project inside</small>"]
+  p_platform["<small>NX WORKSPACE</small><br/><b>platform</b><br/><small>@acme/platform</small><br/><small>11 .json · 5 .ts · 1 (none)</small><br/><small>▸ 5 projects inside</small>"]
+  p_services_billing["<small>.NET SOLUTION</small><br/><b>services/billing</b><br/><small>4 .cs · 3 .csproj · 1 .sln</small><br/><small>▸ 3 projects inside</small>"]
+  p_web["<small>ANGULAR WORKSPACE</small><br/><b>web</b><br/><small>acme-web</small><br/><small>5 .ts · 3 .json · 1 (none)</small>"]
+  plain["<small>NO PROJECT MARKER</small><br/><b>3 folders + files</b><br/><small>(files in this folder) · assets/ · docs/ · scripts/</small><br/><small>2 .md · 1 .css · 1 .png</small>"]:::plain
+  end
+  p_web -- "4" --> p_platform
+  plain ~~~ p_analytics ~~~ p_db
+  plain ~~~ p_engine
+  p_engine ~~~ p_gateway ~~~ p_ledger
+  p_engine ~~~ p_legacy
+  p_legacy ~~~ p_services_billing
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

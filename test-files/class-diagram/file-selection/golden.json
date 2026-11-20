@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "expected-with-tests.mmd": { "includeTestFiles": true }
+  }
+}

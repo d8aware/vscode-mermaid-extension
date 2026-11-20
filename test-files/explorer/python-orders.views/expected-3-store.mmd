@@ -1,0 +1,23 @@
+classDiagram
+  class Store {
+    +save(order)
+    +find(id)
+  }
+  class MemStore {
+    #_orders
+    +__init__()
+    +save(order)
+    +find(id)
+  }
+  class Service {
+    <<orders/shop>>
+  }
+  class Order {
+    <<orders/shop>>
+  }
+  MemStore --> Order : _orders
+  Service ..> Store
+  Store <|-- MemStore
+  style Store stroke:#e11d48,stroke-width:3px
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

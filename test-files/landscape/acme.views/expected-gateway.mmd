@@ -1,0 +1,10 @@
+flowchart LR
+  subgraph frame["gateway · go.work"]
+  p_gateway_server["<small>GO MODULE</small><br/><b>server</b><br/><small>example.com/acme/gateway/server</small>"]
+  p_gateway_shared["<small>GO MODULE</small><br/><b>shared</b><br/><small>example.com/acme/gateway/shared</small>"]
+  plain["<small>OWN FILES</small><br/><b>Files in this folder</b><br/><small>(files in this folder)</small><br/><small>1 .work</small>"]:::plain
+  end
+  p_gateway_server -- "4" --> p_gateway_shared
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

@@ -1,0 +1,46 @@
+classDiagram
+  class Order {
+    lines
+    total
+    status
+    add(Line)
+    isPaid()
+    markPaid()
+    getTotal()
+  }
+  class Entity {
+    <<…/orders/shop>>
+  }
+  class Line {
+    <<…/orders/shop>>
+  }
+  class Money {
+    <<…/orders/shop>>
+  }
+  class Status {
+    <<enumeration · …/orders/shop>>
+  }
+  class Service {
+    <<…/orders/shop>>
+  }
+  class Store {
+    <<interface · …/orders/shop>>
+  }
+  class MemStore {
+    <<…/orders/storage>>
+  }
+  Entity <|-- Order
+  MemStore ..> Order
+  Order --> Line : lines
+  Order --> Money : total
+  Order --> Status : status
+  Service ..> Order
+  Store ..> Order
+  style Order stroke:#e11d48,stroke-width:3px
+  style Entity fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Line fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Money fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Status fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style MemStore fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Store fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

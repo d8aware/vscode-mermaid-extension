@@ -1,0 +1,15 @@
+flowchart LR
+  subgraph frame["analytics / src/analytics"]
+  n_src_analytics_cli_py["<small>ENTRY</small><br/><b>cli.py</b><br/><small>pyproject.toml scripts</small>"]:::entry
+  n_src_analytics___init___py["<small>FILE</small><br/><b>__init__.py</b>"]
+  n_src_analytics_report_py["<small>FILE</small><br/><b>report.py</b>"]
+  n_src_analytics_store_py["<small>FILE</small><br/><b>store.py</b>"]
+  projectFiles["<small>PYTHON PROJECT</small><br/><b>pyproject.toml</b><br/><small>project folder ↑</small>"]:::plain
+  end
+  n_src_analytics_cli_py -- "1" --> n_src_analytics_report_py
+  n_src_analytics_report_py -- "1" --> n_src_analytics_store_py
+  n_src_analytics___init___py ~~~ projectFiles
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef entry fill:#f0fdf4,stroke:#16a34a,color:#14532d
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

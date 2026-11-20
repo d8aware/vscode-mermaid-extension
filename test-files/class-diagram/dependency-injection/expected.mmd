@@ -1,0 +1,27 @@
+classDiagram
+  class OrderRepository {
+    <<interface>>
+    +save(order) Promise&lt;void&gt;
+  }
+  class Order {
+    +id: string
+  }
+  class Clock {
+    +now() Date
+  }
+  class Mailer {
+    +send(to) void
+  }
+  class Logger {
+    +log(message) void
+  }
+  class OrderService {
+    -repo: OrderRepository
+    +mailer: Mailer
+    -logger: Logger
+    +place(order) Promise&lt;void&gt;
+  }
+  OrderService --> Logger : logger
+  OrderService --> Mailer : mailer
+  OrderService --> OrderRepository : repo
+  OrderService ..> Clock

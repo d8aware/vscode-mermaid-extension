@@ -1,0 +1,41 @@
+{
+  "variants": {
+    "expected-public.mmd": {
+      "detail": "public"
+    },
+    "expected-names.mmd": {
+      "detail": "names"
+    },
+    "expected-grouped.mmd": {
+      "groupByFolder": true
+    },
+    "expected-grouped-names.mmd": {
+      "groupByFolder": true,
+      "detail": "names"
+    },
+    "expected-focus-User.mmd": {
+      "focus": "domain/User.ts",
+      "detail": "public"
+    },
+    "expected-focus-Money.mmd": {
+      "focus": "shared/Money.ts",
+      "detail": "public"
+    },
+    "expected-explore-1-Money.mmd": {
+      "explore": "shared/Money.ts"
+    },
+    "expected-explore-2-Money-User.mmd": {
+      "explore": "shared/Money.ts",
+      "clicks": [
+        "User"
+      ]
+    },
+    "expected-explore-3-Money-User-Order.mmd": {
+      "explore": "shared/Money.ts",
+      "clicks": [
+        "User",
+        "Order"
+      ]
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "name": "vscode-mermaid-extension",
   "displayName": "Mermaid MMD Tools",
-  "description": "View Mermaid diagrams from .mmd and .mermaid files and generate class diagrams from TypeScript files.",
+  "description": "Explore any codebase as diagrams, from projects down to classes, in TypeScript, Go, C#, PHP, Python, Java, Rust and more. Preview Mermaid .mmd files and generate class diagrams.",
   "icon": "media/infinity-hatch-128.png",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "publisher": "d8aware",
   "repository": {
     "type": "git",
@@ -24,7 +24,16 @@
     "uml",
     "class diagram",
     "typescript",
-    "markdown"
+    "markdown",
+    "architecture",
+    "code explorer",
+    "dependency graph",
+    "go",
+    "csharp",
+    "python",
+    "java",
+    "rust",
+    "php"
   ],
   "license": "MIT",
   "bugs": {
@@ -48,6 +57,59 @@
           "type": "boolean",
           "default": false,
           "description": "Use a single, shared preview panel that updates when switching between .mmd files (similar to Markdown preview behavior)"
+        },
+        "vscode-mermaid-extension.classDiagram.explorerConsumers": {
+          "type": "string",
+          "enum": ["declared", "references"],
+          "enumDescriptions": [
+            "Consumers are classes that hold it in a field or receive it by constructor injection (our TypeScript analysis).",
+            "Consumers are every class that references it, including method parameters and local use (asks the TypeScript language extension on each click)."
+          ],
+          "default": "declared",
+          "description": "Explore Classes From Here on TypeScript files: which classes count as a class's consumers (the 'in' direction). Other languages always use every reference."
+        },
+        "vscode-mermaid-extension.classDiagram.includeTestFiles": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include test files (per language: *.spec.ts, *.test.ts, __tests__/, _test.go, test_*.py, *Test.java, …) in class diagrams and the code explorer."
+        },
+        "vscode-mermaid-extension.classDiagram.detail": {
+          "type": "string",
+          "enum": [
+            "ask",
+            "full",
+            "public",
+            "names"
+          ],
+          "enumDescriptions": [
+            "All members for small folders; for large folders, ask",
+            "All members",
+            "Public members only (hide private and protected)",
+            "Class names only (no members)"
+          ],
+          "default": "ask",
+          "description": "Which members class diagrams show. In a focused diagram this applies to the neighbouring classes (\"ask\" means public members only); the focused file's classes are always shown in full."
+        },
+        "vscode-mermaid-extension.classDiagram.groupByFolder": {
+          "type": "string",
+          "enum": [
+            "ask",
+            "always",
+            "never"
+          ],
+          "enumDescriptions": [
+            "Ask for large folders whose classes span several folders; otherwise don't group",
+            "Always group classes by folder",
+            "Never group"
+          ],
+          "default": "ask",
+          "description": "Draw a box around the classes of each folder in a class diagram."
+        },
+        "vscode-mermaid-extension.classDiagram.largeFolderThreshold": {
+          "type": "number",
+          "default": 40,
+          "minimum": 0,
+          "description": "A folder with more classes, interfaces, enums and object types than this counts as large: when the detail or grouping setting is \"ask\", Generate Class Diagram asks how to show it."
         }
       }
     },
@@ -61,6 +123,28 @@
       {
         "command": "vscode-mermaid-extension.generateClassDiagram",
         "title": "Generate Class Diagram"
+      },
+      {
+        "command": "vscode-mermaid-extension.generateFocusedClassDiagram",
+        "title": "Generate Focused Class Diagram"
+      },
+      {
+        "command": "vscode-mermaid-extension.exploreClasses",
+        "title": "Explore Classes From Here"
+      },
+      {
+        "command": "vscode-mermaid-extension.exploreFolder",
+        "title": "Explore From Here"
+      },
+      {
+        "command": "vscode-mermaid-extension.checkLanguageSupport",
+        "category": "Mermaid",
+        "title": "Check Explorer Language Support"
+      },
+      {
+        "command": "vscode-mermaid-extension.recordExplorerAnswers",
+        "category": "Mermaid (pack authors)",
+        "title": "Record Explorer Answers"
       }
     ],
     "menus": {
@@ -74,9 +158,62 @@
       ],
       "explorer/context": [
         {
+          "command": "vscode-mermaid-extension.exploreFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "1_open@8"
+        },
+        {
+          "command": "vscode-mermaid-extension.exploreClasses",
+          "when": "resourceExtname =~ /^\\.(ts|tsx|mts|cts|go|cs|php|java|kt|py|rs|swift|rb|scala|dart|cpp|cc|cxx|hpp|h)$/ && !(resourceFilename =~ /\\.d\\.[cm]?ts$/)",
+          "group": "1_open@8"
+        },
+        {
           "command": "vscode-mermaid-extension.generateClassDiagram",
           "when": "explorerResourceIsFolder",
           "group": "1_open@9"
+        },
+        {
+          "command": "vscode-mermaid-extension.generateFocusedClassDiagram",
+          "when": "resourceExtname =~ /^\\.(ts|tsx|mts|cts)$/ && !(resourceFilename =~ /\\.d\\.[cm]?ts$/)",
+          "group": "1_open@9"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "vscode-mermaid-extension.exploreClasses",
+          "when": "resourceExtname =~ /^\\.(ts|tsx|mts|cts|go|cs|php|java|kt|py|rs|swift|rb|scala|dart|cpp|cc|cxx|hpp|h)$/ && !(resourceFilename =~ /\\.d\\.[cm]?ts$/)",
+          "group": "1_modification@8"
+        },
+        {
+          "command": "vscode-mermaid-extension.generateFocusedClassDiagram",
+          "when": "resourceExtname =~ /^\\.(ts|tsx|mts|cts)$/ && !(resourceFilename =~ /\\.d\\.[cm]?ts$/)",
+          "group": "1_modification@9"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vscode-mermaid-extension.exploreClasses",
+          "when": "resourceExtname =~ /^\\.(ts|tsx|mts|cts|go|cs|php|java|kt|py|rs|swift|rb|scala|dart|cpp|cc|cxx|hpp|h)$/ && !(resourceFilename =~ /\\.d\\.[cm]?ts$/)"
+        },
+        {
+          "command": "vscode-mermaid-extension.generateClassDiagram",
+          "when": "false"
+        },
+        {
+          "command": "vscode-mermaid-extension.generateFocusedClassDiagram",
+          "when": "resourceExtname =~ /^\\.(ts|tsx|mts|cts)$/ && !(resourceFilename =~ /\\.d\\.[cm]?ts$/)"
+        },
+        {
+          "command": "vscode-mermaid-extension.exploreFolder",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "vscode-mermaid-extension.checkLanguageSupport",
+          "when": "editorIsOpen"
+        },
+        {
+          "command": "vscode-mermaid-extension.recordExplorerAnswers",
+          "when": "workspaceFolderCount > 0"
         }
       ]
     }
@@ -90,6 +227,7 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
+    "test:webview": "node --test test-webview/explorer.test.mjs",
     "serve": "npm run build && npm run open",
     "open": "npx http-server dist -o /index.html?diagram=domain-driven-hexagon.mmd"
   },
@@ -104,6 +242,7 @@
     "copy-webpack-plugin": "^13.0.1",
     "eslint": "^10.15.0",
     "http-server": "^14.1.1",
+    "playwright-core": "~1.58.0",
     "ts-loader": "^9.6.2",
     "typescript": "^5.9.3",
     "webpack": "^5.112.2",
@@ -111,6 +250,6 @@
   },
   "dependencies": {
     "mermaid": "12.3.0",
-    "ts-morph": "^27.0.2"
+    "ts-morph": "^28.0.0"
   }
 }

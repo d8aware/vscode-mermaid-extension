@@ -1,0 +1,11 @@
+classDiagram
+  class Entity {
+    <<interface>>
+    id() &amp;str
+  }
+  class Order {
+    <<src/shop>>
+  }
+  Entity <|.. Order
+  style Entity stroke:#e11d48,stroke-width:3px
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

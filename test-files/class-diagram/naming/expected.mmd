@@ -1,0 +1,31 @@
+classDiagram
+  class Repository["Repository&lt;TEntity, TKey&gt;"] {
+    +items: Map&lt;TKey, TEntity&gt;
+  }
+  class Coordinates {
+    +lat: number
+    +lng: number
+  }
+  class Status {
+    <<enumeration>>
+    Active
+    Archived
+  }
+  class Contact {
+    <<type>>
+    +billing: BillingAddress
+    +shipping: ShippingAddress
+    +status: Status
+  }
+  class Widget {
+    +render() string
+  }
+  class Address {
+    +invoiceEmail: string
+  }
+  class Address_2["Address"] {
+    +street: string
+  }
+  Contact --> Address : billing
+  Contact --> Address_2 : shipping
+  Contact --> Status : status

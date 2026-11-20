@@ -1,0 +1,10 @@
+{
+  "example": "../csharp-orders",
+  "answers": "answers.json",
+  "views": {
+    "expected-1-order.mmd": { "start": "Shop/Order.cs", "light": [] },
+    "expected-2-order-Store.mmd": { "start": "Shop/Order.cs", "light": ["Service", "IStore"] },
+    "expected-3-store.mmd": { "start": "Shop/IStore.cs", "light": ["MemStore"] },
+    "expected-4-entity.mmd": { "start": "Shop/Entity.cs", "light": [] }
+  }
+}

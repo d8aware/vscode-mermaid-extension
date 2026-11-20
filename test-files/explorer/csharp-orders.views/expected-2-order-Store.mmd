@@ -1,0 +1,53 @@
+classDiagram
+  class Status {
+    <<enumeration>>
+    Open
+    Paid
+  }
+  class Line {
+    Sku: string
+    Price: Money
+  }
+  class Order {
+    Lines: List&lt;Line&gt;
+    Total: Money
+    status: Status
+    Add(Line) void
+    IsPaid() bool
+    MarkPaid() void
+  }
+  class Money {
+    <<Shop>>
+  }
+  class Entity {
+    <<Shop>>
+  }
+  class IStore {
+    <<interface>>
+    Save(Order) void
+    Find(string) Order?
+  }
+  class Service {
+    store: IStore
+    Service(IStore)
+    Checkout(Order) Money
+  }
+  class MemStore {
+    <<Storage>>
+  }
+  Entity <|-- Order
+  IStore ..> Order
+  IStore <|.. MemStore
+  Line --> Money : Price
+  MemStore ..> Order
+  Order --> Line : Lines
+  Order --> Money : Total
+  Order --> Status : status
+  Service --> IStore : store
+  Service ..> Order
+  style Status stroke:#e11d48,stroke-width:3px
+  style Line stroke:#e11d48,stroke-width:3px
+  style Order stroke:#e11d48,stroke-width:3px
+  style Money fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Entity fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style MemStore fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

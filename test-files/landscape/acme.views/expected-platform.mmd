@@ -1,0 +1,20 @@
+flowchart LR
+  subgraph frame["platform · nx.json · package.json · project.json"]
+  subgraph g_apps["apps/"]
+  p_platform_apps_api["<small>NPM PACKAGE</small><br/><b>api</b><br/><small>▸ 1 project inside</small>"]
+  p_platform_apps_worker["<small>NX PROJECT</small><br/><b>worker</b>"]
+  end
+  subgraph g_libs["libs/"]
+  p_platform_libs_ui_kit["<small>NPM PACKAGE</small><br/><b>ui-kit</b><br/><small>@acme/ui-kit</small>"]
+  p_platform_libs_util["<small>NPM PACKAGE</small><br/><b>util</b><br/><small>@acme/util</small>"]
+  end
+  plain["<small>OWN FILES</small><br/><b>1 folder + files</b><br/><small>(files in this folder) · tools/</small><br/><small>4 .json · 1 .sh</small>"]:::plain
+  end
+  ext_p_web["<small>OUTSIDE THIS VIEW</small><br/><b>web</b>"]:::outside
+  ext_p_web -- "3" --> p_platform_libs_ui_kit
+  ext_p_web -- "1" --> p_platform_libs_util
+  p_platform_apps_api -- "1" --> p_platform_libs_util
+  p_platform_libs_ui_kit -- "1" --> p_platform_libs_util
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

@@ -1,0 +1,57 @@
+classDiagram
+  class Auditable {
+    <<interface>>
+    +createdAt: Date
+  }
+  class Entity["Entity&lt;TId&gt;"] {
+    <<abstract>>
+    +id: TId
+    +validate() void*
+    +equals(other) boolean
+  }
+  class Order {
+    +lines: Map&lt;string, OrderLine[]&gt;
+    +owner: Promise&lt;User&gt; | undefined
+    +onChange: Function
+    +meta: object
+  }
+  class Address {
+    <<interface>>
+    +street: string
+    +city: string
+  }
+  class UserProps {
+    <<interface>>
+    +email: string
+    +address?: Address
+  }
+  class User {
+    +count: number$
+    +createdAt: Date
+    +balance: Money
+    +orders: Order[]
+    -props: UserProps
+    -#secret: string
+    +email: string
+    +validate() void
+    +updateAddress(street, city, ...tags) void
+    +deposit(amount, note) Promise&lt;Money&gt;
+    -recalculate() number
+    #touch() void
+  }
+  class Money {
+    +amount: number
+    +currency: Currency
+    +zero(currency) Money$
+    +add(other) Money
+  }
+  Auditable <|.. User
+  Entity <|-- User
+  Order --> User : owner
+  User --> Money : balance
+  User --> Order : orders
+  User --> UserProps : props
+  UserProps --> Address : address
+  style Address stroke:#e11d48,stroke-width:3px
+  style User stroke:#e11d48,stroke-width:3px
+  style UserProps stroke:#e11d48,stroke-width:3px

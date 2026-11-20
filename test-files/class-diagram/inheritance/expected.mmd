@@ -1,0 +1,32 @@
+classDiagram
+  class Drawable {
+    <<interface>>
+    +draw() void
+  }
+  class Resizable {
+    <<interface>>
+    +resize(factor) void
+  }
+  class Shape {
+    <<abstract>>
+    +area() number*
+    +draw() void
+  }
+  class Circle {
+    +radius: number
+    +area() number
+    +resize(factor) void
+  }
+  class Square {
+    +side: number
+    +area() number
+  }
+  class ShapeError {
+  }
+  class Error
+  Drawable <|-- Resizable
+  Drawable <|.. Shape
+  Error <|-- ShapeError
+  Resizable <|.. Circle
+  Shape <|-- Circle
+  Shape <|-- Square

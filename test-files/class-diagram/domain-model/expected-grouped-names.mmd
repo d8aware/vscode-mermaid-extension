@@ -1,0 +1,70 @@
+classDiagram
+  namespace app {
+    class UserRepository {
+      <<interface>>
+    }
+    class Logger {
+    }
+    class AppError {
+    }
+    class UserService {
+    }
+    class View {
+    }
+  }
+  namespace domain {
+    class Auditable {
+      <<interface>>
+    }
+    class SoftDeletable {
+      <<interface>>
+    }
+    class Entity["Entity&lt;TId&gt;"] {
+      <<abstract>>
+    }
+    class OrderLine {
+      <<type>>
+    }
+    class Order {
+    }
+    class Address {
+      <<interface>>
+    }
+    class UserProps {
+      <<interface>>
+    }
+    class User {
+    }
+  }
+  namespace dup.a {
+    class Config {
+    }
+  }
+  namespace dup.b {
+    class Config_2["Config"] {
+    }
+  }
+  namespace shared {
+    class Currency {
+      <<enumeration>>
+    }
+    class Money {
+    }
+    class Helper {
+    }
+  }
+  class Error
+  Auditable <|-- SoftDeletable
+  Auditable <|.. User
+  Entity <|-- User
+  Error <|-- AppError
+  Money --> Currency : currency
+  Order --> OrderLine : lines
+  Order --> User : owner
+  OrderLine --> Money : price
+  User --> Money : balance
+  User --> Order : orders
+  User --> UserProps : props
+  UserProps --> Address : address
+  UserService --> UserRepository : repo
+  UserService ..> Logger

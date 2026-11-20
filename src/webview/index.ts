@@ -3,6 +3,10 @@ const svgPanZoom = require('./svg-pan-zoom.min.js');
 import { debounce } from "../shared/debounce";
 import { getQueryParams } from "../shared/querystring";
 import { renderGannt, renderMermaidChart, renderPieChart } from "../render/functions";
+import { captureScene, enableExplorer, isExplorer, onRendered, playTransition, settle, showAnalysis } from "./explorer";
+
+// acquireVsCodeApi() may only be called once per webview; undefined in the browser harness.
+const vscodeApi = typeof acquireVsCodeApi === "function" ? acquireVsCodeApi() : undefined;
 
 const MERMAID_DIV_ID = `mermaidDiv_${new Date().getTime()}`;
 
@@ -157,8 +161,23 @@ async function renderFetchedDiagram(hostDivId: string, diagramFile: string) {
 window.addEventListener("message", async (event) => {
   const message = event.data;
   switch (message.command) {
-    case "renderContent":
+    case "renderContent": {
+      const scene = isExplorer() ? captureScene(panZoomInstance) : undefined;
       await renderDiagram(MERMAID_DIV_ID, message.content, true);
+      if (isExplorer()) {
+        onRendered({ canGoBack: !!message.canGoBack, crumbs: message.crumbs, tooltips: message.tooltips, notes: message.notes });
+        playTransition(scene, message.transition, panZoomInstance);
+      }
+      break;
+    }
+    case "explorerMode":
+      enableExplorer(vscodeApi, message.title ?? "");
+      break;
+    case "analysisProgress":
+      showAnalysis(message.label, message.done, message.total, message.file, message.detail);
+      break;
+    case "explorerSettle":
+      settle({ canGoBack: !!message.canGoBack });
       break;
     case "refreshContent":
       await renderDiagram(MERMAID_DIV_ID, message.content);
@@ -186,11 +205,11 @@ async function start() {
   const params = getQueryParams();
   if (params.diagram) {
     await renderFetchedDiagram(MERMAID_DIV_ID, params.diagram);
-  } else if (typeof acquireVsCodeApi === "function") {
+  } else if (vscodeApi) {
     // The "message" listener above is registered by now. Tell the extension,
     // which waits for this before sending the diagram; a message sent while
     // bundle.js was still loading would be lost and leave the spinner up.
-    acquireVsCodeApi().postMessage({ command: "ready" });
+    vscodeApi.postMessage({ command: "ready" });
   }
 }
 

@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph frame["api / src · source root (project.json sourceRoot)"]
+  n_src_main_ts["<small>ENTRY</small><br/><b>main.ts</b><br/><small>project.json build main</small>"]:::entry
+  projectFiles["<small>NPM PACKAGE</small><br/><b>package.json · project.json · Dockerfile</b><br/><small>project folder ↑</small>"]:::plain
+  end
+  pj_platform_libs_util["<small>PROJECT</small><br/><b>@acme/util</b>"]:::outside
+  n_src_main_ts -- "1" --> pj_platform_libs_util
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef entry fill:#f0fdf4,stroke:#16a34a,color:#14532d
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

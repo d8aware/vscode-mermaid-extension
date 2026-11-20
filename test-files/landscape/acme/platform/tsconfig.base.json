@@ -1,0 +1,1 @@
+{ "compilerOptions": { "paths": { "@acme/util": ["libs/util/src/index.ts"], "@acme/ui-kit": ["libs/ui-kit/src/index.ts"], "@acme/ui-kit/*": ["libs/ui-kit/src/*"] } } }

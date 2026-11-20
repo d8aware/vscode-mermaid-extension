@@ -1,0 +1,29 @@
+classDiagram
+  class Customer {
+    +name: string
+  }
+  class CartItem {
+    +product: Product
+    +quantity: number
+  }
+  class Cart {
+    +owner: Customer
+    +items: CartItem[]
+    +saved: Map&lt;string, CartItem&gt;
+    +recommended: Promise&lt;Product[]&gt;
+    +coupon: Coupon | undefined
+    +parent?: Cart
+  }
+  class Coupon {
+    +code: string
+  }
+  class Product {
+    +sku: string
+    +name: string
+  }
+  Cart --> Cart : parent
+  Cart --> CartItem : items, saved
+  Cart --> Coupon : coupon
+  Cart --> Customer : owner
+  Cart --> Product : recommended
+  CartItem --> Product : product

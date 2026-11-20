@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "projects": {
+    "web": {
+      "projectType": "application",
+      "sourceRoot": "src",
+      "architect": { "build": { "options": { "browser": "src/main.ts" } } }
+    }
+  }
+}
