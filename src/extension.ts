@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { broadcastDiagramColors } from "./commands/webviewContent";
 import { ViewDiagramCommand } from "./commands/ViewDiagramCommand";
 import { GenerateClassDiagramCommand } from "./commands/GenerateClassDiagramCommand";
 import { CodeExplorerCommand } from "./commands/CodeExplorerCommand";
@@ -6,6 +7,13 @@ import { runProbe } from "./probe/languageProbe";
 import { recordAnswers } from "./probe/recordAnswers";
 
 export function activate(context: vscode.ExtensionContext) {
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration("vscode-mermaid-extension.diagramColors")) {
+        broadcastDiagramColors();
+      }
+    })
+  );
   console.log('"vscode-mermaid-extension" extension is now active!');
 
   // Store the view command instance for reuse in single preview mode

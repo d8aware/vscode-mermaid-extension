@@ -1,0 +1,61 @@
+classDiagram
+  class Entity {
+    <<interface>>
+    id() &amp;str
+  }
+  class Money {
+    amount: i64
+    currency: String
+    add(other) Money
+  }
+  class Status {
+    <<enumeration>>
+    Open
+    Paid
+  }
+  class Line {
+    sku: String
+    price: Money
+  }
+  class Order {
+    id: String
+    lines: Vec&lt;Line&gt;
+    total: Money
+    status: Status
+    add(line) Result&lt;…, String&gt;
+    is_paid() bool
+    mark_paid()
+    id() &amp;str
+  }
+  class Service {
+    store: Box&lt;dyn Store&gt;
+    new(store) Self
+    checkout(order) Money
+  }
+  class Store {
+    <<interface>>
+    save(order)
+    find(id) Option&lt;&amp;Order&gt;
+  }
+  class MemStore {
+    <<src/storage>>
+  }
+  Entity <|.. Order
+  Line --> Money : price
+  MemStore ..> Order
+  Order --> Line : lines
+  Order --> Money : total
+  Order --> Status : status
+  Service --> Store : store
+  Service ..> Money
+  Service ..> Order
+  Store ..> Order
+  Store <|.. MemStore
+  style Entity stroke:#e11d48,stroke-width:3px
+  style Money stroke:#e11d48,stroke-width:3px
+  style Status stroke:#e11d48,stroke-width:3px
+  style Line stroke:#e11d48,stroke-width:3px
+  style Order stroke:#e11d48,stroke-width:3px
+  style Service stroke:#e11d48,stroke-width:3px
+  style Store stroke:#e11d48,stroke-width:3px
+  style MemStore fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

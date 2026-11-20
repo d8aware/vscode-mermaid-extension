@@ -139,3 +139,16 @@ function splitTopLevel(text: string): string[] {
   }
   return parts;
 }
+
+/** Line and character (0-based) of an offset in a text. */
+export function positionAt(text: string, offset: number): { line: number; character: number } {
+  const before = text.slice(0, offset);
+  return { line: before.split("\n").length - 1, character: offset - (before.lastIndexOf("\n") + 1) };
+}
+
+/** The text with comments blanked out, offsets kept: `#` comments ("hash"), or line and block comments ("c"). */
+export function blankComments(text: string, style: "hash" | "c"): string {
+  const pattern = style === "hash" ? /#[^\n]*/g : /\/\/[^\n]*|\/\*[\s\S]*?\*\//g;
+  return text.replace(pattern, (m) => m.replace(/[^\n]/g, " "));
+}
+

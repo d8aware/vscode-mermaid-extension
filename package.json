@@ -3,7 +3,7 @@
   "displayName": "Mermaid MMD Tools",
   "description": "Explore any codebase as diagrams, from projects down to classes, in TypeScript, Go, C#, PHP, Python, Java, Rust and more. Preview Mermaid .mmd files and generate class diagrams.",
   "icon": "media/infinity-hatch-128.png",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "publisher": "d8aware",
   "repository": {
     "type": "git",
@@ -57,6 +57,16 @@
           "type": "boolean",
           "default": false,
           "description": "Use a single, shared preview panel that updates when switching between .mmd files (similar to Markdown preview behavior)"
+        },
+        "vscode-mermaid-extension.diagramColors": {
+          "type": "string",
+          "enum": ["light", "editor"],
+          "enumDescriptions": [
+            "The diagrams' own colours on a light page (as saved and as shown on GitHub).",
+            "The colours of your VS Code theme, light, dark or high contrast. A diagram that sets its own Mermaid theme keeps it; saved views keep their light colours."
+          ],
+          "default": "light",
+          "description": "Colours of the diagram preview and the Code Explorer."
         },
         "vscode-mermaid-extension.classDiagram.explorerConsumers": {
           "type": "string",

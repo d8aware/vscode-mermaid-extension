@@ -18,7 +18,7 @@ import { diagramWebviewHtml } from "./webviewContent";
 type Step =
   | { kind: "landscape"; model: LandscapeModel; container: string }
   | { kind: "project"; model: LandscapeModel; code: ProjectCode; folder: string }
-  | { kind: "classes"; file: string; graph: ExplorerGraph; origin: string[]; lit: string[] };
+  | { kind: "classes"; file: string; graph: ExplorerGraph; origin: string[]; lit: string[]; notes?: string[] };
 
 interface Session {
   /** Visited steps; the last one is shown. Back pops. */
@@ -58,6 +58,12 @@ const READY_ATTEMPTS = 40;
 /** The explorer opens in the main editor area; files opened from it open beside it, so the map stays in view. */
 const SOURCE_COLUMN = vscode.ViewColumn.Beside;
 const READY_INTERVAL_MS = 500;
+
+/** Said when a file declares no types and the view starts from what it re-exports. */
+function reexportNote(file: string, origin: string[], graph: ExplorerGraph): string[] {
+  const elsewhere = origin.length > 0 && origin.every((id) => !samePath(graph.location(id)?.file ?? file, file));
+  return elsewhere ? [`${path.basename(file)} declares no types: showing the ${origin.length} it re-exports`] : [];
+}
 
 /**
  * The Code Explorer panel: "Explore From Here" on a folder (a landscape of the
@@ -259,7 +265,13 @@ export class CodeExplorerCommand {
       this.reportFailure(error);
       return undefined;
     }
-    const origin = (graph as ClassGraph).idsInFile(file, samePath);
+    let origin = (graph as ClassGraph).idsInFile(file, samePath);
+    const notes: string[] = [];
+    if (origin.length === 0) {
+      // A barrel (public-api.ts, index.ts) declares nothing itself: start from what it re-exports.
+      origin = (graph as ClassGraph).idsReexportedBy(file, samePath);
+      notes.push(...reexportNote(file, origin, graph));
+    }
     if (origin.length === 0) {
       vscode.window.showInformationMessage(
         `No TypeScript classes, interfaces, enums or object types found in ${path.basename(file)}.`
@@ -282,7 +294,7 @@ export class CodeExplorerCommand {
         return undefined;
       }
     }
-    return { kind: "classes", file, graph, origin, lit: [...origin] };
+    return { kind: "classes", file, graph, origin, lit: [...origin], notes };
   }
 
   /**
@@ -297,10 +309,12 @@ export class CodeExplorerCommand {
     const post = (label: string, detail?: string) =>
       panel.webview.postMessage({ command: "analysisProgress", label, done: 0, total: 0, detail });
 
+    // Ready when the extension reports the file's symbols, or (a barrel with none) resolves its first re-export.
+    const firstReexport = languagePackFor(file)?.reexports?.(document.getText(), file)[0];
     let answered = false;
     for (let attempt = 0; attempt < READY_ATTEMPTS && panel === this.panel; attempt++) {
       post(`Waiting for ${source}…`, attempt ? "The language server is loading the project" : undefined);
-      if ((await providers.documentSymbols(file)).length) {
+      if ((await providers.documentSymbols(file)).length || (firstReexport && (await providers.definition(file, firstReexport)).length)) {
         answered = true;
         break;
       }
@@ -341,7 +355,7 @@ export class CodeExplorerCommand {
         return undefined;
       }
       await Promise.all(origin.map((id) => graph.expand(id)));
-      return { kind: "classes", file, graph, origin, lit: [...origin] };
+      return { kind: "classes", file, graph, origin, lit: [...origin], notes: reexportNote(file, origin, graph) };
     } catch (error) {
       this.reportFailure(error);
       return undefined;
@@ -404,7 +418,7 @@ export class CodeExplorerCommand {
       tooltips,
       transition,
       crumbs: this.crumbs(step).map((c) => c.label),
-      notes: step.kind === "classes" ? step.graph.notes?.() ?? [] : [],
+      notes: step.kind === "classes" ? [...(step.notes ?? []), ...(step.graph.notes?.() ?? [])] : [],
       canGoBack: session.steps.length > 1,
     });
   }

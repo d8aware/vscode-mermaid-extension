@@ -188,3 +188,53 @@ suite("ProviderGraph Go rules", () => {
     assert.strictEqual(flattenNested("struct{ a int }"), "struct…");
   });
 });
+
+/** A barrel answered by a fake language extension: the engine starts from what it re-exports. */
+suite("ProviderGraph: barrels", () => {
+  const root = path.join(path.sep, "work", "shop");
+  const span = (l: number, c: number, l2: number, c2: number) => ({ start: { line: l, character: c }, end: { line: l2, character: c2 } });
+  const cls = (name: string, line: number) => ({ name, kind: "Class", range: span(line, 0, line + 2, 0), selectionRange: span(line, 6, line, 6 + name.length), children: [] });
+  const files: Record<string, { text: string; symbols: any[] }> = {
+    "__init__.py": { text: "# the package's API\nfrom .order import Order, Line as L\nfrom .store import *\n", symbols: [] },
+    "order.py": { text: "class Order:\n  pass\n\nclass Line:\n  pass\n", symbols: [cls("Order", 0), cls("Line", 3)] },
+    "store.py": { text: "class Store:\n  pass\n\nclass MemStore(Store):\n  pass\n", symbols: [cls("Store", 0), cls("MemStore", 3)] },
+    "util.py": { text: "def helper():\n  pass\n", symbols: [{ name: "helper", kind: "Function", range: span(0, 0, 1, 6), selectionRange: span(0, 4, 0, 10), children: [] }] },
+  };
+  const file = (name: string) => path.join(root, name);
+  const asked: string[] = [];
+  const providers: Providers = {
+    documentSymbols: async (f) => files[path.basename(f)]?.symbols ?? [],
+    supertypes: async () => [],
+    subtypes: async () => [],
+    implementations: async () => [],
+    typeDefinition: async () => [],
+    references: async () => [],
+    siblings: async () => Object.keys(files).map(file),
+    text: async (f) => files[path.basename(f)]?.text ?? "",
+    definition: async (f, at) => {
+      asked.push(`${path.basename(f)}:${at.line}:${at.character}`);
+      const key = `${at.line}:${at.character}`;
+      // line 1: `Order` at 19, `Line` at 26; line 2: the module `store` at 6.
+      return (
+        {
+          "1:19": [{ file: file("order.py"), range: span(0, 6, 0, 11) }],
+          "1:26": [{ file: file("order.py"), range: span(3, 6, 3, 10) }],
+          "2:6": [{ file: file("store.py"), range: span(0, 0, 0, 0) }],
+        } as Record<string, Loc[]>
+      )[key] ?? [];
+    },
+  };
+
+  test("names and whole modules re-exported by __init__.py become the start", async () => {
+    const graph = new ProviderGraph(providers, { root, inWorkspace: (f) => f.startsWith(root), includeTestFiles: false, source: "fake" });
+    const origin = await graph.start(file("__init__.py"));
+    assert.deepStrictEqual(asked, ["__init__.py:1:19", "__init__.py:1:26", "__init__.py:2:6"], "asked where the pack points");
+    assert.deepStrictEqual(origin.map((id) => graph.name(id)).sort(), ["Line", "MemStore", "Order", "Store"]);
+    assert.ok(origin.every((id) => graph.location(id)!.file !== file("__init__.py")));
+  });
+
+  test("a file with only functions still starts from its functions", async () => {
+    const graph = new ProviderGraph(providers, { root, inWorkspace: (f) => f.startsWith(root), includeTestFiles: false, source: "fake" });
+    assert.deepStrictEqual((await graph.start(file("util.py"))).map((id) => graph.name(id)), ["helper"]);
+  });
+});

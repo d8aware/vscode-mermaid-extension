@@ -6,7 +6,25 @@ import * as fs from "fs";
  * HTML for a diagram webview (the preview and the class explorer): dist/index.html
  * with its script and stylesheets rewritten to webview URIs.
  */
+/** Open diagram panels, told when the colour setting changes. */
+const panels = new Set<vscode.WebviewPanel>();
+
+/** `vscode-mermaid-extension.diagramColors`: "light" or "editor". */
+export function diagramColors(): "light" | "editor" {
+  return vscode.workspace.getConfiguration("vscode-mermaid-extension").get<string>("diagramColors") === "editor" ? "editor" : "light";
+}
+
+/** Sends the colour setting to every open diagram panel (they draw again). */
+export function broadcastDiagramColors() {
+  const mode = diagramColors();
+  panels.forEach((panel) => panel.webview.postMessage({ command: "colors", mode }));
+}
+
 export function diagramWebviewHtml(extensionPath: string, panel: vscode.WebviewPanel): string {
+  if (!panels.has(panel)) {
+    panels.add(panel);
+    panel.onDidDispose(() => panels.delete(panel));
+  }
   /**
    * Generate HTML content
    */
@@ -35,5 +53,7 @@ export function diagramWebviewHtml(extensionPath: string, panel: vscode.WebviewP
     )}">`
   );
 
+  // The colour setting, read by the page before its first render.
+  parsedContent = parsedContent.replace(/<body /, `<body data-colors="${diagramColors()}" `);
   return parsedContent;
 }

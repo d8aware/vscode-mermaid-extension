@@ -4,6 +4,17 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 3.1.0
+
+### Added
+
+- **Diagrams in your VS Code theme's colours** (setting `vscode-mermaid-extension.diagramColors`: `editor`; the default `light` keeps today's look). Previews and the Code Explorer, panel included, take their colours from the active theme, light, dark or high contrast, and follow it when you switch themes. Each colour the views use is a role (box, entry point, neighbour, outside, the file's own classes, "you clicked", "came from"), drawn in the theme's colour for that role; colours a theme leaves out, or that would be hard to read, fall back to its text and background colours. A diagram that sets its own Mermaid theme keeps it, and saved views keep their light colours so they look the same anywhere.
+- **Barrel files** (`public-api.ts`, `index.ts`, Python `__init__.py`, Rust `mod.rs`/`lib.rs`) that declare no types of their own start the class view from the types they re-export, and the panel says so. TypeScript follows `export … from`; Python and Rust ask the language extension where each re-exported name is defined.
+
+### Fixed
+
+- **Explore Classes From Here no longer spins forever** when a file has nothing to show (no classes, a cancelled pick, a failure): the loading scene now closes and the notice explains why.
+
 ## 3.0.0
 
 **Explore any codebase as diagrams, from the whole repository down to a single class, in any language with a VS Code language extension.** Right-click a folder to see its projects and their declared dependencies, click a project to see its code folder by folder from its entry points, click a file to explore its classes. Every box and arrow comes from a written rule, so the same code always draws the same picture. Also: the TypeScript class diagram generator is rewritten and now draws the relationships between classes.

@@ -105,6 +105,30 @@ export class ClassGraph implements ExplorerGraph {
     return this.model.entries.filter((e) => sameFile(e.node.getSourceFile().getFilePath(), filePath)).map((e) => e.id);
   }
 
+  /**
+   * Ids of the declarations a file exports from other files (`export * from`,
+   * `export { X } from`), in diagram order: what a barrel such as public-api.ts
+   * stands for when it declares nothing itself.
+   */
+  idsReexportedBy(filePath: string, sameFile: (a: string, b: string) => boolean): string[] {
+    const project = this.model.entries[0]?.node.getProject();
+    const file = project?.getSourceFiles().find((f) => sameFile(f.getFilePath(), filePath));
+    if (!file) {
+      return [];
+    }
+    const ids = new Map<unknown, string>(this.model.entries.map((e) => [e.node, e.id]));
+    const out = new Set<string>();
+    for (const declarations of file.getExportedDeclarations().values()) {
+      for (const declaration of declarations) {
+        const id = ids.get(declaration);
+        if (id) {
+          out.add(id);
+        }
+      }
+    }
+    return this.order(out);
+  }
+
   folder(id: string): string {
     const entry = this.byId.get(id);
     return entry ? folderOf(entry.node, this.root) : "";

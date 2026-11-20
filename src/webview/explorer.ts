@@ -11,10 +11,11 @@
 type Api = { postMessage(message: unknown): void };
 
 const STYLE = `
-:root { --accent: #6366f1; --accent-soft: rgba(99,102,241,.14); --ink: #27272a; --muted: #71717a; --line: #d4d4d8; }
+:root { --accent: #6366f1; --accent-soft: rgba(99,102,241,.14); --ink: #27272a; --muted: #71717a; --line: #d4d4d8;
+  --surface: #fff; --page: #fff; --track: #f4f4f5; --amber: #f59e0b; --green: #22c55e; --on-accent: #fff; --on-amber: #fff; }
 #explorer-toolbar { position: fixed; top: 10px; left: 10px; z-index: 30; display: flex; gap: 6px; align-items: center;
   font: 12px system-ui, sans-serif; }
-#explorer-toolbar button { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 6px;
+#explorer-toolbar button { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 6px;
   padding: 4px 10px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
 #explorer-toolbar button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 #explorer-toolbar button:disabled { opacity: .45; cursor: default; }
@@ -28,16 +29,16 @@ const STYLE = `
 
 /* Analysing: full-panel scene */
 #explorer-overlay { position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 18px; background: #fff; transition: opacity .35s ease; font-family: system-ui, sans-serif; }
+  justify-content: center; gap: 18px; background: var(--page); transition: opacity .35s ease; font-family: system-ui, sans-serif; }
 #explorer-overlay.done { opacity: 0; pointer-events: none; }
-#explorer-overlay svg .node { fill: #fff; stroke: var(--line); stroke-width: 1.5; animation: light 2.4s ease-in-out infinite; }
+#explorer-overlay svg .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; animation: light 2.4s ease-in-out infinite; }
 #explorer-overlay svg .edge { stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 4 4; animation: flow 1.2s linear infinite; }
 #explorer-overlay svg .node:nth-of-type(2) { animation-delay: .3s } #explorer-overlay svg .node:nth-of-type(3) { animation-delay: .6s }
 #explorer-overlay svg .node:nth-of-type(4) { animation-delay: .9s } #explorer-overlay svg .node:nth-of-type(5) { animation-delay: 1.2s }
-@keyframes light { 0%,100% { stroke: var(--line); fill: #fff; } 40% { stroke: var(--accent); fill: var(--accent-soft); } }
+@keyframes light { 0%,100% { stroke: var(--line); fill: var(--surface); } 40% { stroke: var(--accent); fill: var(--accent-soft); } }
 @keyframes flow { to { stroke-dashoffset: -16; } }
 #explorer-overlay .label { font-size: 14px; color: var(--ink); }
-#explorer-overlay .bar { width: min(320px, 70vw); height: 4px; border-radius: 2px; background: #f4f4f5; overflow: hidden; }
+#explorer-overlay .bar { width: min(320px, 70vw); height: 4px; border-radius: 2px; background: var(--track); overflow: hidden; }
 #explorer-overlay .bar > div { height: 100%; width: 0; background: var(--accent); border-radius: 2px; transition: width .2s ease; }
 #explorer-overlay .bar.indeterminate > div { width: 30%; animation: slide 1.1s ease-in-out infinite; }
 @keyframes slide { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
@@ -54,7 +55,7 @@ body.exploring #content g.node.clicked { opacity: 1; animation: pulse .9s ease-i
 body.explorer #content svg { animation: arrive .35s ease-out; }
 @keyframes arrive { from { opacity: 0; transform: scale(.985); } to { opacity: 1; transform: none; } }
 body.explorer #content g.node { cursor: pointer; }
-body.explorer #content g.node:hover { filter: drop-shadow(0 0 4px rgba(99,102,241,.5)); }
+body.explorer #content g.node:hover { filter: drop-shadow(0 0 4px var(--accent)); }
 
 @media (prefers-reduced-motion: reduce) {
   #explorer-overlay svg .node, #explorer-overlay svg .edge, #explorer-shimmer::after,
@@ -168,6 +169,8 @@ export function setStepping(on: boolean) {
 
 /** The extension has no change to show (e.g. Back at the start, a cancelled pick). */
 export function settle(state: { canGoBack: boolean }) {
+  // Nothing new to show (no classes, cancelled, failed): the loading scene must not stay up.
+  document.getElementById("explorer-overlay")?.classList.add("done");
   setStepping(false);
   document.querySelector<HTMLButtonElement>('#explorer-toolbar [data-action="back"]')!.disabled = !state.canGoBack;
 }
@@ -240,7 +243,7 @@ interface Scene {
 }
 
 const ANCHOR_STYLE = `
-#explorer-level { font: 600 10px system-ui, sans-serif; letter-spacing: .08em; color: #fff; background: var(--accent);
+#explorer-level { font: 600 10px system-ui, sans-serif; letter-spacing: .08em; color: var(--on-accent); background: var(--accent);
   border-radius: 4px; padding: 3px 7px; margin-left: 6px; }
 #explorer-level.flash { animation: levelflash 1.2s ease-out; }
 @keyframes levelflash { 0% { transform: scale(1.35); box-shadow: 0 0 0 6px var(--accent-soft); } 100% { transform: none; box-shadow: none; } }
@@ -252,15 +255,16 @@ const ANCHOR_STYLE = `
   { transition: opacity .35s ease .1s; }
 #content svg.morphing { animation: none !important; }
 #content g.node.arrived { animation: arrived 1.8s ease-out; }
-@keyframes arrived { 0%, 30% { filter: drop-shadow(0 0 7px #22c55e); } 100% { filter: none; } }
+@keyframes arrived { 0%, 30% { filter: drop-shadow(0 0 7px var(--green)); } 100% { filter: none; } }
 #content svg .anchor-ring { fill: none !important; pointer-events: none; }
 #content svg .anchor-tag { pointer-events: none; }
 #content svg .anchor-ring.here { stroke: var(--accent) !important; stroke-width: 3.5px !important; }
-#content svg .anchor-ring.from { stroke: #f59e0b !important; stroke-width: 3px !important; stroke-dasharray: 7 4 !important; }
+#content svg .anchor-ring.from { stroke: var(--amber) !important; stroke-width: 3px !important; stroke-dasharray: 7 4 !important; }
 #content .anchor-tag rect { rx: 4; }
 #content svg .anchor-tag.here rect { fill: var(--accent) !important; stroke: none !important; }
-#content svg .anchor-tag.from rect { fill: #f59e0b !important; stroke: none !important; }
-#content svg .anchor-tag text { fill: #fff !important; font: 600 11px system-ui, sans-serif; letter-spacing: .04em; }
+#content svg .anchor-tag.from rect { fill: var(--amber) !important; stroke: none !important; }
+#content svg .anchor-tag text { fill: var(--on-accent) !important; font: 600 11px system-ui, sans-serif; letter-spacing: .04em; }
+#content svg .anchor-tag.from text { fill: var(--on-amber) !important; }
 #content .anchor-ring.here.pulse { animation: ringpulse 1.6s ease-out 2; }
 @keyframes ringpulse { 0% { stroke-opacity: .2; } 50% { stroke-opacity: 1; } 75% { stroke-opacity: .5; } 100% { stroke-opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
@@ -324,8 +328,8 @@ function translateOf(node: SVGGElement): { x: number; y: number } | undefined {
 
 const reducedMotion = () => window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-/** After a step renders: keep the viewer oriented, then mark "here" and "came from". */
-export function playTransition(scene: Scene | undefined, transition: Transition | undefined, panZoom: any) {
+/** After a step renders: keep the viewer oriented, then mark "here" and "came from". Resolves when the motion has finished. */
+export async function playTransition(scene: Scene | undefined, transition: Transition | undefined, panZoom: any): Promise<void> {
   if (!active) {
     return;
   }
@@ -357,9 +361,9 @@ export function playTransition(scene: Scene | undefined, transition: Transition 
   const motion = !reducedMotion();
   markAnchors(svg, transition);
   if (kind === "extend" && scene) {
-    void morph(svg, scene, transition!, panZoom, motion);
+    await morph(svg, scene, transition!, panZoom, motion);
   } else if ((kind === "descend" || kind === "ascend" || kind === "jump") && scene?.clone && motion) {
-    zoom(svg, scene, kind);
+    await zoom(svg, scene, kind);
   }
 }
 
@@ -434,6 +438,8 @@ async function morph(svg: SVGSVGElement, scene: Scene, transition: Transition, p
   if (!moving.length) {
     return;
   }
+  let done!: () => void;
+  const finished = new Promise<void>((resolve) => (done = resolve));
   const start = performance.now();
   const duration = 600;
   const ease = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -447,13 +453,15 @@ async function morph(svg: SVGSVGElement, scene: Scene, transition: Transition, p
       requestAnimationFrame(frame);
     } else {
       svg.classList.remove("morphing");
+      done();
     }
   };
   requestAnimationFrame(frame);
+  return finished;
 }
 
 /** Another level: the old picture zooms into the clicked box (deeper) or away (higher); the new one arrives. */
-function zoom(svg: SVGSVGElement, scene: Scene, kind: Transition["kind"]) {
+function zoom(svg: SVGSVGElement, scene: Scene, kind: Transition["kind"]): Promise<void> {
   const ghost = scene.clone!;
   document.body.appendChild(ghost);
   const r = ghost.getBoundingClientRect();
@@ -471,12 +479,15 @@ function zoom(svg: SVGSVGElement, scene: Scene, kind: Transition["kind"]) {
       svg.style.opacity = "1";
     })
   );
-  setTimeout(() => {
-    ghost.remove();
-    svg.classList.remove("entering");
-    svg.style.transform = "";
-    svg.style.opacity = "";
-  }, 520);
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      ghost.remove();
+      svg.classList.remove("entering");
+      svg.style.transform = "";
+      svg.style.opacity = "";
+      resolve();
+    }, 520)
+  );
 }
 
 /** A ring and a label on a box, drawn in the box's own coordinates so they move with it. */
