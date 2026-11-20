@@ -1,0 +1,11 @@
+{
+  "example": "../ts-orders",
+  "answers": "answers.json",
+  "compare": true,
+  "views": {
+    "expected-1-order.mmd": { "start": "shop/order.ts", "light": [] },
+    "expected-2-order-Store.mmd": { "start": "shop/order.ts", "light": ["Service", "Store"] },
+    "expected-3-store.mmd": { "start": "shop/store.ts", "light": ["MemStore"] },
+    "expected-4-entity.mmd": { "start": "shop/entity.ts", "light": [] }
+  }
+}

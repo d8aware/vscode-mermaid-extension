@@ -1,440 +1,184 @@
-/* eslint-disable curly */
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
-import { Project, SourceFile, ClassDeclaration, InterfaceDeclaration, PropertyDeclaration, PropertySignature, MethodDeclaration, MethodSignature } from "ts-morph";
-const importRegex = /import\("([^"]+)"\)\.(\w+)/;
-const promiseRegex = /Promise<import\("([^"]+)"\)\.(\w+)>/;
+import {
+  DetailLevel,
+  findTsConfig,
+  generateClassDiagram,
+  GenerateOptions,
+  GenerationCancelledError,
+  loadFolder,
+  summarize,
+} from "../classDiagram/ClassDiagramGenerator";
 
-interface Result {
-  byFile: Record<string, Record<string, boolean>>;
-  byType: Record<string, Record<string, boolean>>;
-  output: string[];
-}
+export const OUTPUT_FILE_NAME = ".classes.mmd";
 
-type SourceRoot = {
-  glob: string[];
-  output: string;
-};
+type Progress = vscode.Progress<{ message?: string; increment?: number }>;
 
-class ImportProcessor {
-  byFile: Record<string, Record<string, boolean>> = {};
-  byType: Record<string, Record<string, boolean>> = {};
-  output: string[] = [];
-
-  processImportStrings(lines: string[]): Result {
-    for (const line of lines) {
-      const result = this.processImportString(line);
-      this.mergeResult(result);
-    }
-
-    return { byFile: this.byFile, byType: this.byType, output: this.output };
-  }
-
-  hasImport(line: string): boolean {
-    if ((promiseRegex.exec(line))) {
-      return true;
-    } else if ((importRegex.exec(line))) {
-      return true;
-    }
-    return false;
-  }
-
-  processImportString(line: string): Result {
-    const byFile: Record<string, Record<string, boolean>> = {};
-    const byType: Record<string, Record<string, boolean>> = {};
-    const output: string[] = [];
-
-    let match;
-    if ((match = promiseRegex.exec(line))) {
-      const [_, path, type] = match;
-
-      // Add to byFile dictionary
-      if (!byFile[path]) byFile[path] = {};
-      byFile[path][type] = true;
-
-      // Add to byType dictionary
-      if (!byType[type]) byType[type] = {};
-      byType[type][path] = true;
-
-      // Add to output
-      output.push(`Promise<${type}>`);
-    } else if ((match = importRegex.exec(line))) {
-      const [_, path, type] = match;
-
-      // Add to byFile dictionary
-      if (!byFile[path]) byFile[path] = {};
-      byFile[path][type] = true;
-
-      // Add to byType dictionary
-      if (!byType[type]) byType[type] = {};
-      byType[type][path] = true;
-
-      // Add to output
-      output.push(type);
-    } else {
-      // No match, just add the line to the output as is
-      output.push(line);
-    }
-
-    return { byFile, byType, output };
-  }
-
-  private mergeResult(result: Result): void {
-    // Merge byFile
-    for (const [path, types] of Object.entries(result.byFile)) {
-      if (!this.byFile[path]) this.byFile[path] = {};
-      Object.assign(this.byFile[path], types);
-    }
-
-    // Merge byType
-    for (const [type, paths] of Object.entries(result.byType)) {
-      if (!this.byType[type]) this.byType[type] = {};
-      Object.assign(this.byType[type], paths);
-    }
-
-    // Merge output
-    this.output.push(...result.output);
-  }
-}
-
+/**
+ * Generate Class Diagram commands: a whole folder (`.classes.mmd` in the
+ * folder) or a focused diagram for one file (`<File>.classes.mmd` next to it).
+ * The analysis lives in ClassDiagramGenerator; this class is the editor glue
+ * (settings, quick pickers, progress, cancellation, messages, writing files).
+ */
 export class GenerateClassDiagramCommand {
+  constructor(private readonly progress: Progress, private readonly token: vscode.CancellationToken) {}
 
-  progress: vscode.Progress<{ message?: string; increment?: number }>;
-  token: vscode.CancellationToken;
-
-  constructor(progress: vscode.Progress<{ message?: string; increment?: number }>, token: vscode.CancellationToken) {
-    this.progress = progress;
-    this.token = token;
-  }
-
-  importProcessor = new ImportProcessor();
-
-
-  async fromTypeScriptAtPath(folderPath: string) {
-    return new Promise(async (resolve, reject) => {
-
-      let files = [];
-      try {
-        files = fs.readdirSync(folderPath);
-      } catch (err) {
-        vscode.window.showErrorMessage(`Error reading folder: ${err.message}`);
-        resolve(false);
-      }
-  
-      if (files.length === 0) {
-        vscode.window.showInformationMessage("Folder is empty");
-        resolve(false);
-        return;
-      }
-  
-      /**
-       * Folder path might look like this:
-       * /Users/username/Documents/Projects/MyProject
-       * 
-       * NOTE: This extension will skip over any files 
-       * in `node_modules` folders, relative to the selected
-       * folder path.
-       */
-      const sourceRoot = {
-        glob: [
-          `${folderPath}/**/*.ts`,
-          `!${folderPath}/**/node_modules/**`
-        ],
-        output: path.join(folderPath, ".classes.mmd" )
-      };
-  
-      const classDiagram = this.generateClassDiagram([sourceRoot]);
-      console.log(classDiagram);
-  
-      await this.saveTextFile(classDiagram, sourceRoot.output);
-      resolve(sourceRoot.output);
-
-    });
-
-  }
-
-  processReturnTypeText(returnTypeText: string) {
-    if (this.importProcessor.hasImport(returnTypeText)) {
-      returnTypeText = this.importProcessor.processImportString(returnTypeText).output[0];
+  /** Returns the path of the written diagram, or undefined if none was written. */
+  async fromTypeScriptAtPath(folderPath: string): Promise<string | undefined> {
+    if (!fs.existsSync(folderPath) || !fs.statSync(folderPath).isDirectory()) {
+      vscode.window.showErrorMessage(`Folder not found: ${folderPath}`);
+      return undefined;
     }
-    /**
-     * If the returnTypeText is a literal type, like 
-     * 
-     * { foo: string, bar: number }
-     * 
-     * then set returnTypeText to "any"
-     */
-    if (returnTypeText.indexOf("{") > -1) {
-      returnTypeText = "any";
-    }
-  
-    return returnTypeText;
-  }
-
-  computeMethodReturnType(method: MethodDeclaration | MethodSignature) {
-    const returnType = method.getReturnType();
-    const returnTypeText = returnType.getText();
-    return this.processReturnTypeText(returnTypeText);
-  }
-  
-  computePropertyReturnType(prop: PropertyDeclaration | PropertySignature) {
-    const returnType = prop.getType();
-    const returnTypeText = returnType.getText();
-    return this.processReturnTypeText(returnTypeText);
-  }
-
-  reportProgress(progress: number, message: string) {
-
-  }
-
-  generateClassDiagram(sourceGlobs: SourceRoot[]): string {
-    const project = new Project();
-    sourceGlobs.forEach(source => {
-      project.addSourceFilesAtPaths(source.glob);
-    });
-  
-    let diagram = "classDiagram\n";
-  
-    const classes: { [name: string]: ClassDeclaration } = {};
-    const interfaces: { [name: string]: InterfaceDeclaration } = {};
-    const sourceFilesAtPaths = project.getSourceFiles();
-    sourceFilesAtPaths.forEach((sourceFile: SourceFile, i: number) => {
-
-      sourceFile.getClasses().forEach((classDeclaration: ClassDeclaration) => {
-  
-        const className = classDeclaration.getName();
-        if (className) {
-          if (classes[className]) {
-            classes[className] = classDeclaration;
-          } else {
-            classes[className] = classDeclaration;
-          }
-          diagram += `  class ${className} {\n`;
-  
-          /**
-           * Add properties
-           */
-          classDeclaration.getProperties().forEach(prop => {
-            const typeText = this.computePropertyReturnType(prop); //prop.getType().getText();
-            if (classes[typeText] || interfaces[typeText]) {
-              diagram += `    ${prop.getName()}: ${typeText}\n`;
-            } else {
-              diagram += `    ${prop.getName()}: ${typeText}\n`;
-            }
-          });
-  
-          /**
-           * Add methods
-           */
-          classDeclaration.getMethods().forEach(method => {
-            const methodName = method.getName();
-            const methodParams = method.getParameters();
-            const returnTypeText = this.computeMethodReturnType(method);
-            const params = methodParams.map(p => {
-              // Get the full parameter text first
-              let paramText = p.getText();
-              
-              // Handle destructured parameters specially (must start with { to be destructuring)
-              if (paramText.trim().startsWith('{') && paramText.includes('}')) {
-                // Extract just the parameter names from destructured syntax
-                // Find the matching closing brace by counting brace depth
-                let braceDepth = 0;
-                let startIndex = paramText.indexOf('{');
-                let endIndex = -1;
-                for (let i = startIndex; i < paramText.length; i++) {
-                  if (paramText[i] === '{') {
-                    braceDepth++;
-                  } else if (paramText[i] === '}') {
-                    braceDepth--;
-                    if (braceDepth === 0) {
-                      endIndex = i;
-                      break;
-                    }
-                  }
-                }
-                if (endIndex > startIndex) {
-                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
-                  // Simple approach: split by comma first, then clean each parameter
-                  const rawParams = destructuredContent.split(',');
-                  const individualParams = rawParams.map(param => {
-                    // Remove everything after the first = (default value)
-                    const nameOnly = param.split('=')[0].trim();
-                    return nameOnly;
-                  }).filter(param => param.length > 0);
-                  return individualParams.join(', ');
-                }
-              }
-
-              // For regular parameters, remove default value assignments and type annotations
-              // First, get just the parameter name part (before : or =)
-              let nameOnly = paramText;
-              
-              // Remove type annotations (everything after :)
-              if (nameOnly.includes(':')) {
-                nameOnly = nameOnly.split(':')[0].trim();
-              }
-              
-              // Remove default value assignments (everything after =)
-              if (nameOnly.includes('=')) {
-                nameOnly = nameOnly.split('=')[0].trim();
-              }
-              
-              // Clean up any remaining curly braces
-              nameOnly = nameOnly.replace(/[{}]/g, '').trim();
-              
-              return nameOnly;
-            }).join(", ");
-            diagram += `    +${methodName}(${params}): ${returnTypeText}\n`;
-          });
-          diagram += "  }\n";
-        }
-      });
-  
-      sourceFile.getEnums().forEach(enumDeclaration => {
-        const enumName = enumDeclaration.getName();
-        if (enumName) {
-          diagram += `  class ${enumName} {\n  <<enumeration>>\n`;
-          enumDeclaration.getMembers().forEach(member => {
-            diagram += `    ${member.getName()}\n`;
-          });
-          diagram += "  }\n";
-        }
-      });
-  
-      sourceFile.getInterfaces().forEach((interfaceDeclaration: InterfaceDeclaration) => {
-        const interfaceName = interfaceDeclaration.getName();
-        if (interfaceName) {
-          interfaces[interfaceName] = interfaceDeclaration;
-          diagram += `  class ${interfaceName} {\n  <<interface>>\n`;
-  
-          /**
-           * Add properties
-           */
-          interfaceDeclaration.getProperties().forEach(prop => {
-            const typeText = this.computePropertyReturnType(prop); //prop.getType().getText();
-            if (classes[typeText] || interfaces[typeText]) {
-              diagram += `    ${prop.getName()}: ${typeText}\n`;
-            } else {
-              diagram += `    ${prop.getName()}: ${typeText}\n`;
-            }
-          });
-          
-          interfaceDeclaration.getMethods().forEach(method => {
-            const methodName = method.getName();
-            const methodParams = method.getParameters();
-            const returnTypeText = this.computeMethodReturnType(method);
-            const params = methodParams.map(p => {
-              // Get the full parameter text first
-              let paramText = p.getText();
-              
-              // Handle destructured parameters specially (must start with { to be destructuring)
-              if (paramText.trim().startsWith('{') && paramText.includes('}')) {
-                // Extract just the parameter names from destructured syntax
-                // Find the matching closing brace by counting brace depth
-                let braceDepth = 0;
-                let startIndex = paramText.indexOf('{');
-                let endIndex = -1;
-                for (let i = startIndex; i < paramText.length; i++) {
-                  if (paramText[i] === '{') {
-                    braceDepth++;
-                  } else if (paramText[i] === '}') {
-                    braceDepth--;
-                    if (braceDepth === 0) {
-                      endIndex = i;
-                      break;
-                    }
-                  }
-                }
-                if (endIndex > startIndex) {
-                  const destructuredContent = paramText.substring(startIndex + 1, endIndex);
-                  // Simple approach: split by comma first, then clean each parameter
-                  const rawParams = destructuredContent.split(',');
-                  const individualParams = rawParams.map(param => {
-                    // Remove everything after the first = (default value)
-                    const nameOnly = param.split('=')[0].trim();
-                    return nameOnly;
-                  }).filter(param => param.length > 0);
-                  return individualParams.join(', ');
-                }
-              }
-
-              // For regular parameters, remove default value assignments and type annotations
-              // First, get just the parameter name part (before : or =)
-              let nameOnly = paramText;
-              
-              // Remove type annotations (everything after :)
-              if (nameOnly.includes(':')) {
-                nameOnly = nameOnly.split(':')[0].trim();
-              }
-              
-              // Remove default value assignments (everything after =)
-              if (nameOnly.includes('=')) {
-                nameOnly = nameOnly.split('=')[0].trim();
-              }
-              
-              // Clean up any remaining curly braces
-              nameOnly = nameOnly.replace(/[{}]/g, '').trim();
-              
-              return nameOnly;
-            }).join(", ");
-            diagram += `    +${methodName}(${params}): ${returnTypeText}\n`;
-          });
-          diagram += "  }\n";
-        }
-      });
-
-      this.progress.report({ increment: (i + 1) / sourceFilesAtPaths.length, message: sourceFile.getBaseName() });
-
-    });
-  
-    Object.values(classes).forEach(classDeclaration => {
-      const className = classDeclaration.getName();
-      if (!className) return;
-  
-      const baseClass = classDeclaration.getBaseClass();
-      if (baseClass) {
-        diagram += `  ${baseClass.getName()} <|-- ${className}\n`;
+    return this.run(async () => {
+      this.progress.report({ message: "Loading TypeScript project…" });
+      const { sourceFiles } = loadFolder(folderPath, { includeTestFiles: setting("includeTestFiles", false) });
+      const summary = summarize(sourceFiles, folderPath);
+      if (summary.declarations === 0) {
+        vscode.window.showInformationMessage("No TypeScript classes, interfaces, enums or object types found in this folder.");
+        return undefined;
       }
-  
-      classDeclaration.getImplements().forEach(impl => {
-        const interfaceName = impl.getExpression().getText();
-        diagram += `  ${interfaceName} <|.. ${className}\n`;
+
+      const view = await chooseFolderView(summary);
+      if (!view) {
+        return undefined; // picker dismissed
+      }
+      const diagram = await generateClassDiagram(sourceFiles, {
+        ...this.progressOptions(),
+        detail: view.detail,
+        groupByFolderFrom: view.groupByFolder ? folderPath : undefined,
       });
-  
-      classDeclaration.getProperties().forEach(prop => {
-        const typeText = prop.getType().getText();
-        if (classes[typeText] || interfaces[typeText]) {
-          diagram += `  ${className} --> ${typeText} : uses\n`;
-        }
-      });
+      return this.write(diagram, path.join(folderPath, OUTPUT_FILE_NAME));
     });
-  
-    Object.values(interfaces).forEach(interfaceDeclaration => {
-      const interfaceName = interfaceDeclaration.getName();
-      if (!interfaceName) return;
-  
-      interfaceDeclaration.getExtends().forEach(ext => {
-        const extendedInterfaceName = ext.getExpression().getText();
-        diagram += `  ${extendedInterfaceName} <|.. ${interfaceName}\n`;
-      });
-    });
-  
-    diagram += "\n";
-    return diagram;
   }
 
-  async saveTextFile(text: string, filePath: string) {
-    return new Promise((resolve, reject) => {
-      fs.writeFile(filePath, text, 'utf8', (err) => {
-        if (err) {
-          vscode.window.showErrorMessage(`Error writing file: ${err.message}`);
-          resolve(true);
-          return;
-        }
-        vscode.window.showInformationMessage(`File generated: ${filePath}`);
-        resolve(true);
+  /**
+   * Focused diagram: the classes in `filePath`, plus every class in the same
+   * project with an arrow to or from them.
+   */
+  async fromTypeScriptFile(filePath: string): Promise<string | undefined> {
+    if (!fs.existsSync(filePath)) {
+      vscode.window.showErrorMessage(`File not found: ${filePath}`);
+      return undefined;
+    }
+    return this.run(async () => {
+      this.progress.report({ message: "Loading TypeScript project…" });
+      const root = projectRootFor(filePath);
+      const { sourceFiles } = loadFolder(root, {
+        includeTestFiles: setting("includeTestFiles", false),
+        alwaysInclude: [filePath],
       });
+      const focused = sourceFiles.filter((sf) => path.resolve(sf.getFilePath()) === path.resolve(filePath));
+      if (summarize(focused, root).declarations === 0) {
+        vscode.window.showInformationMessage("No TypeScript classes, interfaces, enums or object types found in this file.");
+        return undefined;
+      }
+
+      const detail = setting<DetailLevel | "ask">("detail", "ask");
+      const diagram = await generateClassDiagram(sourceFiles, {
+        ...this.progressOptions(),
+        focusFiles: [filePath],
+        // Neighbours; the focused classes are always shown in full.
+        detail: detail === "ask" ? "public" : detail,
+        groupByFolderFrom: setting<"ask" | "always" | "never">("groupByFolder", "ask") === "always" ? root : undefined,
+      });
+      const baseName = path.basename(filePath).replace(/\.[cm]?tsx?$/, "");
+      return this.write(diagram, path.join(path.dirname(filePath), `${baseName}.classes.mmd`));
     });
   }
+
+  private async run(work: () => Promise<string | undefined>): Promise<string | undefined> {
+    try {
+      return await work();
+    } catch (error) {
+      if (error instanceof GenerationCancelledError) {
+        return undefined;
+      }
+      const message = error instanceof Error ? error.message : String(error);
+      vscode.window.showErrorMessage(`Class diagram generation failed: ${message}`);
+      return undefined;
+    }
+  }
+
+  private progressOptions(): Pick<GenerateOptions, "isCancelled" | "onProgress"> {
+    let reported = 0;
+    return {
+      isCancelled: () => this.token.isCancellationRequested,
+      onProgress: (done, total, fileName) => {
+        // `increment` is a delta towards 100.
+        const percent = (done / total) * 100;
+        this.progress.report({ increment: percent - reported, message: `${done}/${total} ${fileName}` });
+        reported = percent;
+      },
+    };
+  }
+
+  private async write(diagram: string, outputPath: string): Promise<string> {
+    await fs.promises.writeFile(outputPath, diagram, "utf8");
+    vscode.window.showInformationMessage(`File generated: ${outputPath}`);
+    return outputPath;
+  }
+}
+
+function setting<T>(key: string, fallback: T): T {
+  return vscode.workspace.getConfiguration("vscode-mermaid-extension").get<T>(`classDiagram.${key}`, fallback);
+}
+
+/** Folder of the file's nearest tsconfig, else its workspace folder, else its own folder. */
+export function projectRootFor(filePath: string): string {
+  const tsConfig = findTsConfig(path.dirname(filePath));
+  if (tsConfig) {
+    return path.dirname(tsConfig);
+  }
+  return vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))?.uri.fsPath ?? path.dirname(filePath);
+}
+
+/**
+ * Detail level and grouping for a folder diagram, from the settings or, for
+ * large folders when the settings say "ask", from quick pickers.
+ * Undefined when a picker was dismissed.
+ */
+async function chooseFolderView(summary: {
+  declarations: number;
+  folders: number;
+}): Promise<{ detail: DetailLevel; groupByFolder: boolean } | undefined> {
+  const large = summary.declarations > setting("largeFolderThreshold", 40);
+  const detailSetting = setting<DetailLevel | "ask">("detail", "ask");
+  const groupSetting = setting<"ask" | "always" | "never">("groupByFolder", "ask");
+  const steps = (detailSetting === "ask" && large ? 1 : 0) + (groupSetting === "ask" && large && summary.folders > 1 ? 1 : 0);
+  let step = 0;
+  const title = () => `Large folder: ${summary.declarations} classes and types${steps > 1 ? ` (${++step}/${steps})` : ""}`;
+
+  let detail: DetailLevel = detailSetting === "ask" ? "full" : detailSetting;
+  if (detailSetting === "ask" && large) {
+    const picked = await vscode.window.showQuickPick(
+      [
+        { label: "Public members only", description: "Recommended", detail: "Hide private and protected members", value: "public" as const },
+        { label: "All members", detail: "Every field and method", value: "full" as const },
+        { label: "Class names only", detail: "No members; just the boxes and arrows", value: "names" as const },
+      ],
+      { title: title(), placeHolder: "Which members should the diagram show?", ignoreFocusOut: true }
+    );
+    if (!picked) {
+      return undefined;
+    }
+    detail = picked.value;
+  }
+
+  let groupByFolder = groupSetting === "always";
+  if (groupSetting === "ask" && large && summary.folders > 1) {
+    const picked = await vscode.window.showQuickPick(
+      [
+        { label: "Group by folder", detail: `Draw a box around each of the ${summary.folders} folders' classes`, value: true },
+        { label: "Don't group", value: false },
+      ],
+      { title: title(), placeHolder: "Group classes by folder?", ignoreFocusOut: true }
+    );
+    if (!picked) {
+      return undefined;
+    }
+    groupByFolder = picked.value;
+  }
+
+  return { detail, groupByFolder };
 }

@@ -1,0 +1,23 @@
+classDiagram
+  class IStore {
+    <<interface>>
+    Save(Order) void
+    Find(string) Order?
+  }
+  class MemStore {
+    orders: Dictionary&lt;string, Order&gt;
+    Save(Order) void
+    Find(string) Order?
+  }
+  class Service {
+    <<Shop>>
+  }
+  class Order {
+    <<Shop>>
+  }
+  IStore <|.. MemStore
+  MemStore --> Order : orders
+  Service ..> IStore
+  style IStore stroke:#e11d48,stroke-width:3px
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

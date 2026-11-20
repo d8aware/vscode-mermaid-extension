@@ -1,0 +1,56 @@
+classDiagram
+  class Auditable {
+    <<interface · domain>>
+  }
+  class Entity["Entity&lt;TId&gt;"] {
+    <<abstract · domain>>
+  }
+  class OrderLine {
+    <<type · domain>>
+  }
+  class Order {
+    <<domain>>
+  }
+  class UserProps {
+    <<interface · domain>>
+  }
+  class User {
+    +count: number$
+    +createdAt: Date
+    +balance: Money
+    +orders: Order[]
+    -props: UserProps
+    -#secret: string
+    +email: string
+    +validate() void
+    +updateAddress(street, city, ...tags) void
+    +deposit(amount, note) Promise&lt;Money&gt;
+    -recalculate() number
+    #touch() void
+  }
+  class Currency {
+    <<enumeration>>
+    USD
+    EUR
+  }
+  class Money {
+    +amount: number
+    +currency: Currency
+    +zero(currency) Money$
+    +add(other) Money
+  }
+  Auditable <|.. User
+  Entity <|-- User
+  Money --> Currency : currency
+  Order --> User : owner
+  OrderLine --> Money : price
+  User --> Money : balance
+  User --> Order : orders
+  User --> UserProps : props
+  style Currency stroke:#e11d48,stroke-width:3px
+  style Money stroke:#e11d48,stroke-width:3px
+  style OrderLine fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Auditable fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Entity fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style UserProps fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

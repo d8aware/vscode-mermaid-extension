@@ -1,0 +1,1687 @@
+{
+ "definition src/Shop/Entity.php:7:16": [],
+ "definition src/Shop/Entity.php:7:9": [],
+ "definition src/Shop/Order.php:10:11": [],
+ "definition src/Shop/Order.php:10:16": [
+  {
+   "file": "src/Shop/Line.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 6
+    },
+    "end": {
+     "line": 5,
+     "character": 10
+    }
+   }
+  }
+ ],
+ "definition src/Shop/Order.php:11:15": [],
+ "definition src/Shop/Order.php:11:9": [],
+ "definition src/Shop/Order.php:12:15": [
+  {
+   "file": "src/Shop/Money.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 6
+    },
+    "end": {
+     "line": 5,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "definition src/Shop/Order.php:12:9": [],
+ "definition src/Shop/Order.php:13:10": [],
+ "definition src/Shop/Order.php:13:17": [
+  {
+   "file": "src/Shop/Status.php",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "definition src/Shop/Order.php:13:34": [
+  {
+   "file": "src/Shop/Status.php",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "definition src/Shop/Order.php:13:40": [
+  {
+   "file": "src/Shop/Status.php",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 9
+    },
+    "end": {
+     "line": 6,
+     "character": 13
+    }
+   }
+  }
+ ],
+ "definition src/Shop/Order.php:8:18": [],
+ "definition src/Shop/Order.php:8:25": [
+  {
+   "file": "src/Shop/Entity.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 15
+    },
+    "end": {
+     "line": 5,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "definition src/Shop/Service.php:7:10": [],
+ "definition src/Shop/Service.php:7:16": [
+  {
+   "file": "src/Shop/Store.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 10
+    },
+    "end": {
+     "line": 5,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "definition src/Storage/MemStore.php:10:11": [],
+ "definition src/Storage/MemStore.php:10:17": [],
+ "definition src/Storage/MemStore.php:10:24": [],
+ "definition src/Storage/MemStore.php:10:31": [
+  {
+   "file": "src/Shop/Order.php",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 6
+    },
+    "end": {
+     "line": 8,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "definition src/Storage/MemStore.php:11:10": [],
+ "definition src/Storage/MemStore.php:11:16": [],
+ "definition src/Storage/MemStore.php:8:24": [],
+ "definition src/Storage/MemStore.php:8:30": [
+  {
+   "file": "src/Shop/Store.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 10
+    },
+    "end": {
+     "line": 5,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "documentSymbols src/Shop/Entity.php": [
+  {
+   "name": "Shop",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Entity",
+   "kind": "Class",
+   "detail": "abstract",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 8,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 15
+    },
+    "end": {
+     "line": 5,
+     "character": 21
+    }
+   },
+   "children": [
+    {
+     "name": "$id",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 18
+      },
+      "end": {
+       "line": 7,
+       "character": 26
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 18
+      },
+      "end": {
+       "line": 7,
+       "character": 21
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/Shop/Line.php": [
+  {
+   "name": "Shop",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Line",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 9,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 6
+    },
+    "end": {
+     "line": 5,
+     "character": 10
+    }
+   },
+   "children": [
+    {
+     "name": "$sku",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 18
+      },
+      "end": {
+       "line": 7,
+       "character": 27
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 18
+      },
+      "end": {
+       "line": 7,
+       "character": 22
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "$price",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 8,
+       "character": 17
+      },
+      "end": {
+       "line": 8,
+       "character": 23
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 8,
+       "character": 17
+      },
+      "end": {
+       "line": 8,
+       "character": 23
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/Shop/Money.php": [
+  {
+   "name": "Shop",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Money",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 15,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 6
+    },
+    "end": {
+     "line": 5,
+     "character": 11
+    }
+   },
+   "children": [
+    {
+     "name": "$amount",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 32
+      },
+      "end": {
+       "line": 7,
+       "character": 54
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 43
+      },
+      "end": {
+       "line": 7,
+       "character": 50
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "$currency",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 56
+      },
+      "end": {
+       "line": 7,
+       "character": 87
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 70
+      },
+      "end": {
+       "line": 7,
+       "character": 79
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "__construct",
+     "kind": "Constructor",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 4
+      },
+      "end": {
+       "line": 9,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 20
+      },
+      "end": {
+       "line": 7,
+       "character": 31
+      }
+     },
+     "children": [
+      {
+       "name": "$amount",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 7,
+         "character": 32
+        },
+        "end": {
+         "line": 7,
+         "character": 54
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 7,
+         "character": 43
+        },
+        "end": {
+         "line": 7,
+         "character": 50
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "$currency",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 7,
+         "character": 56
+        },
+        "end": {
+         "line": 7,
+         "character": 87
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 7,
+         "character": 70
+        },
+        "end": {
+         "line": 7,
+         "character": 79
+        }
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "name": "add",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 11,
+       "character": 4
+      },
+      "end": {
+       "line": 14,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 11,
+       "character": 20
+      },
+      "end": {
+       "line": 11,
+       "character": 23
+      }
+     },
+     "children": [
+      {
+       "name": "$other",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 11,
+         "character": 24
+        },
+        "end": {
+         "line": 11,
+         "character": 36
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 11,
+         "character": 30
+        },
+        "end": {
+         "line": 11,
+         "character": 36
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/Shop/Order.php": [
+  {
+   "name": "Shop",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 0
+    },
+    "end": {
+     "line": 5,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 10
+    },
+    "end": {
+     "line": 5,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Order",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 0
+    },
+    "end": {
+     "line": 30,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 8,
+     "character": 6
+    },
+    "end": {
+     "line": 8,
+     "character": 11
+    }
+   },
+   "children": [
+    {
+     "name": "$lines",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 10,
+       "character": 4
+      },
+      "end": {
+       "line": 11,
+       "character": 28
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 11,
+       "character": 17
+      },
+      "end": {
+       "line": 11,
+       "character": 23
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "$total",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 12,
+       "character": 17
+      },
+      "end": {
+       "line": 12,
+       "character": 23
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 12,
+       "character": 17
+      },
+      "end": {
+       "line": 12,
+       "character": 23
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "$status",
+     "kind": "Property",
+     "detail": "private",
+     "range": {
+      "start": {
+       "line": 13,
+       "character": 19
+      },
+      "end": {
+       "line": 13,
+       "character": 41
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 13,
+       "character": 19
+      },
+      "end": {
+       "line": 13,
+       "character": 26
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "add",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 15,
+       "character": 4
+      },
+      "end": {
+       "line": 19,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 15,
+       "character": 20
+      },
+      "end": {
+       "line": 15,
+       "character": 23
+      }
+     },
+     "children": [
+      {
+       "name": "$line",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 15,
+         "character": 24
+        },
+        "end": {
+         "line": 15,
+         "character": 34
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 15,
+         "character": 29
+        },
+        "end": {
+         "line": 15,
+         "character": 34
+        }
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "name": "isPaid",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 21,
+       "character": 4
+      },
+      "end": {
+       "line": 24,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 21,
+       "character": 20
+      },
+      "end": {
+       "line": 21,
+       "character": 26
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "markPaid",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 26,
+       "character": 4
+      },
+      "end": {
+       "line": 29,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 26,
+       "character": 20
+      },
+      "end": {
+       "line": 26,
+       "character": 28
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/Shop/Service.php": [
+  {
+   "name": "Shop",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Service",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 20,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 6
+    },
+    "end": {
+     "line": 5,
+     "character": 13
+    }
+   },
+   "children": [
+    {
+     "name": "$store",
+     "kind": "Property",
+     "detail": "private",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 18
+      },
+      "end": {
+       "line": 7,
+       "character": 24
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 18
+      },
+      "end": {
+       "line": 7,
+       "character": 24
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "__construct",
+     "kind": "Constructor",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 4
+      },
+      "end": {
+       "line": 12,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 9,
+       "character": 20
+      },
+      "end": {
+       "line": 9,
+       "character": 31
+      }
+     },
+     "children": [
+      {
+       "name": "$store",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 9,
+         "character": 32
+        },
+        "end": {
+         "line": 9,
+         "character": 44
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 9,
+         "character": 38
+        },
+        "end": {
+         "line": 9,
+         "character": 44
+        }
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "name": "checkout",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 14,
+       "character": 4
+      },
+      "end": {
+       "line": 19,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 14,
+       "character": 20
+      },
+      "end": {
+       "line": 14,
+       "character": 28
+      }
+     },
+     "children": [
+      {
+       "name": "$order",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 14,
+         "character": 29
+        },
+        "end": {
+         "line": 14,
+         "character": 41
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 14,
+         "character": 35
+        },
+        "end": {
+         "line": 14,
+         "character": 41
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/Shop/Status.php": [
+  {
+   "name": "Shop",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Status",
+   "kind": "Enum",
+   "detail": "final",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 8,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 11
+    }
+   },
+   "children": [
+    {
+     "name": "Open",
+     "kind": "EnumMember",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 4
+      },
+      "end": {
+       "line": 6,
+       "character": 14
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 9
+      },
+      "end": {
+       "line": 6,
+       "character": 13
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Paid",
+     "kind": "EnumMember",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 4
+      },
+      "end": {
+       "line": 7,
+       "character": 14
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 9
+      },
+      "end": {
+       "line": 7,
+       "character": 13
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/Shop/Store.php": [
+  {
+   "name": "Shop",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Store",
+   "kind": "Interface",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 10,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 10
+    },
+    "end": {
+     "line": 5,
+     "character": 15
+    }
+   },
+   "children": [
+    {
+     "name": "save",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 4
+      },
+      "end": {
+       "line": 7,
+       "character": 45
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 20
+      },
+      "end": {
+       "line": 7,
+       "character": 24
+      }
+     },
+     "children": [
+      {
+       "name": "$order",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 7,
+         "character": 25
+        },
+        "end": {
+         "line": 7,
+         "character": 37
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 7,
+         "character": 31
+        },
+        "end": {
+         "line": 7,
+         "character": 37
+        }
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "name": "find",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 4
+      },
+      "end": {
+       "line": 9,
+       "character": 45
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 9,
+       "character": 20
+      },
+      "end": {
+       "line": 9,
+       "character": 24
+      }
+     },
+     "children": [
+      {
+       "name": "$id",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 9,
+         "character": 25
+        },
+        "end": {
+         "line": 9,
+         "character": 35
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 9,
+         "character": 32
+        },
+        "end": {
+         "line": 9,
+         "character": 35
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/Storage/MemStore.php": [
+  {
+   "name": "Storage",
+   "kind": "Namespace",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 18
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 17
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "MemStore",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 0
+    },
+    "end": {
+     "line": 22,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 8,
+     "character": 6
+    },
+    "end": {
+     "line": 8,
+     "character": 14
+    }
+   },
+   "children": [
+    {
+     "name": "$orders",
+     "kind": "Property",
+     "detail": "private",
+     "range": {
+      "start": {
+       "line": 10,
+       "character": 4
+      },
+      "end": {
+       "line": 11,
+       "character": 30
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 11,
+       "character": 18
+      },
+      "end": {
+       "line": 11,
+       "character": 25
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "save",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 13,
+       "character": 4
+      },
+      "end": {
+       "line": 16,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 13,
+       "character": 20
+      },
+      "end": {
+       "line": 13,
+       "character": 24
+      }
+     },
+     "children": [
+      {
+       "name": "$order",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 13,
+         "character": 25
+        },
+        "end": {
+         "line": 13,
+         "character": 37
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 13,
+         "character": 31
+        },
+        "end": {
+         "line": 13,
+         "character": 37
+        }
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "name": "find",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 18,
+       "character": 4
+      },
+      "end": {
+       "line": 21,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 18,
+       "character": 20
+      },
+      "end": {
+       "line": 18,
+       "character": 24
+      }
+     },
+     "children": [
+      {
+       "name": "$id",
+       "kind": "Variable",
+       "range": {
+        "start": {
+         "line": 18,
+         "character": 25
+        },
+        "end": {
+         "line": 18,
+         "character": 35
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 18,
+         "character": 32
+        },
+        "end": {
+         "line": 18,
+         "character": 35
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "implementations src/Shop/Entity.php:5:15": [],
+ "implementations src/Shop/Order.php:8:6": [],
+ "implementations src/Shop/Service.php:5:6": [],
+ "implementations src/Shop/Store.php:5:10": [],
+ "implementations src/Storage/MemStore.php:8:6": [],
+ "references src/Shop/Entity.php:5:15": [
+  {
+   "file": "src/Shop/Entity.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 15
+    },
+    "end": {
+     "line": 5,
+     "character": 21
+    }
+   }
+  },
+  {
+   "file": "src/Shop/Order.php",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 20
+    },
+    "end": {
+     "line": 8,
+     "character": 26
+    }
+   }
+  }
+ ],
+ "references src/Shop/Order.php:8:6": [
+  {
+   "file": "src/Shop/Order.php",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 6
+    },
+    "end": {
+     "line": 8,
+     "character": 11
+    }
+   }
+  },
+  {
+   "file": "src/Shop/Service.php",
+   "range": {
+    "start": {
+     "line": 14,
+     "character": 29
+    },
+    "end": {
+     "line": 14,
+     "character": 34
+    }
+   }
+  },
+  {
+   "file": "src/Shop/Store.php",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 25
+    },
+    "end": {
+     "line": 7,
+     "character": 30
+    }
+   }
+  },
+  {
+   "file": "src/Shop/Store.php",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 39
+    },
+    "end": {
+     "line": 9,
+     "character": 44
+    }
+   }
+  },
+  {
+   "file": "src/Storage/MemStore.php",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 4
+    },
+    "end": {
+     "line": 4,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "src/Storage/MemStore.php",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 27
+    },
+    "end": {
+     "line": 10,
+     "character": 32
+    }
+   }
+  },
+  {
+   "file": "src/Storage/MemStore.php",
+   "range": {
+    "start": {
+     "line": 13,
+     "character": 25
+    },
+    "end": {
+     "line": 13,
+     "character": 30
+    }
+   }
+  },
+  {
+   "file": "src/Storage/MemStore.php",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 39
+    },
+    "end": {
+     "line": 18,
+     "character": 44
+    }
+   }
+  }
+ ],
+ "references src/Shop/Service.php:5:6": [
+  {
+   "file": "src/Shop/Service.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 6
+    },
+    "end": {
+     "line": 5,
+     "character": 13
+    }
+   }
+  }
+ ],
+ "references src/Shop/Store.php:5:10": [
+  {
+   "file": "src/Shop/Service.php",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 12
+    },
+    "end": {
+     "line": 7,
+     "character": 17
+    }
+   }
+  },
+  {
+   "file": "src/Shop/Service.php",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 32
+    },
+    "end": {
+     "line": 9,
+     "character": 37
+    }
+   }
+  },
+  {
+   "file": "src/Shop/Store.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 10
+    },
+    "end": {
+     "line": 5,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "src/Storage/MemStore.php",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 4
+    },
+    "end": {
+     "line": 5,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "src/Storage/MemStore.php",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 26
+    },
+    "end": {
+     "line": 8,
+     "character": 31
+    }
+   }
+  }
+ ],
+ "references src/Storage/MemStore.php:8:6": [
+  {
+   "file": "src/Storage/MemStore.php",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 6
+    },
+    "end": {
+     "line": 8,
+     "character": 14
+    }
+   }
+  }
+ ],
+ "subtypes src/Shop/Entity.php:5:15": {
+  "undefined": true
+ },
+ "subtypes src/Shop/Order.php:8:6": {
+  "undefined": true
+ },
+ "subtypes src/Shop/Service.php:5:6": {
+  "undefined": true
+ },
+ "subtypes src/Shop/Store.php:5:10": {
+  "undefined": true
+ },
+ "subtypes src/Storage/MemStore.php:8:6": {
+  "undefined": true
+ },
+ "supertypes src/Shop/Entity.php:5:15": {
+  "undefined": true
+ },
+ "supertypes src/Shop/Order.php:8:6": {
+  "undefined": true
+ },
+ "supertypes src/Shop/Service.php:5:6": {
+  "undefined": true
+ },
+ "supertypes src/Shop/Store.php:5:10": {
+  "undefined": true
+ },
+ "supertypes src/Storage/MemStore.php:8:6": {
+  "undefined": true
+ },
+ "typeDefinition src/Shop/Entity.php:7:18": [],
+ "typeDefinition src/Shop/Order.php:11:17": [],
+ "typeDefinition src/Shop/Order.php:12:17": [],
+ "typeDefinition src/Shop/Order.php:13:19": [],
+ "typeDefinition src/Shop/Service.php:7:18": [],
+ "typeDefinition src/Storage/MemStore.php:11:18": []
+}

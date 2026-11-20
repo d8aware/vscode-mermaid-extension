@@ -1,0 +1,6 @@
+{
+  "name": "acme/legacy",
+  "require": { "acme/pdf": "*", "monolog/monolog": "^3" },
+  "autoload": { "psr-4": { "Acme\\Legacy\\": "src/" } },
+  "bin": ["bin/console"]
+}

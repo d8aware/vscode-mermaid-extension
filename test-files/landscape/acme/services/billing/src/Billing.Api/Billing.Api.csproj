@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\Billing.Core\Billing.Core.csproj" />
+  </ItemGroup>
+</Project>

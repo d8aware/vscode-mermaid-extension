@@ -1,0 +1,1890 @@
+{
+ "definition shop/order.ts:15:25": [],
+ "definition shop/order.ts:15:32": [
+  {
+   "file": "shop/entity.ts",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 22
+    },
+    "end": {
+     "line": 1,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "definition shop/order.ts:18:24": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 12
+    },
+    "end": {
+     "line": 5,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "definition shop/order.ts:18:29": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 2
+    },
+    "end": {
+     "line": 6,
+     "character": 6
+    }
+   }
+  }
+ ],
+ "definition shop/order.ts:18:8": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 10
+    },
+    "end": {
+     "line": 18,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "definition storage/memStore.ts:4:31": [],
+ "definition storage/memStore.ts:4:37": [
+  {
+   "file": "shop/store.ts",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   }
+  }
+ ],
+ "definition storage/memStore.ts:5:17": [
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 19
+    },
+    "end": {
+     "line": 5,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "definition storage/memStore.ts:5:30": [],
+ "definition storage/memStore.ts:5:34": [
+  {
+   "file": "/external/lib/lib.es2015.collection.d.ts",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 10
+    },
+    "end": {
+     "line": 16,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.collection.d.ts",
+   "range": {
+    "start": {
+     "line": 53,
+     "character": 12
+    },
+    "end": {
+     "line": 53,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.iterable.d.ts",
+   "range": {
+    "start": {
+     "line": 138,
+     "character": 10
+    },
+    "end": {
+     "line": 138,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.iterable.d.ts",
+   "range": {
+    "start": {
+     "line": 180,
+     "character": 4
+    },
+    "end": {
+     "line": 180,
+     "character": 71
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.symbol.wellknown.d.ts",
+   "range": {
+    "start": {
+     "line": 133,
+     "character": 10
+    },
+    "end": {
+     "line": 133,
+     "character": 13
+    }
+   }
+  }
+ ],
+ "definition storage/memStore.ts:5:41": [],
+ "definition storage/memStore.ts:5:48": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 13
+    },
+    "end": {
+     "line": 15,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "definition storage/memStore.ts:5:8": [
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 19
+    },
+    "end": {
+     "line": 5,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "documentSymbols shop/entity.ts": [
+  {
+   "name": "Entity",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 0
+    },
+    "end": {
+     "line": 3,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 1,
+     "character": 22
+    },
+    "end": {
+     "line": 1,
+     "character": 28
+    }
+   },
+   "children": [
+    {
+     "name": "id",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 2,
+       "character": 2
+      },
+      "end": {
+       "line": 2,
+       "character": 10
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 2,
+       "character": 2
+      },
+      "end": {
+       "line": 2,
+       "character": 4
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols shop/money.ts": [
+  {
+   "name": "Money",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 0
+    },
+    "end": {
+     "line": 7,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 1,
+     "character": 13
+    },
+    "end": {
+     "line": 1,
+     "character": 18
+    }
+   },
+   "children": [
+    {
+     "name": "constructor",
+     "kind": "Constructor",
+     "range": {
+      "start": {
+       "line": 2,
+       "character": 2
+      },
+      "end": {
+       "line": 2,
+       "character": 64
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 2,
+       "character": 2
+      },
+      "end": {
+       "line": 2,
+       "character": 64
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "add",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 2
+      },
+      "end": {
+       "line": 6,
+       "character": 3
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 2
+      },
+      "end": {
+       "line": 4,
+       "character": 5
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "amount",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 2,
+       "character": 14
+      },
+      "end": {
+       "line": 2,
+       "character": 33
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 2,
+       "character": 23
+      },
+      "end": {
+       "line": 2,
+       "character": 29
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "currency",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 2,
+       "character": 35
+      },
+      "end": {
+       "line": 2,
+       "character": 60
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 2,
+       "character": 44
+      },
+      "end": {
+       "line": 2,
+       "character": 52
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols shop/order.ts": [
+  {
+   "name": "Status",
+   "kind": "Enum",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 0
+    },
+    "end": {
+     "line": 8,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 12
+    },
+    "end": {
+     "line": 5,
+     "character": 18
+    }
+   },
+   "children": [
+    {
+     "name": "Open",
+     "kind": "Variable",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 2
+      },
+      "end": {
+       "line": 6,
+       "character": 6
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 2
+      },
+      "end": {
+       "line": 6,
+       "character": 6
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Paid",
+     "kind": "Variable",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 2
+      },
+      "end": {
+       "line": 7,
+       "character": 6
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 2
+      },
+      "end": {
+       "line": 7,
+       "character": 6
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "Line",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 0
+    },
+    "end": {
+     "line": 13,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 10,
+     "character": 13
+    },
+    "end": {
+     "line": 10,
+     "character": 17
+    }
+   },
+   "children": [
+    {
+     "name": "price",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 12,
+       "character": 2
+      },
+      "end": {
+       "line": 12,
+       "character": 29
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 12,
+       "character": 2
+      },
+      "end": {
+       "line": 12,
+       "character": 7
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "sku",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 11,
+       "character": 2
+      },
+      "end": {
+       "line": 11,
+       "character": 11
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 11,
+       "character": 2
+      },
+      "end": {
+       "line": 11,
+       "character": 5
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "Order",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 0
+    },
+    "end": {
+     "line": 35,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 15,
+     "character": 13
+    },
+    "end": {
+     "line": 15,
+     "character": 18
+    }
+   },
+   "children": [
+    {
+     "name": "add",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 20,
+       "character": 2
+      },
+      "end": {
+       "line": 26,
+       "character": 3
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 20,
+       "character": 2
+      },
+      "end": {
+       "line": 20,
+       "character": 5
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "isPaid",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 28,
+       "character": 2
+      },
+      "end": {
+       "line": 30,
+       "character": 3
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 28,
+       "character": 2
+      },
+      "end": {
+       "line": 28,
+       "character": 8
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "lines",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 16,
+       "character": 2
+      },
+      "end": {
+       "line": 16,
+       "character": 21
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 16,
+       "character": 2
+      },
+      "end": {
+       "line": 16,
+       "character": 7
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "markPaid",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 32,
+       "character": 2
+      },
+      "end": {
+       "line": 34,
+       "character": 3
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 32,
+       "character": 2
+      },
+      "end": {
+       "line": 32,
+       "character": 10
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "status",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 18,
+       "character": 2
+      },
+      "end": {
+       "line": 18,
+       "character": 31
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 18,
+       "character": 10
+      },
+      "end": {
+       "line": 18,
+       "character": 16
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "total",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 17,
+       "character": 2
+      },
+      "end": {
+       "line": 17,
+       "character": 29
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 17,
+       "character": 2
+      },
+      "end": {
+       "line": 17,
+       "character": 7
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols shop/service.ts": [
+  {
+   "name": "Service",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 0
+    },
+    "end": {
+     "line": 13,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 13
+    },
+    "end": {
+     "line": 5,
+     "character": 20
+    }
+   },
+   "children": [
+    {
+     "name": "constructor",
+     "kind": "Constructor",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 2
+      },
+      "end": {
+       "line": 6,
+       "character": 47
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 2
+      },
+      "end": {
+       "line": 6,
+       "character": 47
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "checkout",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 8,
+       "character": 2
+      },
+      "end": {
+       "line": 12,
+       "character": 3
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 8,
+       "character": 2
+      },
+      "end": {
+       "line": 8,
+       "character": 10
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "store",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 14
+      },
+      "end": {
+       "line": 6,
+       "character": 43
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 31
+      },
+      "end": {
+       "line": 6,
+       "character": 36
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols shop/store.ts": [
+  {
+   "name": "Store",
+   "kind": "Interface",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 0
+    },
+    "end": {
+     "line": 6,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   },
+   "children": [
+    {
+     "name": "find",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 2
+      },
+      "end": {
+       "line": 5,
+       "character": 38
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 5,
+       "character": 2
+      },
+      "end": {
+       "line": 5,
+       "character": 6
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "save",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 2
+      },
+      "end": {
+       "line": 4,
+       "character": 27
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 2
+      },
+      "end": {
+       "line": 4,
+       "character": 6
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols storage/memStore.ts": [
+  {
+   "name": "MemStore",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 14,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 4,
+     "character": 13
+    },
+    "end": {
+     "line": 4,
+     "character": 21
+    }
+   },
+   "children": [
+    {
+     "name": "find",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 11,
+       "character": 2
+      },
+      "end": {
+       "line": 13,
+       "character": 3
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 11,
+       "character": 2
+      },
+      "end": {
+       "line": 11,
+       "character": 6
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "orders",
+     "kind": "Property",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 2
+      },
+      "end": {
+       "line": 5,
+       "character": 53
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 5,
+       "character": 19
+      },
+      "end": {
+       "line": 5,
+       "character": 25
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "save",
+     "kind": "Method",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 2
+      },
+      "end": {
+       "line": 9,
+       "character": 3
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 2
+      },
+      "end": {
+       "line": 7,
+       "character": 6
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "newStore",
+   "kind": "Function",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 0
+    },
+    "end": {
+     "line": 19,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 17,
+     "character": 16
+    },
+    "end": {
+     "line": 17,
+     "character": 24
+    }
+   },
+   "children": []
+  }
+ ],
+ "implementations shop/entity.ts:1:22": [
+  {
+   "file": "shop/entity.ts",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 22
+    },
+    "end": {
+     "line": 1,
+     "character": 28
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 13
+    },
+    "end": {
+     "line": 15,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "implementations shop/order.ts:10:13": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 13
+    },
+    "end": {
+     "line": 10,
+     "character": 17
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 18
+    },
+    "end": {
+     "line": 16,
+     "character": 20
+    }
+   }
+  }
+ ],
+ "implementations shop/order.ts:15:13": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 13
+    },
+    "end": {
+     "line": 15,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "implementations shop/order.ts:5:12": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 12
+    },
+    "end": {
+     "line": 5,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "implementations shop/service.ts:5:13": [
+  {
+   "file": "shop/service.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 13
+    },
+    "end": {
+     "line": 5,
+     "character": 20
+    }
+   }
+  }
+ ],
+ "implementations shop/store.ts:3:17": [
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 13
+    },
+    "end": {
+     "line": 4,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "implementations storage/memStore.ts:4:13": [
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 13
+    },
+    "end": {
+     "line": 4,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "references shop/entity.ts:1:22": [
+  {
+   "file": "shop/entity.ts",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 22
+    },
+    "end": {
+     "line": 1,
+     "character": 28
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 9
+    },
+    "end": {
+     "line": 2,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 27
+    },
+    "end": {
+     "line": 15,
+     "character": 33
+    }
+   }
+  }
+ ],
+ "references shop/order.ts:10:13": [
+  {
+   "file": "shop/order.spec.ts",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 9
+    },
+    "end": {
+     "line": 0,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "shop/order.spec.ts",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 22
+    },
+    "end": {
+     "line": 4,
+     "character": 26
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 13
+    },
+    "end": {
+     "line": 10,
+     "character": 17
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 9
+    },
+    "end": {
+     "line": 16,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 20,
+     "character": 12
+    },
+    "end": {
+     "line": 20,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "references shop/order.ts:15:13": [
+  {
+   "file": "shop/order.spec.ts",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 15
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   }
+  },
+  {
+   "file": "shop/order.spec.ts",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 6
+    },
+    "end": {
+     "line": 4,
+     "character": 11
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 13
+    },
+    "end": {
+     "line": 15,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "shop/service.ts",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 9
+    },
+    "end": {
+     "line": 1,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "shop/service.ts",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 18
+    },
+    "end": {
+     "line": 8,
+     "character": 23
+    }
+   }
+  },
+  {
+   "file": "shop/store.ts",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 9
+    },
+    "end": {
+     "line": 0,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "shop/store.ts",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 14
+    },
+    "end": {
+     "line": 4,
+     "character": 19
+    }
+   }
+  },
+  {
+   "file": "shop/store.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 20
+    },
+    "end": {
+     "line": 5,
+     "character": 25
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 9
+    },
+    "end": {
+     "line": 0,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 44
+    },
+    "end": {
+     "line": 5,
+     "character": 49
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 14
+    },
+    "end": {
+     "line": 7,
+     "character": 19
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 20
+    },
+    "end": {
+     "line": 11,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "references shop/order.ts:5:12": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 12
+    },
+    "end": {
+     "line": 5,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 19
+    },
+    "end": {
+     "line": 18,
+     "character": 25
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 21,
+     "character": 24
+    },
+    "end": {
+     "line": 21,
+     "character": 30
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 29,
+     "character": 27
+    },
+    "end": {
+     "line": 29,
+     "character": 33
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 33,
+     "character": 18
+    },
+    "end": {
+     "line": 33,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "references shop/service.ts:5:13": [
+  {
+   "file": "shop/service.ts",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 13
+    },
+    "end": {
+     "line": 5,
+     "character": 20
+    }
+   }
+  }
+ ],
+ "references shop/store.ts:3:17": [
+  {
+   "file": "shop/service.ts",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 9
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "shop/service.ts",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 38
+    },
+    "end": {
+     "line": 6,
+     "character": 43
+    }
+   }
+  },
+  {
+   "file": "shop/store.ts",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 9
+    },
+    "end": {
+     "line": 1,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 33
+    },
+    "end": {
+     "line": 4,
+     "character": 38
+    }
+   }
+  }
+ ],
+ "references storage/memStore.ts:4:13": [
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 13
+    },
+    "end": {
+     "line": 4,
+     "character": 21
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 28
+    },
+    "end": {
+     "line": 17,
+     "character": 36
+    }
+   }
+  },
+  {
+   "file": "storage/memStore.ts",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 13
+    },
+    "end": {
+     "line": 18,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "subtypes shop/entity.ts:1:22": {
+  "undefined": true
+ },
+ "subtypes shop/order.ts:10:13": {
+  "undefined": true
+ },
+ "subtypes shop/order.ts:15:13": {
+  "undefined": true
+ },
+ "subtypes shop/order.ts:5:12": {
+  "undefined": true
+ },
+ "subtypes shop/service.ts:5:13": {
+  "undefined": true
+ },
+ "subtypes shop/store.ts:3:17": {
+  "undefined": true
+ },
+ "subtypes storage/memStore.ts:4:13": {
+  "undefined": true
+ },
+ "supertypes shop/entity.ts:1:22": {
+  "undefined": true
+ },
+ "supertypes shop/order.ts:10:13": {
+  "undefined": true
+ },
+ "supertypes shop/order.ts:15:13": {
+  "undefined": true
+ },
+ "supertypes shop/order.ts:5:12": {
+  "undefined": true
+ },
+ "supertypes shop/service.ts:5:13": {
+  "undefined": true
+ },
+ "supertypes shop/store.ts:3:17": {
+  "undefined": true
+ },
+ "supertypes storage/memStore.ts:4:13": {
+  "undefined": true
+ },
+ "typeDefinition shop/entity.ts:2:2": [],
+ "typeDefinition shop/order.ts:11:2": [],
+ "typeDefinition shop/order.ts:12:2": [
+  {
+   "file": "shop/money.ts",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 13
+    },
+    "end": {
+     "line": 1,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.ts:16:2": [
+  {
+   "file": "/external/lib/lib.es2015.core.d.ts",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 10
+    },
+    "end": {
+     "line": 16,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.iterable.d.ts",
+   "range": {
+    "start": {
+     "line": 73,
+     "character": 10
+    },
+    "end": {
+     "line": 73,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.symbol.wellknown.d.ts",
+   "range": {
+    "start": {
+     "line": 89,
+     "character": 10
+    },
+    "end": {
+     "line": 89,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2016.array.include.d.ts",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 10
+    },
+    "end": {
+     "line": 16,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2019.array.d.ts",
+   "range": {
+    "start": {
+     "line": 50,
+     "character": 10
+    },
+    "end": {
+     "line": 50,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2022.array.d.ts",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 10
+    },
+    "end": {
+     "line": 16,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es5.d.ts",
+   "range": {
+    "start": {
+     "line": 1322,
+     "character": 10
+    },
+    "end": {
+     "line": 1322,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es5.d.ts",
+   "range": {
+    "start": {
+     "line": 1521,
+     "character": 12
+    },
+    "end": {
+     "line": 1521,
+     "character": 17
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 13
+    },
+    "end": {
+     "line": 10,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.ts:17:2": [
+  {
+   "file": "shop/money.ts",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 13
+    },
+    "end": {
+     "line": 1,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.ts:18:10": [
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 2
+    },
+    "end": {
+     "line": 6,
+     "character": 6
+    }
+   }
+  },
+  {
+   "file": "shop/order.ts",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 2
+    },
+    "end": {
+     "line": 7,
+     "character": 6
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/service.ts:6:31": [
+  {
+   "file": "shop/store.ts",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   }
+  }
+ ],
+ "typeDefinition storage/memStore.ts:5:19": [
+  {
+   "file": "/external/lib/lib.es2015.collection.d.ts",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 10
+    },
+    "end": {
+     "line": 16,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.collection.d.ts",
+   "range": {
+    "start": {
+     "line": 53,
+     "character": 12
+    },
+    "end": {
+     "line": 53,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.iterable.d.ts",
+   "range": {
+    "start": {
+     "line": 138,
+     "character": 10
+    },
+    "end": {
+     "line": 138,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "/external/lib/lib.es2015.symbol.wellknown.d.ts",
+   "range": {
+    "start": {
+     "line": 133,
+     "character": 10
+    },
+    "end": {
+     "line": 133,
+     "character": 13
+    }
+   }
+  }
+ ]
+}

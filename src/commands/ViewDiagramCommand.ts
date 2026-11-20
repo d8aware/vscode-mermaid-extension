@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
 import { debounce } from "../shared/debounce";
+import { diagramWebviewHtml } from "./webviewContent";
 
 export class ViewDiagramCommand {
   currentPanel: vscode.WebviewPanel | undefined;
@@ -78,7 +79,7 @@ export class ViewDiagramCommand {
     
     ViewDiagramCommand.listenForReady(ViewDiagramCommand.sharedPanel);
     ViewDiagramCommand.sharedPanel.webview.html =
-      this.getWebViewContent(context.extensionPath, ViewDiagramCommand.sharedPanel);
+      diagramWebviewHtml(context.extensionPath, ViewDiagramCommand.sharedPanel);
 
     // Handle panel disposal
     ViewDiagramCommand.sharedPanel.onDidDispose(() => {
@@ -116,7 +117,7 @@ export class ViewDiagramCommand {
     );
     ViewDiagramCommand.listenForReady(this.currentPanel);
     this.currentPanel.webview.html =
-      this.getWebViewContent(context.extensionPath, this.currentPanel);
+      diagramWebviewHtml(context.extensionPath, this.currentPanel);
 
     // Handle panel view state changes (docking, moving, resizing)
     this.currentPanel.onDidChangeViewState(() => {
@@ -211,37 +212,5 @@ export class ViewDiagramCommand {
 
   public static getCurrentDocument(): vscode.TextDocument | undefined {
     return ViewDiagramCommand.currentDocument;
-  }
-
-  private getWebViewContent(extensionPath: string, panel: vscode.WebviewPanel) {
-    /**
-     * Generate HTML content
-     */
-    const htmlFilePath = path.join(extensionPath, "dist", "index.html");
-    const htmlContent = fs.readFileSync(htmlFilePath, "utf8");
-    let parsedContent = htmlContent.replace(
-      /<script src="bundle.js"><\/script>/,
-      `<script src="${panel.webview.asWebviewUri(
-        vscode.Uri.file(path.join(extensionPath, "dist", "bundle.js"))
-      )}"></script>`
-    );
-    parsedContent = parsedContent.replace(
-      /<link rel="stylesheet" href="media\/styles.css" \/>/,
-      `<link rel="stylesheet" href="${panel.webview.asWebviewUri(
-        vscode.Uri.file(
-          path.join(extensionPath, "dist", "media", "styles.css")
-        )
-      )}">`
-    );
-    parsedContent = parsedContent.replace(
-      /<link rel="stylesheet" href="media\/tailwind.min.css" \/>/,
-      `<link rel="stylesheet" href="${panel.webview.asWebviewUri(
-        vscode.Uri.file(
-          path.join(extensionPath, "dist", "media", "tailwind.min.css")
-        )
-      )}">`
-    );
-
-    return parsedContent;
   }
 }

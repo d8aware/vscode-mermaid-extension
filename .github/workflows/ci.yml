@@ -22,5 +22,7 @@ jobs:
       - run: npm run build
       # VS Code integration tests need a display.
       - run: xvfb-run -a npm test
+      # The explorer panel in headless Chrome (the built webview from npm run build).
+      - run: npm run test:webview
       - name: Audit runtime dependencies (high and above)
         run: npm audit --omit=dev --audit-level=high

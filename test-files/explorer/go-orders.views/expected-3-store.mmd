@@ -1,0 +1,33 @@
+classDiagram
+  class Store {
+    <<interface>>
+    +Save(order) error
+    +Find(id) *Order, bool
+  }
+  class MemStore {
+    -orders: map[string]*shop.Order
+    +Save(order) error
+    +Find(id) *shop.Order, bool
+  }
+  class New {
+    <<function · memstore>>
+  }
+  class Service {
+    <<shop>>
+  }
+  class NewService {
+    <<function · shop>>
+  }
+  class Order {
+    <<shop>>
+  }
+  MemStore --> Order : orders
+  New ..> MemStore
+  NewService ..> Store
+  Service ..> Store
+  Store <|.. MemStore
+  style Store stroke:#e11d48,stroke-width:3px
+  style NewService fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style New fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

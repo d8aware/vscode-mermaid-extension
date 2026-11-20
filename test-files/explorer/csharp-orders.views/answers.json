@@ -1,0 +1,1738 @@
+{
+ "definition Shop/Entity.cs:5:16": [
+  {
+   "file": "/external/11b0aca3b59a4f4d8621b29d7ea87869/String.cs",
+   "range": {
+    "start": {
+     "line": 22,
+     "character": 22
+    },
+    "end": {
+     "line": 22,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "definition Shop/Entity.cs:5:25": [
+  {
+   "file": "Shop/Entity.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 23
+    },
+    "end": {
+     "line": 5,
+     "character": 26
+    }
+   }
+  }
+ ],
+ "definition Shop/Entity.cs:5:31": [
+  {
+   "file": "Shop/Entity.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 28
+    },
+    "end": {
+     "line": 5,
+     "character": 32
+    }
+   }
+  }
+ ],
+ "definition Shop/Entity.cs:5:9": [],
+ "definition Shop/Order.cs:12:16": [
+  {
+   "file": "/external/11b0aca3b59a4f4d8621b29d7ea87869/String.cs",
+   "range": {
+    "start": {
+     "line": 22,
+     "character": 22
+    },
+    "end": {
+     "line": 22,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "definition Shop/Order.cs:12:26": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 24
+    },
+    "end": {
+     "line": 12,
+     "character": 27
+    }
+   }
+  }
+ ],
+ "definition Shop/Order.cs:12:32": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 29
+    },
+    "end": {
+     "line": 12,
+     "character": 33
+    }
+   }
+  }
+ ],
+ "definition Shop/Order.cs:12:9": [],
+ "definition Shop/Order.cs:18:14": [
+  {
+   "file": "/external/47ef8a5e1ecc4665928b7401e727eefb/List.cs",
+   "range": {
+    "start": {
+     "line": 20,
+     "character": 15
+    },
+    "end": {
+     "line": 20,
+     "character": 19
+    }
+   }
+  }
+ ],
+ "definition Shop/Order.cs:18:19": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 13
+    },
+    "end": {
+     "line": 10,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "definition Shop/Order.cs:18:32": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 30
+    },
+    "end": {
+     "line": 18,
+     "character": 33
+    }
+   }
+  }
+ ],
+ "definition Shop/Order.cs:18:41": [
+  {
+   "file": "/external/47ef8a5e1ecc4665928b7401e727eefb/List.cs",
+   "range": {
+    "start": {
+     "line": 26,
+     "character": 11
+    },
+    "end": {
+     "line": 26,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "definition Shop/Order.cs:18:9": [],
+ "definition Storage/MemStore.cs:7:10": [],
+ "definition Storage/MemStore.cs:7:19": [],
+ "definition Storage/MemStore.cs:7:30": [
+  {
+   "file": "/external/cbe7d3129f924dc1ab7f6af633bd6ff5/Dictionary.cs",
+   "range": {
+    "start": {
+     "line": 24,
+     "character": 15
+    },
+    "end": {
+     "line": 24,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "definition Storage/MemStore.cs:7:37": [
+  {
+   "file": "/external/11b0aca3b59a4f4d8621b29d7ea87869/String.cs",
+   "range": {
+    "start": {
+     "line": 22,
+     "character": 22
+    },
+    "end": {
+     "line": 22,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "definition Storage/MemStore.cs:7:44": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 13
+    },
+    "end": {
+     "line": 16,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "definition Storage/MemStore.cs:7:58": [
+  {
+   "file": "/external/cbe7d3129f924dc1ab7f6af633bd6ff5/Dictionary.cs",
+   "range": {
+    "start": {
+     "line": 31,
+     "character": 11
+    },
+    "end": {
+     "line": 31,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "documentSymbols Shop/Entity.cs": [
+  {
+   "name": "Orders.Shop",
+   "kind": "Namespace",
+   "detail": "Orders.Shop",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 6,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 10
+    },
+    "end": {
+     "line": 0,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "Entity",
+     "kind": "Class",
+     "detail": "Entity",
+     "range": {
+      "start": {
+       "line": 3,
+       "character": 0
+      },
+      "end": {
+       "line": 6,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 3,
+       "character": 22
+      },
+      "end": {
+       "line": 3,
+       "character": 28
+      }
+     },
+     "children": [
+      {
+       "name": "Id : string",
+       "kind": "Property",
+       "detail": "Id : string",
+       "range": {
+        "start": {
+         "line": 5,
+         "character": 4
+        },
+        "end": {
+         "line": 5,
+         "character": 41
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 5,
+         "character": 18
+        },
+        "end": {
+         "line": 5,
+         "character": 20
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols Shop/IStore.cs": [
+  {
+   "name": "Orders.Shop",
+   "kind": "Namespace",
+   "detail": "Orders.Shop",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 7,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 10
+    },
+    "end": {
+     "line": 0,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "IStore",
+     "kind": "Interface",
+     "detail": "IStore",
+     "range": {
+      "start": {
+       "line": 3,
+       "character": 0
+      },
+      "end": {
+       "line": 7,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 3,
+       "character": 17
+      },
+      "end": {
+       "line": 3,
+       "character": 23
+      }
+     },
+     "children": [
+      {
+       "name": "Save(Order) : void",
+       "kind": "Method",
+       "detail": "Save(Order) : void",
+       "range": {
+        "start": {
+         "line": 5,
+         "character": 4
+        },
+        "end": {
+         "line": 5,
+         "character": 27
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 5,
+         "character": 9
+        },
+        "end": {
+         "line": 5,
+         "character": 13
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Find(string) : Order?",
+       "kind": "Method",
+       "detail": "Find(string) : Order?",
+       "range": {
+        "start": {
+         "line": 6,
+         "character": 4
+        },
+        "end": {
+         "line": 6,
+         "character": 27
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 6,
+         "character": 11
+        },
+        "end": {
+         "line": 6,
+         "character": 15
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols Shop/Money.cs": [
+  {
+   "name": "Orders.Shop",
+   "kind": "Namespace",
+   "detail": "Orders.Shop",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 9,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 10
+    },
+    "end": {
+     "line": 0,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "Money",
+     "kind": "Class",
+     "detail": "Money",
+     "range": {
+      "start": {
+       "line": 3,
+       "character": 0
+      },
+      "end": {
+       "line": 9,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 3,
+       "character": 13
+      },
+      "end": {
+       "line": 3,
+       "character": 18
+      }
+     },
+     "children": [
+      {
+       "name": "Amount : long",
+       "kind": "Property",
+       "detail": "Amount : long",
+       "range": {
+        "start": {
+         "line": 5,
+         "character": 4
+        },
+        "end": {
+         "line": 5,
+         "character": 37
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 5,
+         "character": 16
+        },
+        "end": {
+         "line": 5,
+         "character": 22
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Currency : string",
+       "kind": "Property",
+       "detail": "Currency : string",
+       "range": {
+        "start": {
+         "line": 6,
+         "character": 4
+        },
+        "end": {
+         "line": 6,
+         "character": 50
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 6,
+         "character": 18
+        },
+        "end": {
+         "line": 6,
+         "character": 26
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Add(Money) : Money",
+       "kind": "Method",
+       "detail": "Add(Money) : Money",
+       "range": {
+        "start": {
+         "line": 8,
+         "character": 4
+        },
+        "end": {
+         "line": 8,
+         "character": 99
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 8,
+         "character": 17
+        },
+        "end": {
+         "line": 8,
+         "character": 20
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols Shop/Order.cs": [
+  {
+   "name": "Orders.Shop",
+   "kind": "Namespace",
+   "detail": "Orders.Shop",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 35,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "Status",
+     "kind": "Enum",
+     "detail": "Status",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 0
+      },
+      "end": {
+       "line": 8,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 12
+      },
+      "end": {
+       "line": 4,
+       "character": 18
+      }
+     },
+     "children": [
+      {
+       "name": "Open",
+       "kind": "EnumMember",
+       "detail": "Open",
+       "range": {
+        "start": {
+         "line": 6,
+         "character": 4
+        },
+        "end": {
+         "line": 6,
+         "character": 8
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 6,
+         "character": 4
+        },
+        "end": {
+         "line": 6,
+         "character": 8
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Paid",
+       "kind": "EnumMember",
+       "detail": "Paid",
+       "range": {
+        "start": {
+         "line": 7,
+         "character": 4
+        },
+        "end": {
+         "line": 7,
+         "character": 8
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 7,
+         "character": 4
+        },
+        "end": {
+         "line": 7,
+         "character": 8
+        }
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "name": "Line",
+     "kind": "Class",
+     "detail": "Line",
+     "range": {
+      "start": {
+       "line": 10,
+       "character": 0
+      },
+      "end": {
+       "line": 14,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 10,
+       "character": 13
+      },
+      "end": {
+       "line": 10,
+       "character": 17
+      }
+     },
+     "children": [
+      {
+       "name": "Sku : string",
+       "kind": "Property",
+       "detail": "Sku : string",
+       "range": {
+        "start": {
+         "line": 12,
+         "character": 4
+        },
+        "end": {
+         "line": 12,
+         "character": 42
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 12,
+         "character": 18
+        },
+        "end": {
+         "line": 12,
+         "character": 21
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Price : Money",
+       "kind": "Property",
+       "detail": "Price : Money",
+       "range": {
+        "start": {
+         "line": 13,
+         "character": 4
+        },
+        "end": {
+         "line": 13,
+         "character": 46
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 13,
+         "character": 17
+        },
+        "end": {
+         "line": 13,
+         "character": 22
+        }
+       },
+       "children": []
+      }
+     ]
+    },
+    {
+     "name": "Order",
+     "kind": "Class",
+     "detail": "Order",
+     "range": {
+      "start": {
+       "line": 16,
+       "character": 0
+      },
+      "end": {
+       "line": 35,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 16,
+       "character": 13
+      },
+      "end": {
+       "line": 16,
+       "character": 18
+      }
+     },
+     "children": [
+      {
+       "name": "Lines : List<Line>",
+       "kind": "Property",
+       "detail": "Lines : List<Line>",
+       "range": {
+        "start": {
+         "line": 18,
+         "character": 4
+        },
+        "end": {
+         "line": 18,
+         "character": 45
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 18,
+         "character": 22
+        },
+        "end": {
+         "line": 18,
+         "character": 27
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Total : Money",
+       "kind": "Property",
+       "detail": "Total : Money",
+       "range": {
+        "start": {
+         "line": 19,
+         "character": 4
+        },
+        "end": {
+         "line": 19,
+         "character": 53
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 19,
+         "character": 17
+        },
+        "end": {
+         "line": 19,
+         "character": 22
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "status : Status",
+       "kind": "Field",
+       "detail": "status : Status",
+       "range": {
+        "start": {
+         "line": 20,
+         "character": 19
+        },
+        "end": {
+         "line": 20,
+         "character": 39
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 20,
+         "character": 19
+        },
+        "end": {
+         "line": 20,
+         "character": 25
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Add(Line) : void",
+       "kind": "Method",
+       "detail": "Add(Line) : void",
+       "range": {
+        "start": {
+         "line": 22,
+         "character": 4
+        },
+        "end": {
+         "line": 30,
+         "character": 5
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 22,
+         "character": 16
+        },
+        "end": {
+         "line": 22,
+         "character": 19
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "IsPaid() : bool",
+       "kind": "Method",
+       "detail": "IsPaid() : bool",
+       "range": {
+        "start": {
+         "line": 32,
+         "character": 4
+        },
+        "end": {
+         "line": 32,
+         "character": 50
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 32,
+         "character": 16
+        },
+        "end": {
+         "line": 32,
+         "character": 22
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "MarkPaid() : void",
+       "kind": "Method",
+       "detail": "MarkPaid() : void",
+       "range": {
+        "start": {
+         "line": 34,
+         "character": 4
+        },
+        "end": {
+         "line": 34,
+         "character": 53
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 34,
+         "character": 18
+        },
+        "end": {
+         "line": 34,
+         "character": 26
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols Shop/Service.cs": [
+  {
+   "name": "Orders.Shop",
+   "kind": "Namespace",
+   "detail": "Orders.Shop",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 15,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 10
+    },
+    "end": {
+     "line": 0,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "Service",
+     "kind": "Class",
+     "detail": "Service",
+     "range": {
+      "start": {
+       "line": 3,
+       "character": 0
+      },
+      "end": {
+       "line": 15,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 3,
+       "character": 13
+      },
+      "end": {
+       "line": 3,
+       "character": 20
+      }
+     },
+     "children": [
+      {
+       "name": "store : IStore",
+       "kind": "Field",
+       "detail": "store : IStore",
+       "range": {
+        "start": {
+         "line": 5,
+         "character": 28
+        },
+        "end": {
+         "line": 5,
+         "character": 33
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 5,
+         "character": 28
+        },
+        "end": {
+         "line": 5,
+         "character": 33
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Service(IStore)",
+       "kind": "Method",
+       "detail": "Service(IStore)",
+       "range": {
+        "start": {
+         "line": 7,
+         "character": 4
+        },
+        "end": {
+         "line": 7,
+         "character": 55
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 7,
+         "character": 11
+        },
+        "end": {
+         "line": 7,
+         "character": 18
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Checkout(Order) : Money",
+       "kind": "Method",
+       "detail": "Checkout(Order) : Money",
+       "range": {
+        "start": {
+         "line": 9,
+         "character": 4
+        },
+        "end": {
+         "line": 14,
+         "character": 5
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 9,
+         "character": 17
+        },
+        "end": {
+         "line": 9,
+         "character": 25
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "documentSymbols Storage/MemStore.cs": [
+  {
+   "name": "Orders.Storage",
+   "kind": "Namespace",
+   "detail": "Orders.Storage",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 12,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 10
+    },
+    "end": {
+     "line": 2,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "MemStore",
+     "kind": "Class",
+     "detail": "MemStore",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 0
+      },
+      "end": {
+       "line": 12,
+       "character": 1
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 5,
+       "character": 13
+      },
+      "end": {
+       "line": 5,
+       "character": 21
+      }
+     },
+     "children": [
+      {
+       "name": "orders : Dictionary<string, Order>",
+       "kind": "Field",
+       "detail": "orders : Dictionary<string, Order>",
+       "range": {
+        "start": {
+         "line": 7,
+         "character": 47
+        },
+        "end": {
+         "line": 7,
+         "character": 61
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 7,
+         "character": 47
+        },
+        "end": {
+         "line": 7,
+         "character": 53
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Save(Order) : void",
+       "kind": "Method",
+       "detail": "Save(Order) : void",
+       "range": {
+        "start": {
+         "line": 9,
+         "character": 4
+        },
+        "end": {
+         "line": 9,
+         "character": 62
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 9,
+         "character": 16
+        },
+        "end": {
+         "line": 9,
+         "character": 20
+        }
+       },
+       "children": []
+      },
+      {
+       "name": "Find(string) : Order?",
+       "kind": "Method",
+       "detail": "Find(string) : Order?",
+       "range": {
+        "start": {
+         "line": 11,
+         "character": 4
+        },
+        "end": {
+         "line": 11,
+         "character": 66
+        }
+       },
+       "selectionRange": {
+        "start": {
+         "line": 11,
+         "character": 18
+        },
+        "end": {
+         "line": 11,
+         "character": 22
+        }
+       },
+       "children": []
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "references Shop/Entity.cs:3:22": [
+  {
+   "file": "Shop/Entity.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 22
+    },
+    "end": {
+     "line": 3,
+     "character": 28
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 21
+    },
+    "end": {
+     "line": 16,
+     "character": 27
+    }
+   }
+  }
+ ],
+ "references Shop/IStore.cs:3:17": [
+  {
+   "file": "Shop/IStore.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 23
+    }
+   }
+  },
+  {
+   "file": "Shop/Service.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 21
+    },
+    "end": {
+     "line": 5,
+     "character": 27
+    }
+   }
+  },
+  {
+   "file": "Shop/Service.cs",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 19
+    },
+    "end": {
+     "line": 7,
+     "character": 25
+    }
+   }
+  },
+  {
+   "file": "Storage/MemStore.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 24
+    },
+    "end": {
+     "line": 5,
+     "character": 30
+    }
+   }
+  }
+ ],
+ "references Shop/Order.cs:10:13": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 13
+    },
+    "end": {
+     "line": 10,
+     "character": 17
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 16
+    },
+    "end": {
+     "line": 18,
+     "character": 20
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 22,
+     "character": 20
+    },
+    "end": {
+     "line": 22,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "references Shop/Order.cs:16:13": [
+  {
+   "file": "Shop/IStore.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 14
+    },
+    "end": {
+     "line": 5,
+     "character": 19
+    }
+   }
+  },
+  {
+   "file": "Shop/IStore.cs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 4
+    },
+    "end": {
+     "line": 6,
+     "character": 9
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 13
+    },
+    "end": {
+     "line": 16,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "Shop/Service.cs",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 26
+    },
+    "end": {
+     "line": 9,
+     "character": 31
+    }
+   }
+  },
+  {
+   "file": "Storage/MemStore.cs",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 40
+    },
+    "end": {
+     "line": 7,
+     "character": 45
+    }
+   }
+  },
+  {
+   "file": "Storage/MemStore.cs",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 21
+    },
+    "end": {
+     "line": 9,
+     "character": 26
+    }
+   }
+  },
+  {
+   "file": "Storage/MemStore.cs",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 11
+    },
+    "end": {
+     "line": 11,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "references Shop/Order.cs:4:12": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 12
+    },
+    "end": {
+     "line": 4,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 20,
+     "character": 12
+    },
+    "end": {
+     "line": 20,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 20,
+     "character": 28
+    },
+    "end": {
+     "line": 20,
+     "character": 34
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 24,
+     "character": 22
+    },
+    "end": {
+     "line": 24,
+     "character": 28
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 32,
+     "character": 38
+    },
+    "end": {
+     "line": 32,
+     "character": 44
+    }
+   }
+  },
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 34,
+     "character": 41
+    },
+    "end": {
+     "line": 34,
+     "character": 47
+    }
+   }
+  }
+ ],
+ "references Shop/Service.cs:3:13": [
+  {
+   "file": "Shop/Service.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 13
+    },
+    "end": {
+     "line": 3,
+     "character": 20
+    }
+   }
+  },
+  {
+   "file": "Shop/Service.cs",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 11
+    },
+    "end": {
+     "line": 7,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "references Storage/MemStore.cs:5:13": [
+  {
+   "file": "Storage/MemStore.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 13
+    },
+    "end": {
+     "line": 5,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "subtypes Shop/Entity.cs:3:22": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 13
+    },
+    "end": {
+     "line": 16,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "subtypes Shop/IStore.cs:3:17": [
+  {
+   "file": "Storage/MemStore.cs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 13
+    },
+    "end": {
+     "line": 5,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "subtypes Shop/Order.cs:10:13": [],
+ "subtypes Shop/Order.cs:16:13": [],
+ "subtypes Shop/Order.cs:4:12": [],
+ "subtypes Shop/Service.cs:3:13": [],
+ "subtypes Storage/MemStore.cs:5:13": [],
+ "supertypes Shop/Entity.cs:3:22": [],
+ "supertypes Shop/IStore.cs:3:17": [],
+ "supertypes Shop/Order.cs:10:13": [],
+ "supertypes Shop/Order.cs:16:13": [
+  {
+   "file": "Shop/Entity.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 22
+    },
+    "end": {
+     "line": 3,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "supertypes Shop/Order.cs:4:12": [],
+ "supertypes Shop/Service.cs:3:13": [],
+ "supertypes Storage/MemStore.cs:5:13": [
+  {
+   "file": "Shop/IStore.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 23
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Entity.cs:5:18": [
+  {
+   "file": "/external/11b0aca3b59a4f4d8621b29d7ea87869/String.cs",
+   "range": {
+    "start": {
+     "line": 22,
+     "character": 22
+    },
+    "end": {
+     "line": 22,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Order.cs:12:18": [
+  {
+   "file": "/external/11b0aca3b59a4f4d8621b29d7ea87869/String.cs",
+   "range": {
+    "start": {
+     "line": 22,
+     "character": 22
+    },
+    "end": {
+     "line": 22,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Order.cs:13:17": [
+  {
+   "file": "Shop/Money.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 13
+    },
+    "end": {
+     "line": 3,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Order.cs:18:22": [
+  {
+   "file": "/external/47ef8a5e1ecc4665928b7401e727eefb/List.cs",
+   "range": {
+    "start": {
+     "line": 20,
+     "character": 15
+    },
+    "end": {
+     "line": 20,
+     "character": 19
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Order.cs:19:17": [
+  {
+   "file": "Shop/Money.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 13
+    },
+    "end": {
+     "line": 3,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Order.cs:20:19": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 12
+    },
+    "end": {
+     "line": 4,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Order.cs:6:4": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 12
+    },
+    "end": {
+     "line": 4,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Order.cs:7:4": [
+  {
+   "file": "Shop/Order.cs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 12
+    },
+    "end": {
+     "line": 4,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition Shop/Service.cs:5:28": [
+  {
+   "file": "Shop/IStore.cs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 23
+    }
+   }
+  }
+ ],
+ "typeDefinition Storage/MemStore.cs:7:47": [
+  {
+   "file": "/external/cbe7d3129f924dc1ab7f6af633bd6ff5/Dictionary.cs",
+   "range": {
+    "start": {
+     "line": 24,
+     "character": 15
+    },
+    "end": {
+     "line": 24,
+     "character": 25
+    }
+   }
+  }
+ ]
+}

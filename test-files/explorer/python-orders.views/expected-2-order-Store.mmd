@@ -1,0 +1,53 @@
+classDiagram
+  class Status {
+    +OPEN
+    +PAID
+  }
+  class Line {
+    +sku
+    +price
+    +__init__(sku, price)
+  }
+  class Order {
+    +lines
+    +total
+    #_status
+    +__init__(id)
+    +add(line)
+    +is_paid()
+    +mark_paid()
+  }
+  class Money {
+    <<orders/shop>>
+  }
+  class Entity {
+    <<orders/shop>>
+  }
+  class Service {
+    #_store
+    +__init__(store)
+    +checkout(order)
+  }
+  class Store {
+    +save(order)
+    +find(id)
+  }
+  class MemStore {
+    <<orders/storage>>
+  }
+  Entity <|-- Order
+  Line --> Money : price
+  MemStore ..> Order
+  Order --> Line : lines
+  Order --> Money : total
+  Order --> Status : _status
+  Service --> Store : _store
+  Service ..> Order
+  Store ..> Order
+  Store <|-- MemStore
+  style Status stroke:#e11d48,stroke-width:3px
+  style Line stroke:#e11d48,stroke-width:3px
+  style Order stroke:#e11d48,stroke-width:3px
+  style Money fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Entity fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style MemStore fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

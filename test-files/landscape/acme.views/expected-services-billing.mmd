@@ -1,0 +1,14 @@
+flowchart LR
+  subgraph frame["billing · Billing.sln"]
+  p_services_billing_test_Billing_Tests["<small>.NET PROJECT</small><br/><b>Billing.Tests</b>"]
+  subgraph g_src["src/"]
+  p_services_billing_src_Billing_Api["<small>.NET PROJECT</small><br/><b>Billing.Api</b>"]
+  p_services_billing_src_Billing_Core["<small>.NET PROJECT</small><br/><b>Billing.Core</b>"]
+  end
+  plain["<small>OWN FILES</small><br/><b>Files in this folder</b><br/><small>(files in this folder)</small><br/><small>1 .sln</small>"]:::plain
+  end
+  p_services_billing_src_Billing_Api -- "1" --> p_services_billing_src_Billing_Core
+  p_services_billing_test_Billing_Tests -- "1" --> p_services_billing_src_Billing_Api
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

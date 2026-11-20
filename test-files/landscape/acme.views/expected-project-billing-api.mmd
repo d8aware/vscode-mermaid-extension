@@ -1,0 +1,13 @@
+flowchart LR
+  subgraph frame["Billing.Api"]
+  n_Controllers["<small>FOLDER</small><br/><b>Controllers/</b><br/><small>1 .cs</small>"]
+  n_Services["<small>FOLDER</small><br/><b>Services/</b><br/><small>1 .cs</small>"]
+  n_Program_cs["<small>ENTRY</small><br/><b>Program.cs</b><br/><small>top-level statements</small>"]:::entry
+  projectFiles["<small>.NET PROJECT</small><br/><b>Billing.Api.csproj</b>"]:::plain
+  end
+  n_Controllers -- "1" --> n_Services
+  n_Program_cs -- "1" --> n_Controllers
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef entry fill:#f0fdf4,stroke:#16a34a,color:#14532d
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

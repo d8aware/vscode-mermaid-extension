@@ -1,0 +1,9 @@
+{
+  "example": "../go-orders",
+  "answers": "answers.json",
+  "views": {
+    "expected-1-order.mmd": { "start": "shop/order.go", "light": [] },
+    "expected-2-order-Store.mmd": { "start": "shop/order.go", "light": ["Service", "Store"] },
+    "expected-3-store.mmd": { "start": "shop/store.go", "light": ["MemStore"] }
+  }
+}

@@ -1,0 +1,2158 @@
+{
+ "definition src/shop/order.rs:13:18": [
+  {
+   "file": "/external/src/string.rs",
+   "range": {
+    "start": {
+     "line": 352,
+     "character": 11
+    },
+    "end": {
+     "line": 352,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "definition src/shop/order.rs:13:6": [],
+ "definition src/shop/order.rs:19:13": [
+  {
+   "file": "/external/src/string.rs",
+   "range": {
+    "start": {
+     "line": 352,
+     "character": 11
+    },
+    "end": {
+     "line": 352,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "definition src/shop/order.rs:44:10": [
+  {
+   "file": "src/shop/entity.rs",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 10
+    },
+    "end": {
+     "line": 1,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "definition src/storage/memstore.rs:12:9": [
+  {
+   "file": "src/shop/store.rs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 10
+    },
+    "end": {
+     "line": 3,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "documentSymbols src/shop/entity.rs": [
+  {
+   "name": "Entity",
+   "kind": "Interface",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 3,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 1,
+     "character": 10
+    },
+    "end": {
+     "line": 1,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "id",
+     "kind": "Method",
+     "detail": "fn(&self) -> &str",
+     "range": {
+      "start": {
+       "line": 2,
+       "character": 4
+      },
+      "end": {
+       "line": 2,
+       "character": 25
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 2,
+       "character": 7
+      },
+      "end": {
+       "line": 2,
+       "character": 9
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/shop/mod.rs": [
+  {
+   "name": "entity",
+   "kind": "Module",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 8
+    },
+    "end": {
+     "line": 0,
+     "character": 14
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "money",
+   "kind": "Module",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 0
+    },
+    "end": {
+     "line": 1,
+     "character": 14
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 1,
+     "character": 8
+    },
+    "end": {
+     "line": 1,
+     "character": 13
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "order",
+   "kind": "Module",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 14
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 8
+    },
+    "end": {
+     "line": 2,
+     "character": 13
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "service",
+   "kind": "Module",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 0
+    },
+    "end": {
+     "line": 3,
+     "character": 16
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 8
+    },
+    "end": {
+     "line": 3,
+     "character": 15
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "store",
+   "kind": "Module",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 4,
+     "character": 14
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 4,
+     "character": 8
+    },
+    "end": {
+     "line": 4,
+     "character": 13
+    }
+   },
+   "children": []
+  }
+ ],
+ "documentSymbols src/shop/money.rs": [
+  {
+   "name": "Money",
+   "kind": "Struct",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 5,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 11
+    },
+    "end": {
+     "line": 2,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "amount",
+     "kind": "Field",
+     "detail": "i64",
+     "range": {
+      "start": {
+       "line": 3,
+       "character": 4
+      },
+      "end": {
+       "line": 3,
+       "character": 19
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 3,
+       "character": 8
+      },
+      "end": {
+       "line": 3,
+       "character": 14
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "currency",
+     "kind": "Field",
+     "detail": "String",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 4
+      },
+      "end": {
+       "line": 4,
+       "character": 24
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 8
+      },
+      "end": {
+       "line": 4,
+       "character": 16
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "impl Money",
+   "kind": "Object",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 0
+    },
+    "end": {
+     "line": 11,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 7,
+     "character": 5
+    },
+    "end": {
+     "line": 7,
+     "character": 10
+    }
+   },
+   "children": [
+    {
+     "name": "add",
+     "kind": "Method",
+     "detail": "fn(&self, other: &Money) -> Money",
+     "range": {
+      "start": {
+       "line": 8,
+       "character": 4
+      },
+      "end": {
+       "line": 10,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 8,
+       "character": 11
+      },
+      "end": {
+       "line": 8,
+       "character": 14
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/shop/order.rs": [
+  {
+   "name": "Status",
+   "kind": "Enum",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 0
+    },
+    "end": {
+     "line": 9,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 6,
+     "character": 9
+    },
+    "end": {
+     "line": 6,
+     "character": 15
+    }
+   },
+   "children": [
+    {
+     "name": "Open",
+     "kind": "EnumMember",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 4
+      },
+      "end": {
+       "line": 7,
+       "character": 8
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 4
+      },
+      "end": {
+       "line": 7,
+       "character": 8
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Paid",
+     "kind": "EnumMember",
+     "range": {
+      "start": {
+       "line": 8,
+       "character": 4
+      },
+      "end": {
+       "line": 8,
+       "character": 8
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 8,
+       "character": 4
+      },
+      "end": {
+       "line": 8,
+       "character": 8
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "Line",
+   "kind": "Struct",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 0
+    },
+    "end": {
+     "line": 15,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 12,
+     "character": 11
+    },
+    "end": {
+     "line": 12,
+     "character": 15
+    }
+   },
+   "children": [
+    {
+     "name": "sku",
+     "kind": "Field",
+     "detail": "String",
+     "range": {
+      "start": {
+       "line": 13,
+       "character": 4
+      },
+      "end": {
+       "line": 13,
+       "character": 19
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 13,
+       "character": 8
+      },
+      "end": {
+       "line": 13,
+       "character": 11
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "price",
+     "kind": "Field",
+     "detail": "Money",
+     "range": {
+      "start": {
+       "line": 14,
+       "character": 4
+      },
+      "end": {
+       "line": 14,
+       "character": 20
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 14,
+       "character": 8
+      },
+      "end": {
+       "line": 14,
+       "character": 13
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "Order",
+   "kind": "Struct",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 0
+    },
+    "end": {
+     "line": 23,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 18,
+     "character": 11
+    },
+    "end": {
+     "line": 18,
+     "character": 16
+    }
+   },
+   "children": [
+    {
+     "name": "id",
+     "kind": "Field",
+     "detail": "String",
+     "range": {
+      "start": {
+       "line": 19,
+       "character": 4
+      },
+      "end": {
+       "line": 19,
+       "character": 14
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 19,
+       "character": 4
+      },
+      "end": {
+       "line": 19,
+       "character": 6
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "lines",
+     "kind": "Field",
+     "detail": "Vec<Line>",
+     "range": {
+      "start": {
+       "line": 20,
+       "character": 4
+      },
+      "end": {
+       "line": 20,
+       "character": 24
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 20,
+       "character": 8
+      },
+      "end": {
+       "line": 20,
+       "character": 13
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "total",
+     "kind": "Field",
+     "detail": "Money",
+     "range": {
+      "start": {
+       "line": 21,
+       "character": 4
+      },
+      "end": {
+       "line": 21,
+       "character": 20
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 21,
+       "character": 8
+      },
+      "end": {
+       "line": 21,
+       "character": 13
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "status",
+     "kind": "Field",
+     "detail": "Status",
+     "range": {
+      "start": {
+       "line": 22,
+       "character": 4
+      },
+      "end": {
+       "line": 22,
+       "character": 18
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 22,
+       "character": 4
+      },
+      "end": {
+       "line": 22,
+       "character": 10
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "impl Order",
+   "kind": "Object",
+   "range": {
+    "start": {
+     "line": 25,
+     "character": 0
+    },
+    "end": {
+     "line": 42,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 25,
+     "character": 5
+    },
+    "end": {
+     "line": 25,
+     "character": 10
+    }
+   },
+   "children": [
+    {
+     "name": "add",
+     "kind": "Method",
+     "detail": "fn(&mut self, line: Line) -> Result<(), String>",
+     "range": {
+      "start": {
+       "line": 26,
+       "character": 4
+      },
+      "end": {
+       "line": 33,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 26,
+       "character": 11
+      },
+      "end": {
+       "line": 26,
+       "character": 14
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "is_paid",
+     "kind": "Method",
+     "detail": "fn(&self) -> bool",
+     "range": {
+      "start": {
+       "line": 35,
+       "character": 4
+      },
+      "end": {
+       "line": 37,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 35,
+       "character": 11
+      },
+      "end": {
+       "line": 35,
+       "character": 18
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "mark_paid",
+     "kind": "Method",
+     "detail": "fn(&mut self)",
+     "range": {
+      "start": {
+       "line": 39,
+       "character": 4
+      },
+      "end": {
+       "line": 41,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 39,
+       "character": 18
+      },
+      "end": {
+       "line": 39,
+       "character": 27
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "impl Entity for Order",
+   "kind": "Object",
+   "range": {
+    "start": {
+     "line": 44,
+     "character": 0
+    },
+    "end": {
+     "line": 48,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 44,
+     "character": 16
+    },
+    "end": {
+     "line": 44,
+     "character": 21
+    }
+   },
+   "children": [
+    {
+     "name": "id",
+     "kind": "Method",
+     "detail": "fn(&self) -> &str",
+     "range": {
+      "start": {
+       "line": 45,
+       "character": 4
+      },
+      "end": {
+       "line": 47,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 45,
+       "character": 7
+      },
+      "end": {
+       "line": 45,
+       "character": 9
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/shop/service.rs": [
+  {
+   "name": "Service",
+   "kind": "Struct",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 7,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 5,
+     "character": 11
+    },
+    "end": {
+     "line": 5,
+     "character": 18
+    }
+   },
+   "children": [
+    {
+     "name": "store",
+     "kind": "Field",
+     "detail": "Box<dyn Store>",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 4
+      },
+      "end": {
+       "line": 6,
+       "character": 25
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 4
+      },
+      "end": {
+       "line": 6,
+       "character": 9
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "impl Service",
+   "kind": "Object",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 0
+    },
+    "end": {
+     "line": 20,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 9,
+     "character": 5
+    },
+    "end": {
+     "line": 9,
+     "character": 12
+    }
+   },
+   "children": [
+    {
+     "name": "new",
+     "kind": "Function",
+     "detail": "fn(store: Box<dyn Store>) -> Self",
+     "range": {
+      "start": {
+       "line": 10,
+       "character": 4
+      },
+      "end": {
+       "line": 12,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 10,
+       "character": 11
+      },
+      "end": {
+       "line": 10,
+       "character": 14
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "checkout",
+     "kind": "Method",
+     "detail": "fn(&mut self, mut order: Order) -> Money",
+     "range": {
+      "start": {
+       "line": 14,
+       "character": 4
+      },
+      "end": {
+       "line": 19,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 14,
+       "character": 11
+      },
+      "end": {
+       "line": 14,
+       "character": 19
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/shop/store.rs": [
+  {
+   "name": "Store",
+   "kind": "Interface",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 6,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 10
+    },
+    "end": {
+     "line": 3,
+     "character": 15
+    }
+   },
+   "children": [
+    {
+     "name": "save",
+     "kind": "Method",
+     "detail": "fn(&mut self, order: Order)",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 4
+      },
+      "end": {
+       "line": 4,
+       "character": 37
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 7
+      },
+      "end": {
+       "line": 4,
+       "character": 11
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "find",
+     "kind": "Method",
+     "detail": "fn(&self, id: &str) -> Option<&Order>",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 4
+      },
+      "end": {
+       "line": 5,
+       "character": 47
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 5,
+       "character": 7
+      },
+      "end": {
+       "line": 5,
+       "character": 11
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/storage/memstore.rs": [
+  {
+   "name": "MemStore",
+   "kind": "Struct",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 0
+    },
+    "end": {
+     "line": 10,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 8,
+     "character": 11
+    },
+    "end": {
+     "line": 8,
+     "character": 19
+    }
+   },
+   "children": [
+    {
+     "name": "orders",
+     "kind": "Field",
+     "detail": "HashMap<String, Order>",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 4
+      },
+      "end": {
+       "line": 9,
+       "character": 34
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 9,
+       "character": 4
+      },
+      "end": {
+       "line": 9,
+       "character": 10
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "impl Store for MemStore",
+   "kind": "Object",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 0
+    },
+    "end": {
+     "line": 20,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 12,
+     "character": 15
+    },
+    "end": {
+     "line": 12,
+     "character": 23
+    }
+   },
+   "children": [
+    {
+     "name": "save",
+     "kind": "Method",
+     "detail": "fn(&mut self, order: Order)",
+     "range": {
+      "start": {
+       "line": 13,
+       "character": 4
+      },
+      "end": {
+       "line": 15,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 13,
+       "character": 7
+      },
+      "end": {
+       "line": 13,
+       "character": 11
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "find",
+     "kind": "Method",
+     "detail": "fn(&self, id: &str) -> Option<&Order>",
+     "range": {
+      "start": {
+       "line": 17,
+       "character": 4
+      },
+      "end": {
+       "line": 19,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 17,
+       "character": 7
+      },
+      "end": {
+       "line": 17,
+       "character": 11
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/storage/mod.rs": [
+  {
+   "name": "memstore",
+   "kind": "Module",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 17
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 8
+    },
+    "end": {
+     "line": 0,
+     "character": 16
+    }
+   },
+   "children": []
+  }
+ ],
+ "implementations src/shop/entity.rs:1:10": [
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 44,
+     "character": 16
+    },
+    "end": {
+     "line": 44,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "implementations src/shop/order.rs:12:11": [
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 16
+    },
+    "end": {
+     "line": 11,
+     "character": 21
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 9
+    },
+    "end": {
+     "line": 11,
+     "character": 14
+    }
+   }
+  }
+ ],
+ "implementations src/shop/order.rs:18:11": [
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 25,
+     "character": 5
+    },
+    "end": {
+     "line": 25,
+     "character": 10
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 16
+    },
+    "end": {
+     "line": 17,
+     "character": 21
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 9
+    },
+    "end": {
+     "line": 17,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 44,
+     "character": 16
+    },
+    "end": {
+     "line": 44,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "implementations src/shop/order.rs:6:9": [
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 22
+    },
+    "end": {
+     "line": 5,
+     "character": 27
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 29
+    },
+    "end": {
+     "line": 5,
+     "character": 38
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 16
+    },
+    "end": {
+     "line": 5,
+     "character": 20
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 9
+    },
+    "end": {
+     "line": 5,
+     "character": 14
+    }
+   }
+  }
+ ],
+ "implementations src/shop/service.rs:5:11": [
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 5
+    },
+    "end": {
+     "line": 9,
+     "character": 12
+    }
+   }
+  }
+ ],
+ "implementations src/shop/store.rs:3:10": [
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 15
+    },
+    "end": {
+     "line": 12,
+     "character": 23
+    }
+   }
+  }
+ ],
+ "implementations src/storage/memstore.rs:8:11": [
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 9
+    },
+    "end": {
+     "line": 7,
+     "character": 16
+    }
+   }
+  },
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 15
+    },
+    "end": {
+     "line": 12,
+     "character": 23
+    }
+   }
+  }
+ ],
+ "references src/shop/entity.rs:1:10": [
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 25
+    },
+    "end": {
+     "line": 2,
+     "character": 31
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 25
+    },
+    "end": {
+     "line": 2,
+     "character": 31
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 44,
+     "character": 5
+    },
+    "end": {
+     "line": 44,
+     "character": 11
+    }
+   }
+  },
+  {
+   "file": "src/shop/entity.rs",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 10
+    },
+    "end": {
+     "line": 1,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "references src/shop/order.rs:12:11": [
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 20,
+     "character": 19
+    },
+    "end": {
+     "line": 20,
+     "character": 23
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 26,
+     "character": 32
+    },
+    "end": {
+     "line": 26,
+     "character": 36
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 11
+    },
+    "end": {
+     "line": 12,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "references src/shop/order.rs:18:11": [
+  {
+   "file": "src/shop/store.rs",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 24
+    },
+    "end": {
+     "line": 0,
+     "character": 29
+    }
+   }
+  },
+  {
+   "file": "src/shop/store.rs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 30
+    },
+    "end": {
+     "line": 4,
+     "character": 35
+    }
+   }
+  },
+  {
+   "file": "src/shop/store.rs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 40
+    },
+    "end": {
+     "line": 5,
+     "character": 45
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 1,
+     "character": 24
+    },
+    "end": {
+     "line": 1,
+     "character": 29
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 14,
+     "character": 42
+    },
+    "end": {
+     "line": 14,
+     "character": 47
+    }
+   }
+  },
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 24
+    },
+    "end": {
+     "line": 3,
+     "character": 29
+    }
+   }
+  },
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 28
+    },
+    "end": {
+     "line": 9,
+     "character": 33
+    }
+   }
+  },
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 13,
+     "character": 30
+    },
+    "end": {
+     "line": 13,
+     "character": 35
+    }
+   }
+  },
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 17,
+     "character": 40
+    },
+    "end": {
+     "line": 17,
+     "character": 45
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 25,
+     "character": 5
+    },
+    "end": {
+     "line": 25,
+     "character": 10
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 44,
+     "character": 16
+    },
+    "end": {
+     "line": 44,
+     "character": 21
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 11
+    },
+    "end": {
+     "line": 18,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "references src/shop/order.rs:6:9": [
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 22,
+     "character": 12
+    },
+    "end": {
+     "line": 22,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 27,
+     "character": 26
+    },
+    "end": {
+     "line": 27,
+     "character": 32
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 36,
+     "character": 23
+    },
+    "end": {
+     "line": 36,
+     "character": 29
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 40,
+     "character": 22
+    },
+    "end": {
+     "line": 40,
+     "character": 28
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 9
+    },
+    "end": {
+     "line": 6,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "references src/shop/service.rs:5:11": [
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 5
+    },
+    "end": {
+     "line": 9,
+     "character": 12
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 8
+    },
+    "end": {
+     "line": 11,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 41
+    },
+    "end": {
+     "line": 10,
+     "character": 45
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 11
+    },
+    "end": {
+     "line": 5,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "references src/shop/store.rs:3:10": [
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 24
+    },
+    "end": {
+     "line": 4,
+     "character": 29
+    }
+   }
+  },
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 5
+    },
+    "end": {
+     "line": 12,
+     "character": 10
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 24
+    },
+    "end": {
+     "line": 2,
+     "character": 29
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 19
+    },
+    "end": {
+     "line": 6,
+     "character": 24
+    }
+   }
+  },
+  {
+   "file": "src/shop/service.rs",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 30
+    },
+    "end": {
+     "line": 10,
+     "character": 35
+    }
+   }
+  },
+  {
+   "file": "src/shop/store.rs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 10
+    },
+    "end": {
+     "line": 3,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "references src/storage/memstore.rs:8:11": [
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 15
+    },
+    "end": {
+     "line": 12,
+     "character": 23
+    }
+   }
+  },
+  {
+   "file": "src/storage/memstore.rs",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 11
+    },
+    "end": {
+     "line": 8,
+     "character": 19
+    }
+   }
+  }
+ ],
+ "siblings src/shop": [
+  "src/shop/entity.rs",
+  "src/shop/mod.rs",
+  "src/shop/money.rs",
+  "src/shop/order.rs",
+  "src/shop/service.rs",
+  "src/shop/store.rs"
+ ],
+ "siblings src/storage": [
+  "src/storage/memstore.rs",
+  "src/storage/mod.rs"
+ ],
+ "subtypes src/shop/entity.rs:1:10": {
+  "error": "unknown request"
+ },
+ "subtypes src/shop/order.rs:12:11": {
+  "error": "unknown request"
+ },
+ "subtypes src/shop/order.rs:18:11": {
+  "error": "unknown request"
+ },
+ "subtypes src/shop/order.rs:6:9": {
+  "error": "unknown request"
+ },
+ "subtypes src/shop/service.rs:5:11": {
+  "error": "unknown request"
+ },
+ "subtypes src/shop/store.rs:3:10": {
+  "error": "unknown request"
+ },
+ "subtypes src/storage/memstore.rs:8:11": {
+  "error": "unknown request"
+ },
+ "supertypes src/shop/entity.rs:1:10": {
+  "error": "unknown request"
+ },
+ "supertypes src/shop/order.rs:12:11": {
+  "error": "unknown request"
+ },
+ "supertypes src/shop/order.rs:18:11": {
+  "error": "unknown request"
+ },
+ "supertypes src/shop/order.rs:6:9": {
+  "error": "unknown request"
+ },
+ "supertypes src/shop/service.rs:5:11": {
+  "error": "unknown request"
+ },
+ "supertypes src/shop/store.rs:3:10": {
+  "error": "unknown request"
+ },
+ "supertypes src/storage/memstore.rs:8:11": {
+  "error": "unknown request"
+ },
+ "typeDefinition src/shop/order.rs:13:8": [
+  {
+   "file": "/external/src/string.rs",
+   "range": {
+    "start": {
+     "line": 352,
+     "character": 11
+    },
+    "end": {
+     "line": 352,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "typeDefinition src/shop/order.rs:14:8": [
+  {
+   "file": "src/shop/money.rs",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 11
+    },
+    "end": {
+     "line": 2,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "typeDefinition src/shop/order.rs:19:4": [
+  {
+   "file": "/external/src/string.rs",
+   "range": {
+    "start": {
+     "line": 352,
+     "character": 11
+    },
+    "end": {
+     "line": 352,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "typeDefinition src/shop/order.rs:20:8": [
+  {
+   "file": "/external/vec/mod.rs",
+   "range": {
+    "start": {
+     "line": 441,
+     "character": 11
+    },
+    "end": {
+     "line": 441,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 12,
+     "character": 11
+    },
+    "end": {
+     "line": 12,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/src/alloc.rs",
+   "range": {
+    "start": {
+     "line": 85,
+     "character": 11
+    },
+    "end": {
+     "line": 85,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "typeDefinition src/shop/order.rs:21:8": [
+  {
+   "file": "src/shop/money.rs",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 11
+    },
+    "end": {
+     "line": 2,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "typeDefinition src/shop/order.rs:22:4": [
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 9
+    },
+    "end": {
+     "line": 6,
+     "character": 15
+    }
+   }
+  }
+ ],
+ "typeDefinition src/shop/service.rs:6:4": [
+  {
+   "file": "/external/src/boxed.rs",
+   "range": {
+    "start": {
+     "line": 242,
+     "character": 11
+    },
+    "end": {
+     "line": 242,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "src/shop/store.rs",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 10
+    },
+    "end": {
+     "line": 3,
+     "character": 15
+    }
+   }
+  },
+  {
+   "file": "/external/src/alloc.rs",
+   "range": {
+    "start": {
+     "line": 85,
+     "character": 11
+    },
+    "end": {
+     "line": 85,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "typeDefinition src/storage/memstore.rs:9:4": [
+  {
+   "file": "/external/hash/map.rs",
+   "range": {
+    "start": {
+     "line": 244,
+     "character": 11
+    },
+    "end": {
+     "line": 244,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "/external/src/string.rs",
+   "range": {
+    "start": {
+     "line": 352,
+     "character": 11
+    },
+    "end": {
+     "line": 352,
+     "character": 17
+    }
+   }
+  },
+  {
+   "file": "src/shop/order.rs",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 11
+    },
+    "end": {
+     "line": 18,
+     "character": 16
+    }
+   }
+  },
+  {
+   "file": "/external/hash/random.rs",
+   "range": {
+    "start": {
+     "line": 34,
+     "character": 11
+    },
+    "end": {
+     "line": 34,
+     "character": 22
+    }
+   }
+  },
+  {
+   "file": "/external/src/alloc.rs",
+   "range": {
+    "start": {
+     "line": 85,
+     "character": 11
+    },
+    "end": {
+     "line": 85,
+     "character": 17
+    }
+   }
+  }
+ ]
+}

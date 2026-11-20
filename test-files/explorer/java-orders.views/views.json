@@ -1,0 +1,10 @@
+{
+  "example": "../java-orders",
+  "answers": "answers.json",
+  "views": {
+    "expected-1-order.mmd": { "start": "src/main/java/orders/shop/Order.java", "light": [] },
+    "expected-2-order-Store.mmd": { "start": "src/main/java/orders/shop/Order.java", "light": ["Service", "Store"] },
+    "expected-3-store.mmd": { "start": "src/main/java/orders/shop/Store.java", "light": ["MemStore"] },
+    "expected-4-entity.mmd": { "start": "src/main/java/orders/shop/Entity.java", "light": [] }
+  }
+}

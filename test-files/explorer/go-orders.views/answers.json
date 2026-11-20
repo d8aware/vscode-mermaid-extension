@@ -1,0 +1,1435 @@
+{
+ "definition memstore/memstore.go:7:10": [],
+ "definition memstore/memstore.go:7:17": [
+  {
+   "file": "/external/builtin/builtin.go",
+   "range": {
+    "start": {
+     "line": 72,
+     "character": 5
+    },
+    "end": {
+     "line": 72,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "definition memstore/memstore.go:7:23": [
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 7
+    },
+    "end": {
+     "line": 3,
+     "character": 32
+    }
+   }
+  }
+ ],
+ "definition memstore/memstore.go:7:29": [
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 21,
+     "character": 5
+    },
+    "end": {
+     "line": 21,
+     "character": 10
+    }
+   }
+  }
+ ],
+ "definition shop/order.go:16:12": [
+  {
+   "file": "/external/builtin/builtin.go",
+   "range": {
+    "start": {
+     "line": 72,
+     "character": 5
+    },
+    "end": {
+     "line": 72,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "definition shop/order.go:22:13": [
+  {
+   "file": "/external/builtin/builtin.go",
+   "range": {
+    "start": {
+     "line": 72,
+     "character": 5
+    },
+    "end": {
+     "line": 72,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "documentSymbols memstore/memstore.go": [
+  {
+   "name": "MemStore",
+   "kind": "Struct",
+   "detail": "struct{...}",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 5
+    },
+    "end": {
+     "line": 8,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 6,
+     "character": 5
+    },
+    "end": {
+     "line": 6,
+     "character": 13
+    }
+   },
+   "children": [
+    {
+     "name": "orders",
+     "kind": "Field",
+     "detail": "map[string]*shop.Order",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 1
+      },
+      "end": {
+       "line": 7,
+       "character": 30
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 1
+      },
+      "end": {
+       "line": 7,
+       "character": 7
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "New",
+   "kind": "Function",
+   "detail": "func() *MemStore",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 0
+    },
+    "end": {
+     "line": 11,
+     "character": 75
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 11,
+     "character": 5
+    },
+    "end": {
+     "line": 11,
+     "character": 8
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "(*MemStore).Save",
+   "kind": "Method",
+   "detail": "func(order *shop.Order) error",
+   "range": {
+    "start": {
+     "line": 13,
+     "character": 0
+    },
+    "end": {
+     "line": 16,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 13,
+     "character": 19
+    },
+    "end": {
+     "line": 13,
+     "character": 23
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "(*MemStore).Find",
+   "kind": "Method",
+   "detail": "func(id string) (*shop.Order, bool)",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 0
+    },
+    "end": {
+     "line": 21,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 18,
+     "character": 19
+    },
+    "end": {
+     "line": 18,
+     "character": 23
+    }
+   },
+   "children": []
+  }
+ ],
+ "documentSymbols shop/money.go": [
+  {
+   "name": "Money",
+   "kind": "Struct",
+   "detail": "struct{...}",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 5
+    },
+    "end": {
+     "line": 6,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 5
+    },
+    "end": {
+     "line": 3,
+     "character": 10
+    }
+   },
+   "children": [
+    {
+     "name": "Amount",
+     "kind": "Field",
+     "detail": "int64",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 1
+      },
+      "end": {
+       "line": 4,
+       "character": 15
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 1
+      },
+      "end": {
+       "line": 4,
+       "character": 7
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Currency",
+     "kind": "Field",
+     "detail": "string",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 1
+      },
+      "end": {
+       "line": 5,
+       "character": 16
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 5,
+       "character": 1
+      },
+      "end": {
+       "line": 5,
+       "character": 9
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "(Money).Add",
+   "kind": "Method",
+   "detail": "func(other Money) Money",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 0
+    },
+    "end": {
+     "line": 11,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 9,
+     "character": 15
+    },
+    "end": {
+     "line": 9,
+     "character": 18
+    }
+   },
+   "children": []
+  }
+ ],
+ "documentSymbols shop/order.go": [
+  {
+   "name": "Status",
+   "kind": "Class",
+   "detail": "int",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 5
+    },
+    "end": {
+     "line": 7,
+     "character": 15
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 7,
+     "character": 5
+    },
+    "end": {
+     "line": 7,
+     "character": 11
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Open",
+   "kind": "Constant",
+   "detail": "Status",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 1
+    },
+    "end": {
+     "line": 10,
+     "character": 19
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 10,
+     "character": 1
+    },
+    "end": {
+     "line": 10,
+     "character": 5
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Paid",
+   "kind": "Constant",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 1
+    },
+    "end": {
+     "line": 11,
+     "character": 5
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 11,
+     "character": 1
+    },
+    "end": {
+     "line": 11,
+     "character": 5
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Line",
+   "kind": "Struct",
+   "detail": "struct{...}",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 5
+    },
+    "end": {
+     "line": 18,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 15,
+     "character": 5
+    },
+    "end": {
+     "line": 15,
+     "character": 9
+    }
+   },
+   "children": [
+    {
+     "name": "SKU",
+     "kind": "Field",
+     "detail": "string",
+     "range": {
+      "start": {
+       "line": 16,
+       "character": 1
+      },
+      "end": {
+       "line": 16,
+       "character": 13
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 16,
+       "character": 1
+      },
+      "end": {
+       "line": 16,
+       "character": 4
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Price",
+     "kind": "Field",
+     "detail": "Money",
+     "range": {
+      "start": {
+       "line": 17,
+       "character": 1
+      },
+      "end": {
+       "line": 17,
+       "character": 12
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 17,
+       "character": 1
+      },
+      "end": {
+       "line": 17,
+       "character": 6
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "Order",
+   "kind": "Struct",
+   "detail": "struct{...}",
+   "range": {
+    "start": {
+     "line": 21,
+     "character": 5
+    },
+    "end": {
+     "line": 26,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 21,
+     "character": 5
+    },
+    "end": {
+     "line": 21,
+     "character": 10
+    }
+   },
+   "children": [
+    {
+     "name": "ID",
+     "kind": "Field",
+     "detail": "string",
+     "range": {
+      "start": {
+       "line": 22,
+       "character": 1
+      },
+      "end": {
+       "line": 22,
+       "character": 14
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 22,
+       "character": 1
+      },
+      "end": {
+       "line": 22,
+       "character": 3
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Lines",
+     "kind": "Field",
+     "detail": "[]Line",
+     "range": {
+      "start": {
+       "line": 23,
+       "character": 1
+      },
+      "end": {
+       "line": 23,
+       "character": 14
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 23,
+       "character": 1
+      },
+      "end": {
+       "line": 23,
+       "character": 6
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Total",
+     "kind": "Field",
+     "detail": "Money",
+     "range": {
+      "start": {
+       "line": 24,
+       "character": 1
+      },
+      "end": {
+       "line": 24,
+       "character": 13
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 24,
+       "character": 1
+      },
+      "end": {
+       "line": 24,
+       "character": 6
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "status",
+     "kind": "Field",
+     "detail": "Status",
+     "range": {
+      "start": {
+       "line": 25,
+       "character": 1
+      },
+      "end": {
+       "line": 25,
+       "character": 14
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 25,
+       "character": 1
+      },
+      "end": {
+       "line": 25,
+       "character": 7
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "(*Order).Add",
+   "kind": "Method",
+   "detail": "func(line Line) error",
+   "range": {
+    "start": {
+     "line": 29,
+     "character": 0
+    },
+    "end": {
+     "line": 36,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 29,
+     "character": 16
+    },
+    "end": {
+     "line": 29,
+     "character": 19
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "(Order).IsPaid",
+   "kind": "Method",
+   "detail": "func() bool",
+   "range": {
+    "start": {
+     "line": 39,
+     "character": 0
+    },
+    "end": {
+     "line": 39,
+     "character": 56
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 39,
+     "character": 15
+    },
+    "end": {
+     "line": 39,
+     "character": 21
+    }
+   },
+   "children": []
+  }
+ ],
+ "documentSymbols shop/order_test.go": [
+  {
+   "name": "TestAdd",
+   "kind": "Function",
+   "detail": "func(t *testing.T)",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 0
+    },
+    "end": {
+     "line": 9,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 12
+    }
+   },
+   "children": []
+  }
+ ],
+ "documentSymbols shop/service.go": [
+  {
+   "name": "Service",
+   "kind": "Struct",
+   "detail": "struct{...}",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 5
+    },
+    "end": {
+     "line": 5,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 5
+    },
+    "end": {
+     "line": 3,
+     "character": 12
+    }
+   },
+   "children": [
+    {
+     "name": "store",
+     "kind": "Field",
+     "detail": "Store",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 1
+      },
+      "end": {
+       "line": 4,
+       "character": 12
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 1
+      },
+      "end": {
+       "line": 4,
+       "character": 6
+      }
+     },
+     "children": []
+    }
+   ]
+  },
+  {
+   "name": "NewService",
+   "kind": "Function",
+   "detail": "func(store Store) *Service",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 0
+    },
+    "end": {
+     "line": 8,
+     "character": 71
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 8,
+     "character": 5
+    },
+    "end": {
+     "line": 8,
+     "character": 15
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "(*Service).Checkout",
+   "kind": "Method",
+   "detail": "func(order *Order) (Money, error)",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 0
+    },
+    "end": {
+     "line": 14,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 11,
+     "character": 18
+    },
+    "end": {
+     "line": 11,
+     "character": 26
+    }
+   },
+   "children": []
+  }
+ ],
+ "documentSymbols shop/store.go": [
+  {
+   "name": "Store",
+   "kind": "Interface",
+   "detail": "interface{...}",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 7,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 10
+    }
+   },
+   "children": [
+    {
+     "name": "Save",
+     "kind": "Method",
+     "detail": "func(order *Order) error",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 1
+      },
+      "end": {
+       "line": 5,
+       "character": 25
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 5,
+       "character": 1
+      },
+      "end": {
+       "line": 5,
+       "character": 5
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Find",
+     "kind": "Method",
+     "detail": "func(id string) (*Order, bool)",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 1
+      },
+      "end": {
+       "line": 6,
+       "character": 31
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 1
+      },
+      "end": {
+       "line": 6,
+       "character": 5
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "references memstore/memstore.go:6:5": [
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 5
+    },
+    "end": {
+     "line": 6,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 12
+    },
+    "end": {
+     "line": 11,
+     "character": 20
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 31
+    },
+    "end": {
+     "line": 11,
+     "character": 39
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 13,
+     "character": 9
+    },
+    "end": {
+     "line": 13,
+     "character": 17
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 9
+    },
+    "end": {
+     "line": 18,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "references shop/order.go:15:5": [
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 5
+    },
+    "end": {
+     "line": 15,
+     "character": 9
+    }
+   }
+  },
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 23,
+     "character": 10
+    },
+    "end": {
+     "line": 23,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 29,
+     "character": 25
+    },
+    "end": {
+     "line": 29,
+     "character": 29
+    }
+   }
+  },
+  {
+   "file": "shop/order_test.go",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 21
+    },
+    "end": {
+     "line": 6,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "references shop/order.go:21:5": [
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 21,
+     "character": 5
+    },
+    "end": {
+     "line": 21,
+     "character": 10
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 25
+    },
+    "end": {
+     "line": 7,
+     "character": 30
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 65
+    },
+    "end": {
+     "line": 11,
+     "character": 70
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 13,
+     "character": 36
+    },
+    "end": {
+     "line": 13,
+     "character": 41
+    }
+   }
+  },
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 18,
+     "character": 42
+    },
+    "end": {
+     "line": 18,
+     "character": 47
+    }
+   }
+  },
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 29,
+     "character": 9
+    },
+    "end": {
+     "line": 29,
+     "character": 14
+    }
+   }
+  },
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 39,
+     "character": 8
+    },
+    "end": {
+     "line": 39,
+     "character": 13
+    }
+   }
+  },
+  {
+   "file": "shop/order_test.go",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 11
+    },
+    "end": {
+     "line": 5,
+     "character": 16
+    }
+   }
+  },
+  {
+   "file": "shop/service.go",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 34
+    },
+    "end": {
+     "line": 11,
+     "character": 39
+    }
+   }
+  },
+  {
+   "file": "shop/store.go",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 13
+    },
+    "end": {
+     "line": 5,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "shop/store.go",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 19
+    },
+    "end": {
+     "line": 6,
+     "character": 24
+    }
+   }
+  }
+ ],
+ "references shop/order.go:7:5": [
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 5
+    },
+    "end": {
+     "line": 7,
+     "character": 11
+    }
+   }
+  },
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 6
+    },
+    "end": {
+     "line": 10,
+     "character": 12
+    }
+   }
+  },
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 25,
+     "character": 8
+    },
+    "end": {
+     "line": 25,
+     "character": 14
+    }
+   }
+  }
+ ],
+ "references shop/service.go:3:5": [
+  {
+   "file": "shop/service.go",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 5
+    },
+    "end": {
+     "line": 3,
+     "character": 12
+    }
+   }
+  },
+  {
+   "file": "shop/service.go",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 30
+    },
+    "end": {
+     "line": 8,
+     "character": 37
+    }
+   }
+  },
+  {
+   "file": "shop/service.go",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 48
+    },
+    "end": {
+     "line": 8,
+     "character": 55
+    }
+   }
+  },
+  {
+   "file": "shop/service.go",
+   "range": {
+    "start": {
+     "line": 11,
+     "character": 9
+    },
+    "end": {
+     "line": 11,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "references shop/store.go:4:5": [
+  {
+   "file": "shop/store.go",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 10
+    }
+   }
+  },
+  {
+   "file": "shop/service.go",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 7
+    },
+    "end": {
+     "line": 4,
+     "character": 12
+    }
+   }
+  },
+  {
+   "file": "shop/service.go",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 22
+    },
+    "end": {
+     "line": 8,
+     "character": 27
+    }
+   }
+  }
+ ],
+ "siblings memstore": [
+  "memstore/memstore.go"
+ ],
+ "siblings shop": [
+  "shop/money.go",
+  "shop/order.go",
+  "shop/order_test.go",
+  "shop/service.go",
+  "shop/store.go"
+ ],
+ "subtypes memstore/memstore.go:6:5": [],
+ "subtypes shop/order.go:15:5": [],
+ "subtypes shop/order.go:21:5": [],
+ "subtypes shop/order.go:7:5": [],
+ "subtypes shop/service.go:3:5": [],
+ "subtypes shop/store.go:4:5": [
+  {
+   "file": "memstore/memstore.go",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 5
+    },
+    "end": {
+     "line": 6,
+     "character": 13
+    }
+   }
+  }
+ ],
+ "supertypes memstore/memstore.go:6:5": [
+  {
+   "file": "shop/store.go",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 10
+    }
+   }
+  }
+ ],
+ "supertypes shop/order.go:15:5": [],
+ "supertypes shop/order.go:21:5": [],
+ "supertypes shop/order.go:7:5": [],
+ "supertypes shop/service.go:3:5": [],
+ "supertypes shop/store.go:4:5": [],
+ "typeDefinition memstore/memstore.go:7:1": {
+  "error": "cannot find type name(s) from type map[string]*example.com/orders/shop.Order"
+ },
+ "typeDefinition shop/order.go:16:1": [
+  {
+   "file": "/external/builtin/builtin.go",
+   "range": {
+    "start": {
+     "line": 72,
+     "character": 5
+    },
+    "end": {
+     "line": 72,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.go:17:1": [
+  {
+   "file": "shop/money.go",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 5
+    },
+    "end": {
+     "line": 3,
+     "character": 10
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.go:22:1": [
+  {
+   "file": "/external/builtin/builtin.go",
+   "range": {
+    "start": {
+     "line": 72,
+     "character": 5
+    },
+    "end": {
+     "line": 72,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.go:23:1": [
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 15,
+     "character": 5
+    },
+    "end": {
+     "line": 15,
+     "character": 9
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.go:24:1": [
+  {
+   "file": "shop/money.go",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 5
+    },
+    "end": {
+     "line": 3,
+     "character": 10
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/order.go:25:1": [
+  {
+   "file": "shop/order.go",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 5
+    },
+    "end": {
+     "line": 7,
+     "character": 11
+    }
+   }
+  }
+ ],
+ "typeDefinition shop/service.go:4:1": [
+  {
+   "file": "shop/store.go",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 5
+    },
+    "end": {
+     "line": 4,
+     "character": 10
+    }
+   }
+  }
+ ]
+}

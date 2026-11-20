@@ -4,3 +4,23 @@ node_modules
 .vscode-test/
 *.vsix
 .research/
+# Class diagram example: node_modules exclusion is part of what it shows
+!test-files/class-diagram/file-selection/node_modules/
+# Written by the class diagram golden tests when an example does not match
+test-files/class-diagram/**/actual*.mmd
+.classes.mmd
+# Landscape example: ignored folders are part of what it shows
+!test-files/landscape/acme/node_modules/
+!test-files/landscape/acme/web/dist/
+test-files/landscape/**/actual*.mmd
+test-files/explorer/**/actual*.mmd
+# Build output when a language extension loads an explorer example
+test-files/explorer/**/bin/
+test-files/explorer/**/obj/
+# Build output of the explorer examples (language servers create these)
+test-files/explorer/*/target/
+test-files/explorer/*/Cargo.lock
+test-files/explorer/**/__pycache__/
+test-files/explorer/java-orders/.classpath
+test-files/explorer/java-orders/.project
+test-files/explorer/java-orders/.settings/

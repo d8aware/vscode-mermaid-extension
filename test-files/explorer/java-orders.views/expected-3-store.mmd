@@ -1,0 +1,23 @@
+classDiagram
+  class Store {
+    <<interface>>
+    save(Order)
+    find(String)
+  }
+  class MemStore {
+    orders
+    save(Order)
+    find(String)
+  }
+  class Service {
+    <<…/orders/shop>>
+  }
+  class Order {
+    <<…/orders/shop>>
+  }
+  MemStore --> Order : orders
+  Service ..> Store
+  Store <|.. MemStore
+  style Store stroke:#e11d48,stroke-width:3px
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

@@ -4,6 +4,42 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 3.0.0
+
+**Explore any codebase as diagrams, from the whole repository down to a single class, in any language with a VS Code language extension.** Right-click a folder to see its projects and their declared dependencies, click a project to see its code folder by folder from its entry points, click a file to explore its classes. Every box and arrow comes from a written rule, so the same code always draws the same picture. Also: the TypeScript class diagram generator is rewritten and now draws the relationships between classes.
+
+Nothing is removed and no settings change meaning; the major version marks the change in scope.
+
+### Added
+
+- **Explore From Here** (right-click a folder): the projects inside it, labelled by kind and name, and the references they declare between them. Projects are found by marker files: npm, Angular and Nx (`package.json`, `angular.json`, `nx.json`, `project.json`, `tsconfig.json`), .NET (`*.sln`, `*.csproj`), Composer, Go (`go.work`, `go.mod`), Python (`pyproject.toml`, `requirements.txt`, `setup.py`), Maven and Gradle, Cargo, and Docker, Jenkins and Terraform. Arrows come only from declared references: imports of local packages and tsconfig path aliases, Go module imports, Rust crate uses, and the dependencies in `package.json`, `composer.json`, `go.mod` (`require`, local `replace`), `pyproject.toml`/`requirements.txt`, `pom.xml`, `Cargo.toml` and .NET `<ProjectReference>`. Hover a box to see which rule produced it.
+- **Project view**: click a project to see its code a folder at a time. It opens at the project's declared source root (`angular.json`/`project.json` `sourceRoot`, Composer `psr-4`, Maven's `src/main/java`, `pyproject.toml` `package-dir`, the Cargo crate root) and marks entry points: what the project files declare (a build target's `main`, `package.json` `main`/`bin`/`exports`, `[project.scripts]`, Cargo targets, Composer `bin`) and what the language marks (`package main`, `static Main` or top-level statements, `public static void main`, `fn main`, `if __name__ == "__main__"`). Arrows are the imports between folders and files, plus boxes for the other projects they use. Click a folder to go deeper, a file to explore its classes.
+- **Explore Classes From Here** (right-click a source file, or click one in a project view): the file's classes in full, with the classes one step away (supertypes, subtypes, used classes and consumers) as dashed boxes; click one to bring it in, click a class to open its source, "+N more" for the rest. TypeScript is analysed by the extension itself. Every other language is answered by its installed language extension, checked against recorded examples for Go (`golang.go`), C# (`ms-dotnettools.csharp`), PHP (Intelephense), Python (Pylance), Java/Kotlin (`redhat.java`) and Rust (rust-analyzer); Swift, Scala, Dart, C/C++, Ruby and others use the same rules. Where an extension has no type hierarchy, supertypes and subtypes come from class declarations (`class A extends B`) and from blocks declared apart (Rust `impl Store for MemStore`), and field types from the names in each field's declaration; the panel says when such a fallback answered. Methods declared apart from their type (Go receivers, Rust `impl` blocks) join their type's box.
+- **One panel for all of it**, in the main editor area: breadcrumb, Back, Start over and Save view (as `.mmd`) work from the repository down to classes. Each step keeps you oriented: a level badge (Projects, Code, Classes), a zoom into the box you clicked when going deeper and out when going back, boxes that glide to their new places when a class view grows, and rings on the box you clicked and the one you came from. Results are cached and refreshed when you save a file.
+- **Mermaid: Check Explorer Language Support**: for the open file, what the explorer will use per direction (the extension's answer, a fallback rule, or nothing), and which extension to install when none answers.
+- **`classDiagram.explorerConsumers`** setting for TypeScript: `declared` (default; fields and constructor injection) or `references` (every class that references it, asked of the TypeScript extension).
+- **Language packs** ([docs](docs/language-packs.md)): every language- and ecosystem-specific rule lives in a small pack file, so adding a language is a pack and a recorded example.
+- **Focused class diagrams**: right-click a TypeScript file → "Generate Focused Class Diagram" shows that file's classes (outlined, all members) with every class connected to them anywhere in the project (public members). Written to `<File>.classes.mmd` next to the file.
+- **Large folders**: for folders with more than 40 classes, a picker asks which members to show (public members only, all members, or class names only) and, when the classes span several folders, whether to group them by folder. Settings `classDiagram.detail`, `classDiagram.groupByFolder` and `classDiagram.largeFolderThreshold` set these defaults and skip the picker.
+- Example galleries that double as golden tests: class diagrams (`test-files/class-diagram/`), repository and project views (`test-files/landscape/`), and the same class explorer example in seven languages (`test-files/explorer/`).
+
+### Changed
+
+- **Class diagram generator rewritten.** Tested against real TypeScript projects, the previous generator drew almost no relationships between classes. The new one:
+  - **Draws relationships between classes**: fields, getters and constructor parameter properties referencing other classes (including inside arrays, generics such as `Map<…>` / `Promise<…>`, and unions) become labelled association arrows. Previously the comparison never matched, so these arrows were missing.
+  - **Shows constructor-injected dependencies**: plain constructor parameters are drawn as dependency arrows.
+  - **Uses your project's `tsconfig.json`** (or a monorepo's `tsconfig.base.json`), so imports through path aliases resolve and output no longer changes with the bundled TypeScript version.
+  - **Uses correct Mermaid syntax**: methods no longer show a doubled colon (`deposit(amount) : : void`); interface `extends` is drawn as inheritance rather than implementation; generic types such as `Map<string, Order[]>` display correctly.
+  - **Adds UML details**: visibility markers for private (`-`) and protected (`#`) members (previously everything was shown as public), static (underlined) and abstract (italic) members, `<<abstract>>` classes, generic class names, optional fields, and getters/setters.
+  - **Keeps same-named classes in different files as separate boxes** instead of merging them.
+  - **Reads more files and declarations**: `.tsx`, `.mts` and `.cts` files, object-shaped `type` aliases and classes inside namespaces.
+- **Test files are skipped by default** (`*.spec.*`, `*.test.*`, `__tests__/`), as are `*.d.ts` files. New setting `vscode-mermaid-extension.classDiagram.includeTestFiles` includes test files.
+- Updated `ts-morph` from 27 to 28 (bundles TypeScript 6).
+
+### Fixed
+
+- **Generating a class diagram could leave the progress notification spinning forever** if analysis failed. Errors are now reported, the progress bar advances per file, and generation can be cancelled.
+
 ## 2.0.0
 
 ### Changed

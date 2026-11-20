@@ -1,0 +1,23 @@
+classDiagram
+  class Order {
+    <<shop>>
+  }
+  class Service {
+    <<shop>>
+  }
+  class Store {
+    <<interface>>
+    +save(order) void
+    +find(id) Order | undefined
+  }
+  class MemStore {
+    -orders: Map&lt;string, Order&gt;
+    +save(order) void
+    +find(id) Order | undefined
+  }
+  MemStore --> Order : orders
+  Service --> Store : store
+  Store <|.. MemStore
+  style Store stroke:#e11d48,stroke-width:3px
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Order fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

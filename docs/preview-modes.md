@@ -9,7 +9,7 @@ The Mermaid MMD Tools extension supports two different preview modes to accommod
 The extension provides two ways to preview your Mermaid diagrams:
 
 1. **Multi-Panel Mode** (Default) - Creates a new preview panel each time
-2. **Single Preview Mode** (NEW) - Uses one reusable preview panel that updates automatically
+2. **Single Preview Mode** - Uses one reusable preview panel that updates automatically
 
 ## Multi-Panel Mode (Default)
 
@@ -47,7 +47,7 @@ Result: Three separate panels, each showing a different diagram
 - ❌ Must manually manage and close panels
 - ❌ Need to click button each time to preview
 
-## Single Preview Mode (NEW)
+## Single Preview Mode
 
 ### Behavior
 

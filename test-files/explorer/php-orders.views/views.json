@@ -1,0 +1,10 @@
+{
+  "example": "../php-orders",
+  "answers": "answers.json",
+  "views": {
+    "expected-1-order.mmd": { "start": "src/Shop/Order.php", "light": [] },
+    "expected-2-order-Store.mmd": { "start": "src/Shop/Order.php", "light": ["Service", "Store"] },
+    "expected-3-store.mmd": { "start": "src/Shop/Store.php", "light": ["MemStore"] },
+    "expected-4-entity.mmd": { "start": "src/Shop/Entity.php", "light": [] }
+  }
+}

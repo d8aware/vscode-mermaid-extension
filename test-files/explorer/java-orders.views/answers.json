@@ -1,0 +1,1668 @@
+{
+ "definition src/main/java/orders/shop/Entity.java:4:12": [],
+ "definition src/main/java/orders/shop/Entity.java:4:19": [
+  {
+   "file": "/external/java.lang/String.java",
+   "range": {
+    "start": {
+     "line": 47,
+     "character": 19
+    },
+    "end": {
+     "line": 47,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "definition src/main/java/orders/shop/Order.java:8:10": [],
+ "definition src/main/java/orders/shop/Order.java:8:16": [],
+ "definition src/main/java/orders/shop/Order.java:8:21": [
+  {
+   "file": "/external/java.util/List.java",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 17
+    },
+    "end": {
+     "line": 5,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "definition src/main/java/orders/shop/Order.java:8:26": [
+  {
+   "file": "src/main/java/orders/shop/Line.java",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 13
+    },
+    "end": {
+     "line": 2,
+     "character": 17
+    }
+   }
+  }
+ ],
+ "definition src/main/java/orders/shop/Order.java:8:39": [],
+ "definition src/main/java/orders/shop/Order.java:8:49": [
+  {
+   "file": "/external/java.util/ArrayList.java",
+   "range": {
+    "start": {
+     "line": 35,
+     "character": 3
+    },
+    "end": {
+     "line": 37,
+     "character": 4
+    }
+   }
+  }
+ ],
+ "definition src/main/java/orders/storage/MemStore.java:10:10": [],
+ "definition src/main/java/orders/storage/MemStore.java:10:16": [],
+ "definition src/main/java/orders/storage/MemStore.java:10:20": [
+  {
+   "file": "/external/java.util/Map.java",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 17
+    },
+    "end": {
+     "line": 7,
+     "character": 20
+    }
+   }
+  }
+ ],
+ "definition src/main/java/orders/storage/MemStore.java:10:27": [
+  {
+   "file": "/external/java.lang/String.java",
+   "range": {
+    "start": {
+     "line": 47,
+     "character": 19
+    },
+    "end": {
+     "line": 47,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "definition src/main/java/orders/storage/MemStore.java:10:34": [
+  {
+   "file": "src/main/java/orders/shop/Order.java",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 13
+    },
+    "end": {
+     "line": 7,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "definition src/main/java/orders/storage/MemStore.java:10:48": [],
+ "definition src/main/java/orders/storage/MemStore.java:10:56": [
+  {
+   "file": "/external/java.util/HashMap.java",
+   "range": {
+    "start": {
+     "line": 90,
+     "character": 3
+    },
+    "end": {
+     "line": 92,
+     "character": 4
+    }
+   }
+  }
+ ],
+ "documentSymbols src/main/java/orders/shop/Entity.java": [
+  {
+   "name": "orders.shop",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Entity",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 7,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 22
+    },
+    "end": {
+     "line": 3,
+     "character": 28
+    }
+   },
+   "children": [
+    {
+     "name": "id",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 4
+      },
+      "end": {
+       "line": 4,
+       "character": 29
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 21
+      },
+      "end": {
+       "line": 4,
+       "character": 23
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "getId()",
+     "kind": "Method",
+     "detail": " : String",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 4
+      },
+      "end": {
+       "line": 6,
+       "character": 40
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 18
+      },
+      "end": {
+       "line": 6,
+       "character": 23
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/main/java/orders/shop/Line.java": [
+  {
+   "name": "orders.shop",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Line",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 9,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 13
+    },
+    "end": {
+     "line": 2,
+     "character": 17
+    }
+   },
+   "children": [
+    {
+     "name": "sku",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 3,
+       "character": 4
+      },
+      "end": {
+       "line": 3,
+       "character": 29
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 3,
+       "character": 25
+      },
+      "end": {
+       "line": 3,
+       "character": 28
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "price",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 4
+      },
+      "end": {
+       "line": 4,
+       "character": 30
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 24
+      },
+      "end": {
+       "line": 4,
+       "character": 29
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Line(String, Money)",
+     "kind": "Constructor",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 4
+      },
+      "end": {
+       "line": 6,
+       "character": 80
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 11
+      },
+      "end": {
+       "line": 6,
+       "character": 15
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "getPrice()",
+     "kind": "Method",
+     "detail": " : Money",
+     "range": {
+      "start": {
+       "line": 8,
+       "character": 4
+      },
+      "end": {
+       "line": 8,
+       "character": 45
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 8,
+       "character": 17
+      },
+      "end": {
+       "line": 8,
+       "character": 25
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/main/java/orders/shop/Money.java": [
+  {
+   "name": "orders.shop",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Money",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 10,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 13
+    },
+    "end": {
+     "line": 3,
+     "character": 18
+    }
+   },
+   "children": [
+    {
+     "name": "amount",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 4
+      },
+      "end": {
+       "line": 4,
+       "character": 30
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 23
+      },
+      "end": {
+       "line": 4,
+       "character": 29
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "currency",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 5,
+       "character": 4
+      },
+      "end": {
+       "line": 5,
+       "character": 34
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 5,
+       "character": 25
+      },
+      "end": {
+       "line": 5,
+       "character": 33
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Money(long, String)",
+     "kind": "Constructor",
+     "range": {
+      "start": {
+       "line": 7,
+       "character": 4
+      },
+      "end": {
+       "line": 7,
+       "character": 98
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 7,
+       "character": 11
+      },
+      "end": {
+       "line": 7,
+       "character": 16
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "add(Money)",
+     "kind": "Method",
+     "detail": " : Money",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 4
+      },
+      "end": {
+       "line": 9,
+       "character": 88
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 9,
+       "character": 17
+      },
+      "end": {
+       "line": 9,
+       "character": 20
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/main/java/orders/shop/Order.java": [
+  {
+   "name": "orders.shop",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 20
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 20
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Order",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 0
+    },
+    "end": {
+     "line": 25,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 7,
+     "character": 13
+    },
+    "end": {
+     "line": 7,
+     "character": 18
+    }
+   },
+   "children": [
+    {
+     "name": "lines",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 8,
+       "character": 4
+      },
+      "end": {
+       "line": 8,
+       "character": 55
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 8,
+       "character": 29
+      },
+      "end": {
+       "line": 8,
+       "character": 34
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "total",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 9,
+       "character": 4
+      },
+      "end": {
+       "line": 9,
+       "character": 46
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 9,
+       "character": 18
+      },
+      "end": {
+       "line": 9,
+       "character": 23
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "status",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 10,
+       "character": 4
+      },
+      "end": {
+       "line": 10,
+       "character": 40
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 10,
+       "character": 19
+      },
+      "end": {
+       "line": 10,
+       "character": 25
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "add(Line)",
+     "kind": "Method",
+     "detail": " : void",
+     "range": {
+      "start": {
+       "line": 12,
+       "character": 4
+      },
+      "end": {
+       "line": 18,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 12,
+       "character": 16
+      },
+      "end": {
+       "line": 12,
+       "character": 19
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "isPaid()",
+     "kind": "Method",
+     "detail": " : boolean",
+     "range": {
+      "start": {
+       "line": 20,
+       "character": 4
+      },
+      "end": {
+       "line": 20,
+       "character": 61
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 20,
+       "character": 19
+      },
+      "end": {
+       "line": 20,
+       "character": 25
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "markPaid()",
+     "kind": "Method",
+     "detail": " : void",
+     "range": {
+      "start": {
+       "line": 22,
+       "character": 4
+      },
+      "end": {
+       "line": 22,
+       "character": 45
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 22,
+       "character": 9
+      },
+      "end": {
+       "line": 22,
+       "character": 17
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "getTotal()",
+     "kind": "Method",
+     "detail": " : Money",
+     "range": {
+      "start": {
+       "line": 24,
+       "character": 4
+      },
+      "end": {
+       "line": 24,
+       "character": 45
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 24,
+       "character": 17
+      },
+      "end": {
+       "line": 24,
+       "character": 25
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/main/java/orders/shop/Service.java": [
+  {
+   "name": "orders.shop",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Service",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 13,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 13
+    },
+    "end": {
+     "line": 3,
+     "character": 20
+    }
+   },
+   "children": [
+    {
+     "name": "store",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 4
+      },
+      "end": {
+       "line": 4,
+       "character": 30
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 24
+      },
+      "end": {
+       "line": 4,
+       "character": 29
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "Service(Store)",
+     "kind": "Constructor",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 4
+      },
+      "end": {
+       "line": 6,
+       "character": 55
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 11
+      },
+      "end": {
+       "line": 6,
+       "character": 18
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "checkout(Order)",
+     "kind": "Method",
+     "detail": " : Money",
+     "range": {
+      "start": {
+       "line": 8,
+       "character": 4
+      },
+      "end": {
+       "line": 12,
+       "character": 5
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 8,
+       "character": 17
+      },
+      "end": {
+       "line": 8,
+       "character": 25
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/main/java/orders/shop/Status.java": [
+  {
+   "name": "orders.shop",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Status",
+   "kind": "Enum",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 2,
+     "character": 33
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 2,
+     "character": 12
+    },
+    "end": {
+     "line": 2,
+     "character": 18
+    }
+   },
+   "children": [
+    {
+     "name": "OPEN",
+     "kind": "EnumMember",
+     "range": {
+      "start": {
+       "line": 2,
+       "character": 21
+      },
+      "end": {
+       "line": 2,
+       "character": 25
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 2,
+       "character": 21
+      },
+      "end": {
+       "line": 2,
+       "character": 25
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "PAID",
+     "kind": "EnumMember",
+     "range": {
+      "start": {
+       "line": 2,
+       "character": 27
+      },
+      "end": {
+       "line": 2,
+       "character": 31
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 2,
+       "character": 27
+      },
+      "end": {
+       "line": 2,
+       "character": 31
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/main/java/orders/shop/Store.java": [
+  {
+   "name": "orders.shop",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 20
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "Store",
+   "kind": "Interface",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 0
+    },
+    "end": {
+     "line": 7,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   },
+   "children": [
+    {
+     "name": "save(Order)",
+     "kind": "Method",
+     "detail": " : void",
+     "range": {
+      "start": {
+       "line": 4,
+       "character": 4
+      },
+      "end": {
+       "line": 4,
+       "character": 27
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 4,
+       "character": 9
+      },
+      "end": {
+       "line": 4,
+       "character": 13
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "find(String)",
+     "kind": "Method",
+     "detail": " : Order",
+     "range": {
+      "start": {
+       "line": 6,
+       "character": 4
+      },
+      "end": {
+       "line": 6,
+       "character": 26
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 6,
+       "character": 10
+      },
+      "end": {
+       "line": 6,
+       "character": 14
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "documentSymbols src/main/java/orders/storage/MemStore.java": [
+  {
+   "name": "orders.storage",
+   "kind": "Package",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 23
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 23
+    }
+   },
+   "children": []
+  },
+  {
+   "name": "MemStore",
+   "kind": "Class",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 0
+    },
+    "end": {
+     "line": 17,
+     "character": 1
+    }
+   },
+   "selectionRange": {
+    "start": {
+     "line": 9,
+     "character": 13
+    },
+    "end": {
+     "line": 9,
+     "character": 21
+    }
+   },
+   "children": [
+    {
+     "name": "orders",
+     "kind": "Field",
+     "range": {
+      "start": {
+       "line": 10,
+       "character": 4
+      },
+      "end": {
+       "line": 10,
+       "character": 62
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 10,
+       "character": 37
+      },
+      "end": {
+       "line": 10,
+       "character": 43
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "save(Order)",
+     "kind": "Method",
+     "detail": " : void",
+     "range": {
+      "start": {
+       "line": 12,
+       "character": 4
+      },
+      "end": {
+       "line": 13,
+       "character": 71
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 13,
+       "character": 16
+      },
+      "end": {
+       "line": 13,
+       "character": 20
+      }
+     },
+     "children": []
+    },
+    {
+     "name": "find(String)",
+     "kind": "Method",
+     "detail": " : Order",
+     "range": {
+      "start": {
+       "line": 15,
+       "character": 4
+      },
+      "end": {
+       "line": 16,
+       "character": 59
+      }
+     },
+     "selectionRange": {
+      "start": {
+       "line": 16,
+       "character": 17
+      },
+      "end": {
+       "line": 16,
+       "character": 21
+      }
+     },
+     "children": []
+    }
+   ]
+  }
+ ],
+ "references src/main/java/orders/shop/Entity.java:3:22": [
+  {
+   "file": "src/main/java/orders/shop/Entity.java",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 22
+    },
+    "end": {
+     "line": 3,
+     "character": 28
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/shop/Order.java",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 27
+    },
+    "end": {
+     "line": 7,
+     "character": 33
+    }
+   }
+  }
+ ],
+ "references src/main/java/orders/shop/Order.java:7:13": [
+  {
+   "file": "src/main/java/orders/shop/Order.java",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 13
+    },
+    "end": {
+     "line": 7,
+     "character": 18
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/shop/Service.java",
+   "range": {
+    "start": {
+     "line": 8,
+     "character": 26
+    },
+    "end": {
+     "line": 8,
+     "character": 31
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/shop/Store.java",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 14
+    },
+    "end": {
+     "line": 4,
+     "character": 19
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/shop/Store.java",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 4
+    },
+    "end": {
+     "line": 6,
+     "character": 9
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 7
+    },
+    "end": {
+     "line": 5,
+     "character": 24
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 10,
+     "character": 30
+    },
+    "end": {
+     "line": 10,
+     "character": 35
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 13,
+     "character": 21
+    },
+    "end": {
+     "line": 13,
+     "character": 26
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 16,
+     "character": 11
+    },
+    "end": {
+     "line": 16,
+     "character": 16
+    }
+   }
+  }
+ ],
+ "references src/main/java/orders/shop/Service.java:3:13": [
+  {
+   "file": "src/main/java/orders/shop/Service.java",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 13
+    },
+    "end": {
+     "line": 3,
+     "character": 20
+    }
+   }
+  }
+ ],
+ "references src/main/java/orders/shop/Store.java:3:17": [
+  {
+   "file": "src/main/java/orders/shop/Service.java",
+   "range": {
+    "start": {
+     "line": 4,
+     "character": 18
+    },
+    "end": {
+     "line": 4,
+     "character": 23
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/shop/Service.java",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 19
+    },
+    "end": {
+     "line": 6,
+     "character": 24
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/shop/Store.java",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 6,
+     "character": 7
+    },
+    "end": {
+     "line": 6,
+     "character": 24
+    }
+   }
+  },
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 33
+    },
+    "end": {
+     "line": 9,
+     "character": 38
+    }
+   }
+  }
+ ],
+ "references src/main/java/orders/storage/MemStore.java:9:13": [
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 13
+    },
+    "end": {
+     "line": 9,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "subtypes src/main/java/orders/shop/Entity.java:3:22": [
+  {
+   "file": "src/main/java/orders/shop/Order.java",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 13
+    },
+    "end": {
+     "line": 7,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "subtypes src/main/java/orders/shop/Order.java:7:13": [],
+ "subtypes src/main/java/orders/shop/Service.java:3:13": [],
+ "subtypes src/main/java/orders/shop/Store.java:3:17": [
+  {
+   "file": "src/main/java/orders/storage/MemStore.java",
+   "range": {
+    "start": {
+     "line": 9,
+     "character": 13
+    },
+    "end": {
+     "line": 9,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "subtypes src/main/java/orders/storage/MemStore.java:9:13": [],
+ "supertypes src/main/java/orders/shop/Entity.java:3:22": [
+  {
+   "file": "/external/java.lang/Object.java",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 0
+    }
+   }
+  }
+ ],
+ "supertypes src/main/java/orders/shop/Order.java:7:13": [
+  {
+   "file": "src/main/java/orders/shop/Entity.java",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 22
+    },
+    "end": {
+     "line": 3,
+     "character": 28
+    }
+   }
+  }
+ ],
+ "supertypes src/main/java/orders/shop/Service.java:3:13": [
+  {
+   "file": "/external/java.lang/Object.java",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 0
+    }
+   }
+  }
+ ],
+ "supertypes src/main/java/orders/shop/Store.java:3:17": [],
+ "supertypes src/main/java/orders/storage/MemStore.java:9:13": [
+  {
+   "file": "src/main/java/orders/shop/Store.java",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   }
+  },
+  {
+   "file": "/external/java.lang/Object.java",
+   "range": {
+    "start": {
+     "line": 0,
+     "character": 0
+    },
+    "end": {
+     "line": 0,
+     "character": 0
+    }
+   }
+  }
+ ],
+ "typeDefinition src/main/java/orders/shop/Entity.java:4:21": [
+  {
+   "file": "/external/java.lang/String.java",
+   "range": {
+    "start": {
+     "line": 47,
+     "character": 19
+    },
+    "end": {
+     "line": 47,
+     "character": 25
+    }
+   }
+  }
+ ],
+ "typeDefinition src/main/java/orders/shop/Order.java:10:19": [
+  {
+   "file": "src/main/java/orders/shop/Status.java",
+   "range": {
+    "start": {
+     "line": 2,
+     "character": 12
+    },
+    "end": {
+     "line": 2,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition src/main/java/orders/shop/Order.java:8:29": [
+  {
+   "file": "/external/java.util/List.java",
+   "range": {
+    "start": {
+     "line": 5,
+     "character": 17
+    },
+    "end": {
+     "line": 5,
+     "character": 21
+    }
+   }
+  }
+ ],
+ "typeDefinition src/main/java/orders/shop/Order.java:9:18": [
+  {
+   "file": "src/main/java/orders/shop/Money.java",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 13
+    },
+    "end": {
+     "line": 3,
+     "character": 18
+    }
+   }
+  }
+ ],
+ "typeDefinition src/main/java/orders/shop/Service.java:4:24": [
+  {
+   "file": "src/main/java/orders/shop/Store.java",
+   "range": {
+    "start": {
+     "line": 3,
+     "character": 17
+    },
+    "end": {
+     "line": 3,
+     "character": 22
+    }
+   }
+  }
+ ],
+ "typeDefinition src/main/java/orders/storage/MemStore.java:10:37": [
+  {
+   "file": "/external/java.util/Map.java",
+   "range": {
+    "start": {
+     "line": 7,
+     "character": 17
+    },
+    "end": {
+     "line": 7,
+     "character": 20
+    }
+   }
+  }
+ ]
+}

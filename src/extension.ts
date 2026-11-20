@@ -1,6 +1,9 @@
 import * as vscode from "vscode";
 import { ViewDiagramCommand } from "./commands/ViewDiagramCommand";
 import { GenerateClassDiagramCommand } from "./commands/GenerateClassDiagramCommand";
+import { CodeExplorerCommand } from "./commands/CodeExplorerCommand";
+import { runProbe } from "./probe/languageProbe";
+import { recordAnswers } from "./probe/recordAnswers";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('"vscode-mermaid-extension" extension is now active!');
@@ -69,33 +72,54 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "vscode-mermaid-extension.generateClassDiagram",
-      (uri: vscode.Uri) => {
-        vscode.window.withProgress({
-            location: vscode.ProgressLocation.Notification,
-            title: "Analyzing TypeScript files",
-            cancellable: false // for now...
-        }, async (progress, token) => {
-          const filePath = await new GenerateClassDiagramCommand(progress, token).fromTypeScriptAtPath(uri.fsPath);
-          if (filePath) {
-            try {
-              const document = await vscode.workspace.openTextDocument(filePath);
-              await vscode.window.showTextDocument(document);
-
-              try {
-                await vscode.commands.executeCommand('vscode-mermaid-extension.showDiagramView');
-              } catch (error) {
-                  vscode.window.showErrorMessage(`Failed to open webview: ${error.message}`);
-              }
-            } catch (error) {
-              vscode.window.showErrorMessage(`Failed to open file: ${error.message}`);
-            }
+  /**
+   * Runs a class diagram generation with a cancellable progress notification,
+   * then opens the written diagram and its preview.
+   */
+  const generateAndOpen = (generate: (command: GenerateClassDiagramCommand) => Promise<string | undefined>) =>
+    vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: "Analyzing TypeScript files",
+        cancellable: true,
+      },
+      async (progress, token) => {
+        const filePath = await generate(new GenerateClassDiagramCommand(progress, token));
+        if (!filePath) {
+          return;
+        }
+        try {
+          const document = await vscode.workspace.openTextDocument(filePath);
+          await vscode.window.showTextDocument(document);
+          try {
+            await vscode.commands.executeCommand("vscode-mermaid-extension.showDiagramView");
+          } catch (error) {
+            vscode.window.showErrorMessage(`Failed to open webview: ${error.message}`);
           }
-        });
+        } catch (error) {
+          vscode.window.showErrorMessage(`Failed to open file: ${error.message}`);
+        }
       }
-    )
+    );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("vscode-mermaid-extension.generateClassDiagram", (uri: vscode.Uri) =>
+      generateAndOpen((command) => command.fromTypeScriptAtPath(uri.fsPath))
+    ),
+    vscode.commands.registerCommand("vscode-mermaid-extension.generateFocusedClassDiagram", (uri?: vscode.Uri) => {
+      // From the Explorer or editor context menu `uri` is the file; from the
+      // Command Palette it is undefined, so use the active editor.
+      const filePath = uri?.fsPath ?? vscode.window.activeTextEditor?.document.uri.fsPath;
+      if (!filePath) {
+        vscode.window.showInformationMessage("Open or select a TypeScript file first.");
+        return;
+      }
+      return generateAndOpen((command) => command.fromTypeScriptFile(filePath));
+    }),
+    ...CodeExplorerCommand.register(context),
+    // Spike: what can installed language extensions tell the explorer?
+    vscode.commands.registerCommand("vscode-mermaid-extension.checkLanguageSupport", (uri?: vscode.Uri) => runProbe(uri)),
+    vscode.commands.registerCommand("vscode-mermaid-extension.recordExplorerAnswers", (uri?: vscode.Uri) => recordAnswers(uri))
   );
 }
 

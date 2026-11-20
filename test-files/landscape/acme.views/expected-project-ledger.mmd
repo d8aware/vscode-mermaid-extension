@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph frame["ledger / src/main/java/com/acme/ledger"]
+  n_src_main_java_com_acme_ledger_core["<small>FOLDER</small><br/><b>core/</b><br/><small>2 .java</small>"]
+  n_src_main_java_com_acme_ledger_App_java["<small>ENTRY</small><br/><b>App.java</b><br/><small>main method</small>"]:::entry
+  projectFiles["<small>MAVEN PROJECT</small><br/><b>pom.xml</b><br/><small>project folder ↑</small>"]:::plain
+  end
+  n_src_main_java_com_acme_ledger_App_java -- "1" --> n_src_main_java_com_acme_ledger_core
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef entry fill:#f0fdf4,stroke:#16a34a,color:#14532d
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2

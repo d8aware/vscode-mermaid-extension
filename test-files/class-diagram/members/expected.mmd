@@ -1,0 +1,27 @@
+classDiagram
+  class Account {
+    <<abstract>>
+    +openAccounts: number$
+    +id: string
+    +nickname?: string
+    #balance: number
+    -history: number[]
+    -#pin: string
+    +total: number
+    +limit: number
+    +create(id) void$
+    +interestRate() number*
+    +deposit(amount, note, ...tags) void
+    +transfer(to, amount) boolean
+    -audit() void
+    #notify() Promise&lt;void&gt;
+  }
+  class Formatting {
+    +callback: Function
+    +options: object
+    +lookup: Map&lt;string, Array&lt;Record&lt;string, number&gt;&gt;&gt;
+    +veryLongUnion: 'alpha' | 'bravo' | 'charlie' | 'delta' | 'echo' | 'foxtrot…
+    +inferred: Map&lt;string, number&gt;
+    +tuple: [string, number]
+    +parse(input) Record&lt;string, unknown&gt;
+  }

@@ -1,0 +1,12 @@
+[project]
+name = "acme-analytics"
+version = "0.1.0"
+dependencies = [
+  "requests>=2.31",  # not in this repository: no arrow
+]
+
+[project.scripts]
+analytics = "analytics.cli:main"
+
+[tool.setuptools.package-dir]
+"" = "src"

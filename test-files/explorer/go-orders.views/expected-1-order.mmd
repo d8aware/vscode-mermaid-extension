@@ -1,0 +1,47 @@
+classDiagram
+  class Status {
+    <<type>>
+  }
+  class Line {
+    +SKU: string
+    +Price: Money
+  }
+  class Order {
+    +ID: string
+    +Lines: []Line
+    +Total: Money
+    -status: Status
+    +Add(line) error
+    +IsPaid() bool
+  }
+  class Money {
+    <<shop>>
+  }
+  class MemStore {
+    <<memstore>>
+  }
+  class New {
+    <<function · memstore>>
+  }
+  class Service {
+    <<shop>>
+  }
+  class Store {
+    <<interface · shop>>
+  }
+  Line --> Money : Price
+  MemStore ..> Order
+  New ..> Order
+  Order --> Line : Lines
+  Order --> Money : Total
+  Order --> Status : status
+  Service ..> Order
+  Store ..> Order
+  style Status stroke:#e11d48,stroke-width:3px
+  style Line stroke:#e11d48,stroke-width:3px
+  style Order stroke:#e11d48,stroke-width:3px
+  style Money fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style MemStore fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style New fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Service fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b
+  style Store fill:#f4f4f5,stroke:#a1a1aa,stroke-dasharray:4 3,color:#52525b

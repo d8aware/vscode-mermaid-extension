@@ -1,0 +1,20 @@
+flowchart LR
+  subgraph frame["web / src/app"]
+  n_src_app_orders["<small>FOLDER</small><br/><b>orders/</b><br/><small>2 .ts</small>"]
+  n_src_app_app_component_ts["<small>FILE</small><br/><b>app.component.ts</b>"]
+  n_src_app_helper_ts["<small>FILE</small><br/><b>helper.ts</b>"]
+  end
+  xn_src_main_ts["<small>OUTSIDE THIS FOLDER</small><br/><b>src/main.ts</b>"]:::outside
+  pj_platform_libs_ui_kit["<small>PROJECT</small><br/><b>@acme/ui-kit</b>"]:::outside
+  pj_platform_libs_util["<small>PROJECT</small><br/><b>@acme/util</b>"]:::outside
+  n_src_app_app_component_ts -- "1" --> n_src_app_helper_ts
+  n_src_app_app_component_ts -- "1" --> n_src_app_orders
+  n_src_app_app_component_ts -- "1" --> pj_platform_libs_ui_kit
+  n_src_app_app_component_ts -- "1" --> pj_platform_libs_util
+  n_src_app_orders -- "1" --> n_src_app_helper_ts
+  n_src_app_orders -- "1" --> pj_platform_libs_ui_kit
+  xn_src_main_ts -- "1" --> n_src_app_app_component_ts
+  classDef default fill:#ffffff,stroke:#94a3b8,color:#0f172a
+  classDef entry fill:#f0fdf4,stroke:#16a34a,color:#14532d
+  classDef plain fill:#fafafa,stroke:#d4d4d8,color:#52525b,stroke-dasharray:4 3
+  classDef outside fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray:2 2
