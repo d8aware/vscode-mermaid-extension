@@ -3,7 +3,7 @@
   "displayName": "Mermaid MMD Tools",
   "description": "Explore any codebase as diagrams, from projects down to classes, in TypeScript, Go, C#, PHP, Python, Java, Rust and more. Preview Mermaid .mmd files and generate class diagrams.",
   "icon": "media/infinity-hatch-128.png",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "publisher": "d8aware",
   "repository": {
     "type": "git",
@@ -63,7 +63,10 @@
         },
         "vscode-mermaid-extension.diagramColors": {
           "type": "string",
-          "enum": ["light", "editor"],
+          "enum": [
+            "light",
+            "editor"
+          ],
           "enumDescriptions": [
             "The diagrams' own colours on a light page (as saved and as shown on GitHub).",
             "The colours of your VS Code theme, light, dark or high contrast. A diagram that sets its own Mermaid theme keeps it; saved views keep their light colours."
@@ -73,7 +76,10 @@
         },
         "vscode-mermaid-extension.classDiagram.explorerConsumers": {
           "type": "string",
-          "enum": ["declared", "references"],
+          "enum": [
+            "declared",
+            "references"
+          ],
           "enumDescriptions": [
             "Consumers are classes that hold it in a field or receive it by constructor injection (our TypeScript analysis).",
             "Consumers are every class that references it, including method parameters and local use (asks the TypeScript language extension on each click)."
