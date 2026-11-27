@@ -3,7 +3,7 @@
   "displayName": "Mermaid MMD Tools",
   "description": "Explore any codebase as diagrams, from projects down to classes, in TypeScript, Go, C#, PHP, Python, Java, Rust and more. Preview Mermaid .mmd files and generate class diagrams.",
   "icon": "media/infinity-hatch-128.png",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "publisher": "d8aware",
   "repository": {
     "type": "git",

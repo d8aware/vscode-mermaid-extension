@@ -4,6 +4,12 @@ All notable changes to the "vscode-mermaid-extension" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 3.1.1
+
+### Added
+
+- **Sponsor button.** The Marketplace listing and the extension's page in VS Code now link to the [Ko-fi tip jar](https://ko-fi.com/d8aware). No changes to how the extension works.
+
 ## 3.1.0
 
 ### Added
