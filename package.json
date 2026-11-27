@@ -40,6 +40,9 @@
     "url": "https://github.com/d8aware/vscode-mermaid-extension/issues"
   },
   "homepage": "https://github.com/d8aware/vscode-mermaid-extension#readme",
+  "sponsor": {
+    "url": "https://ko-fi.com/d8aware"
+  },
   "qna": "marketplace",
   "galleryBanner": {
     "color": "#1e1e1e",

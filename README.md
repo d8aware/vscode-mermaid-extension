@@ -3,6 +3,7 @@
 [![Version](https://vsmarketplacebadges.dev/version-short/d8aware.vscode-mermaid-extension.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
 [![Installs](https://vsmarketplacebadges.dev/installs-short/d8aware.vscode-mermaid-extension.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
 [![Rating](https://vsmarketplacebadges.dev/rating-short/d8aware.vscode-mermaid-extension.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=d8aware.vscode-mermaid-extension)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-support-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/d8aware)
 
 **See a codebase as diagrams, from the whole repository down to a single class, in any language.**
 
@@ -153,6 +154,11 @@ Issues and pull requests are welcome on
 language is mostly a pack file and a recorded example; the
 [language packs guide](docs/language-packs.md#adding-a-language) walks
 through it.
+
+## Support
+
+Mermaid MMD Tools is free and open source. If it saves you time, you can
+leave a tip on [Ko-fi](https://ko-fi.com/d8aware).
 
 ## License
 
